@@ -6,20 +6,12 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 
-const isDev = import.meta.env.MODE === "development";
-
 /** API 사용 전, ENV 파일을 통해 서버 연동 설정을 해주세요 */
 const API_URL = import.meta.env.VITE_API_URL as string;
-// const DEVELOPMENT_API_URL = import.meta.env.VITE_DEVELOPMENT_API_URL as string;
-// const PRODUCTION_API_URL = import.meta.env.VITE_PRODUCTION_API_URL as string;
 
 const baseApi = axios.create({
   baseURL: API_URL,
-  //   baseURL:
-  //     import.meta.env.MODE === "development"
-  //       ? DEVELOPMENT_API_URL
-  //       : PRODUCTION_API_URL,
-  timeout: 1000,
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },
@@ -52,12 +44,14 @@ const onRequest = (
 
 /** request 요청 시, 발생하는 에러를 처리하는 함수 */
 const onErrorRequest = (error: AxiosError<AxiosRequestConfig>) => {
+  const { status } = error?.response as AxiosResponse;
+
   if (error?.config) {
-    console.log("에러: 요청 실패", error);
+    onError(status, "에러: 요청 실패");
   } else if (error?.request) {
-    console.log("에러: 응답 없음", error);
+    onError(status, "에러: 응답 없음");
   } else {
-    console.log("에러:", error);
+    onError(status, "에러:");
   }
 
   return Promise.reject(error);
@@ -120,18 +114,8 @@ const onErrorResponse = (error: AxiosError | Error) => {
 
 /** 인터셉터를 설정 하고, Axios Instance를 반환하는 함수 */
 const setInterceptors = (axiosInstance: AxiosInstance): AxiosInstance => {
-  // 개발 환경에서만 요청, 응답 로깅
-  const req = (() =>
-    isDev
-      ? { fulfilled: onRequest, rejected: onErrorRequest }
-      : { fulfilled: onRequest })();
-  const res = (() =>
-    isDev
-      ? { fulfilled: onResponse, rejected: onErrorResponse }
-      : { fulfilled: onResponse })();
-
-  axiosInstance.interceptors.request.use(req.fulfilled, req.rejected);
-  axiosInstance.interceptors.response.use(res.fulfilled, res.rejected);
+  axiosInstance.interceptors.request.use(onRequest, onErrorRequest);
+  axiosInstance.interceptors.response.use(onResponse, onErrorResponse);
 
   return axiosInstance;
 };
