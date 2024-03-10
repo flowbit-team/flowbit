@@ -14,7 +14,7 @@ const routerChildren: RouteObject[] = [
   },
   {
     path: "/chart",
-    element: <ChartContainer chartData={null} />
+    element: <ChartContainer />
   }
 ];
 
