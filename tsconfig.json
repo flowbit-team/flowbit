@@ -28,8 +28,8 @@
     },
 
     /* types */
-    "types": ["@emotion/react/types/css-prop"]
+    "types": ["@emotion/react/types/css-prop", "vite-plugin-svgr/client"]
   },
-  "include": ["src"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

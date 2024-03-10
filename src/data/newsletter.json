@@ -1,0 +1,806 @@
+{
+  "code": 1,
+  "message": "뉴스 데이터 생성",
+  "data": [
+    {
+      "title": "국내 현물 ETF 허용할까[파죽지세 <b>비트코인</b>②]",
+      "link": "https://n.news.naver.com/mnews/article/003/0012402286?sid=101",
+      "pubDate": "Sat, 02 Mar 2024 10:00:00 +0900",
+      "description": "<b>비트코인</b>의 역대 최고가 경신은 <b>비트코인</b> 현물 상장지수펀드(ETF) 승인 이후 거래량이 급증한 것도 배경으로 거론된다. 하지만 미국에 한정된 이야기다. 국내에서는 현물 ETF 발행·중개가 요원한 상태다. 2일 금융당국에... ",
+      "originalling": "http://www.newsis.com/view/?id=NISX20240229_0002644718&cID=10403&pID=15000",
+      "img": "https://imgnews.pstatic.net/image/003/2024/03/02/NISI20240229_0020248792_web_20240229113045_20240302101405327.jpg?type=w800"
+    },
+    {
+      "title": "[주간코인시황] 9000만원 찍은 <b>비트코인</b>… “상승세 즐겨라”",
+      "link": "https://n.news.naver.com/mnews/article/366/0000974535?sid=101",
+      "pubDate": "Sat, 02 Mar 2024 06:01:00 +0900",
+      "description": "대규모 기관 자금 유입 알트코인도 최대 60% 상승 4월 반감기도 예정돼 호재 많아 지난 한 주간 암호화폐 시장은 <b>비트코인</b> 가격 급등으로 뜨거웠다. 미국 소프트웨어 기업 마이크로스트래티지(MicroStrategy)가 <b>비트코인</b>... ",
+      "originalling": "https://biz.chosun.com/stock/finance/2024/03/02/VBHDPA6OVJFD5AIFVQ2RSKBURU/?utm_source=naver&utm_medium=original&utm_campaign=biz",
+      "img": "https://imgnews.pstatic.net/image/366/2024/03/02/0000974535_001_20240302060138801.jpeg?type=w800"
+    },
+    {
+      "title": "&quot;<b>비트코인</b> 오르면 수익 2배&quot;…168억 뭉칫돈 베팅한 개미들",
+      "link": "https://n.news.naver.com/mnews/article/015/0004954684?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 18:17:00 +0900",
+      "description": "<b>비트코인</b> 상승세가 이어지자 서학개미(해외 주식에 투자하는 국내 투자자)들이 <b>비트코인</b> 선물 레버리지 상장지수펀드(ETF)를 대거 사들이고 있다. 국내에서는 <b>비트코인</b> 현물 ETF 거래가 금지된 데다 레버리지를... ",
+      "originalling": "https://www.hankyung.com/article/2024030116961",
+      "img": "https://imgnews.pstatic.net/image/015/2024/03/01/0004954684_001_20240302012201054.jpg?type=w800"
+    },
+    {
+      "title": "“어디까지 올라가는 거예요?”…<b>비트코인</b>, 진짜 1억 가나 [위클리 코인리뷰]",
+      "link": "https://n.news.naver.com/mnews/article/243/0000056897?sid=101",
+      "pubDate": "Sat, 02 Mar 2024 07:02:00 +0900",
+      "description": "[편집자] <b>비트코인</b>이 연일 투자자들을 놀라게 만든 한 주였다. ‘천만원대’의 묵직한 코인이 단 사흘 새 앞자리가 3번 바뀌는 경험을 선사했기 때문이다. 암호화폐 커뮤니티에는 “존버는 승리한다. 감사합니다”... ",
+      "originalling": "https://economist.co.kr/article/view/ecn202403010004",
+      "img": "https://imgnews.pstatic.net/image/243/2024/03/02/0000056897_001_20240302070205241.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 전고점 뚫자 거래도 활활…'불장' 언제까지",
+      "link": "https://n.news.naver.com/mnews/article/001/0014538115?sid=101",
+      "pubDate": "Sat, 02 Mar 2024 07:00:00 +0900",
+      "description": "기관 자금 유입되며 9천만원 터치…일각서 &quot;1억원 곧 넘을 것&quot; 2021년 최고점 돌파 뒤 4분의 1토막…'투자 유의' 경고도 한지훈 민선희 기자 = 최근 <b>비트코인</b> 가격이 크게 상승하면서 가상자산 시장도 모처럼 활기를... ",
+      "originalling": "https://www.yna.co.kr/view/AKR20240301043000002?input=1195m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/03/02/PYH2024022907090001300_P4_20240302070113173.jpg?type=w800"
+    },
+    {
+      "title": "‘광풍일까?’…<b>비트코인</b>, 1억 원까지 넘본다",
+      "link": "https://n.news.naver.com/mnews/article/082/0001258202?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 16:52:00 +0900",
+      "description": "<b>비트코인</b>이 9000만 원을 ‘터치’하며, 역대 최고가를 경신했다, 달러로는 6만 달러를 돌파해 2021년 11월 기록한 사상 최고치도 갈아치울 것으로 전망되고 있다. <b>비트코인</b>은 전날인 지난달 29일 국내... ",
+      "originalling": "https://www.busan.com/view/busan/view.php?code=2024030116511449830",
+      "img": "https://imgnews.pstatic.net/image/082/2024/03/01/0001258202_001_20240301165201219.jpg?type=w800"
+    },
+    {
+      "title": "9000만 원 찍은 <b>비트코인</b>... 강세장 시작인가, 거품인가",
+      "link": "https://n.news.naver.com/mnews/article/469/0000788270?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 16:01:00 +0900",
+      "description": "<b>비트코인</b>이 원화시장에서 9,000만 원이라는 역대 최고가를 기록하자 '새로운 강세장의 시작'이라는 기대가 나온다. 가격 상승 속도에 비례해 &quot;투자자산으로서 가치가 없다&quot;는 전통적인 의구심도 고개를 들고 있다.... ",
+      "originalling": "https://www.hankookilbo.com/News/Read/A2024030112480001525?did=NA",
+      "img": "https://imgnews.pstatic.net/image/469/2024/03/01/0000788270_001_20240301160103910.jpg?type=w800"
+    },
+    {
+      "title": "‘上上 그 이상’ <b>비트코인</b>, 1억원까지 넘본다",
+      "link": "https://n.news.naver.com/mnews/article/005/0001677907?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 04:10:00 +0900",
+      "description": "<b>비트코인</b> 가격이 원화 시장에서 기존 최고가를 넘기며 사상 첫 9000만원대를 기록했다. 글로벌 거래소에서도 6만 달러를 돌파해 2021년 11월 기록한 사상 최고치 경신을 눈앞에 뒀다. 미국의 현물 상장지수펀드(ETF)... ",
+      "originalling": "https://www.kmib.co.kr/article/view.asp?arcid=1709196430&code=11151300&cp=nv",
+      "img": "https://imgnews.pstatic.net/image/005/2024/03/01/2024022922390358527_1709213943_1709196430_20240301041007143.jpg?type=w800"
+    },
+    {
+      "title": "9000만원 찍은 <b>비트코인</b>, 업계 “1억 돌파 시간문제”...‘홍채 등록’ 월드 ...",
+      "link": "https://n.news.naver.com/mnews/article/021/0002624223?sid=101",
+      "pubDate": "Sat, 02 Mar 2024 08:34:00 +0900",
+      "description": "2021년엔 사상 최고가 경신 후 하락, 단기 과열 상태라는 우려도 최근 <b>비트코인</b> 가격이 크게 상승하며 가상자산 시장도 간만에 활기를 되찾고 있다. <b>비트코인</b> 현물 상장지수펀드(ETF)의 미국 증시 상장을 계기로... ",
+      "originalling": "https://www.munhwa.com/news/view.html?no=2024030201039912310003",
+      "img": "https://imgnews.pstatic.net/image/021/2024/03/02/0002624223_001_20240302083701052.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 6만달러 돌파… 국내선 9000만원 ‘터치’",
+      "link": "https://n.news.naver.com/mnews/article/020/0003550893?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 01:44:00 +0900",
+      "description": "가상화폐 대장주인 <b>비트코인</b>이 한때 6만4000달러까지 치솟으면서 전 고점에 바짝 다가섰다. <b>비트코인</b> 현물 상장지수펀드(ETF)에 뭉칫돈이 몰리면서 파죽지세의 상승 랠리를 보이고 있다. 원화 기준으로는 이미 전... ",
+      "originalling": "https://www.donga.com/news/Economy/article/all/20240229/123762401/1",
+      "img": "https://imgnews.pstatic.net/image/020/2024/03/01/0003550893_001_20240301014431740.jpg?type=w800"
+    },
+    {
+      "title": "진짜 1억까지 뚫을까[파죽지세 <b>비트코인</b>①]",
+      "link": "https://n.news.naver.com/mnews/article/003/0012401314?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 10:00:00 +0900",
+      "description": "&quot;<b>비트코인</b>이 너무 빨리 올라 당황스럽기까지 하네요.&quot; 최근 만나는 코인 업계 관계자들마다 뱉는 말이다. 사상 최고가를 깬 <b>비트코인</b>의 상승 속도가 예상을 벗어난 수준이란 반응이다. 지난달 29일 오후 한때 <b>비트코인</b>... ",
+      "originalling": "http://www.newsis.com/view/?id=NISX20240229_0002644975&cID=15001&pID=15000",
+      "img": "https://imgnews.pstatic.net/image/003/2024/03/01/NISI20240229_0020248792_web_20240229113045_20240301101006260.jpg?type=w800"
+    },
+    {
+      "title": "'널뛰기' <b>비트코인</b> 6만1천달러선 안팎 등락…조정 받나",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536976?sid=104",
+      "pubDate": "Fri, 01 Mar 2024 07:57:00 +0900",
+      "description": "김태종 특파원 = 숨 가쁜 널뛰기 장세를 보였던 가상화폐 대장주 <b>비트코인</b>이 29일(현지시간)에는 숨고르기에 들어간 모습니다. 미 가상화폐 거래소 코인베이스에 따르면 미 동부시간 기준 이날 오후 5시 30분(서부 오후... ",
+      "originalling": "https://www.yna.co.kr/view/AKR20240301013700091?input=1195m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/03/01/PRU20240229222601009_P4_20240301075807438.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 9000만원 찍고 1억원 넘본다… 반감기·금리인하 변수",
+      "link": "https://n.news.naver.com/mnews/article/366/0000974427?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 06:01:00 +0900",
+      "description": "<b>비트코인</b>, 9000만원 터치하며 사상 최고치 2021년 열풍은 신규 개인 투자자가 주도 현 강세장은 <b>비트코인</b> ETF 승인 후 기관이 이끌어 <b>비트코인</b> 가격이 역대 최고가를 경신하며 9000만원을 찍었다. 최근의 강한 상승세는... ",
+      "originalling": "https://biz.chosun.com/stock/finance/2024/03/01/EIOVJIH2NRHELCRBWPZR5HZRWY/?utm_source=naver&utm_medium=original&utm_campaign=biz",
+      "img": "https://imgnews.pstatic.net/image/366/2024/03/01/0000974427_001_20240301060123716.jpg?type=w800"
+    },
+    {
+      "title": "'부자아빠' 기요사키 &quot;<b>비트코인</b> 폭등, 돈의 가치 회복&quot;",
+      "link": "https://n.news.naver.com/mnews/article/277/0005386699?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 10:19:00 +0900",
+      "description": "세계적 베스트셀러 '부자 아빠 가난한 아빠' 저자 로버트 기요사키가 최근 <b>비트코인</b> 가격 급등세를 두고 반색했다. 지난달 29일(현지시간) 기요사키는 자신의 트위터(X)에 &quot;<b>비트코인</b>이 가짜 화폐에 해당하는 달러를... ",
+      "originalling": "https://view.asiae.co.kr/article/2024030110001701050",
+      "img": "https://imgnews.pstatic.net/image/277/2024/03/01/0005386699_001_20240301102101279.png?type=w800"
+    },
+    {
+      "title": "눈뜨면 ‘최고가’…들뜬 <b>비트코인</b>, 과열 우려 커진다",
+      "link": "https://n.news.naver.com/mnews/article/032/0003281937?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 21:43:00 +0900",
+      "description": "국내 시장 개당 8900만원 돌파 현물 ETF 거래 늘며 수요 급증 다가온 채굴량 반감기도 호재 투자자들 ‘1억원 돌파’ 기대감 규제 공백 속 투자자 보호 취약 단기 투기성 자금엔 경계 필요 가상자산 대장주 <b>비트코인</b>... ",
+      "originalling": "https://www.khan.co.kr/economy/finance/article/202402292138045",
+      "img": "https://imgnews.pstatic.net/image/032/2024/02/29/0003281937_001_20240229214301105.jpg?type=w800"
+    },
+    {
+      "title": "'부자아빠' 기요사키 &quot;<b>비트코인</b> 폭등은 진정한 가치 회복&quot;",
+      "link": "https://n.news.naver.com/mnews/article/215/0001150913?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 08:35:00 +0900",
+      "description": "세계적인 베스트셀러 '부자 아빠 가난한 아빠'의 저자 로버트 기요사키가 <b>비트코인</b> 가격 급등세에 대한 입장을 밝혀 화제다. 29일(현지시간) 기요사키는 자신의 트위터(X)를 통해 &quot;<b>비트코인</b>이 가짜 화폐에 해당하는... ",
+      "originalling": "http://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202403010034&t=NN",
+      "img": "https://imgnews.pstatic.net/image/215/2024/03/01/A202403010034_1_20240301092101334.jpg?type=w800"
+    },
+    {
+      "title": "전대미문 '9000만원 고지' 밟은 <b>비트코인</b>, 1억 가나(종합)",
+      "link": "https://n.news.naver.com/mnews/article/421/0007383842?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 16:33:00 +0900",
+      "description": "가상자산(암호화페) <b>비트코인</b>이 역대 최고가를 계속해서 경신하면서 결국 9000만원선 돌파까지 성공했다. 이제 1000만원만 더 오르면 '1억원 목표'도 달성 가능한 상황이다. 29일 가상자산 거래소 업비트에 따르면... ",
+      "originalling": "https://www.news1.kr/articles/5336651",
+      "img": "https://imgnews.pstatic.net/image/421/2024/02/29/0007383842_001_20240229164438428.jpg?type=w800"
+    },
+    {
+      "title": "&quot;<b>비트코인</b>, 상승 언제까지&quot;…1억까지 1100만원 남았다",
+      "link": "https://n.news.naver.com/mnews/article/003/0012400449?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 15:32:00 +0900",
+      "description": "대장주 <b>비트코인</b>이 사상 최고가를 경신한 후에도 랠리를 이어가고 있다. '오늘이 가장 저렴한 날'임을 매일 보여주는 셈이다. 다음 저항선으로 꼽히는 1억원까지는 약 12%(1100만원) 남았다. 29일 업계에 따르면... ",
+      "originalling": "http://www.newsis.com/view/?id=NISX20240229_0002644576&cID=15001&pID=15000",
+      "img": "https://imgnews.pstatic.net/image/003/2024/02/29/NISI20240229_0020248794_web_20240229113045_20240229160017212.jpg?type=w800"
+    },
+    {
+      "title": "계속되는 <b>비트코인</b> 상승…1억까지 갈까?",
+      "link": "https://n.news.naver.com/mnews/article/079/0003869144?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 15:47:00 +0900",
+      "description": "대장주 <b>비트코인</b>이 사상 최고가를 경신한 후에도 랠리를 이어가고 있다. 다음 저항선으로 꼽히는 1억원까지는 약 12%(1100만원) 남았다. 29일 업계에 따르면 <b>비트코인</b>은 이날 올해 처음으로 상승률 10%대를 기록했다.... ",
+      "originalling": "https://www.nocutnews.co.kr/news/6104084",
+      "img": "https://imgnews.pstatic.net/image/079/2024/02/29/0003869144_001_20240229154701139.jpg?type=w800"
+    },
+    {
+      "title": "'광란의 질주' 시작한 <b>비트코인</b>, 결국 9000만원선까지 뚫었다",
+      "link": "https://n.news.naver.com/mnews/article/421/0007383678?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 15:48:00 +0900",
+      "description": "최근 급등세를 탄 가상자산(암호화페) <b>비트코인</b>이 9000만원선 돌파까지 성공했다. 29일 가상자산 거래소 업비트에 따르면 <b>비트코인</b>은 이날 오후 3시47분경, 9000만원선을 돌파했다. 전일 <b>비트코인</b>은 지난 2021년... ",
+      "originalling": "https://www.news1.kr/articles/5336596",
+      "img": "https://imgnews.pstatic.net/image/421/2024/02/29/0007383678_001_20240229154921890.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 2년 만에 9000만 원 벽 도전",
+      "link": "https://n.news.naver.com/mnews/article/082/0001258100?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 18:06:00 +0900",
+      "description": "가상화폐 대장주 <b>비트코인</b>이 27개월 만에 9000만 원을 코앞에 두고 있다. 달러로는 6만 달러를 돌파해 역대 최고점인 6만 9000달러 돌파도 머지 않았다는 전망이 나온다. 29일 오후 3시 43분 기준 국내 가상자산거래소... ",
+      "originalling": "https://www.busan.com/view/busan/view.php?code=2024022918045222502",
+      "img": "https://imgnews.pstatic.net/image/082/2024/02/29/0001258100_001_20240229180601174.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 치솟자…&quot;40% 수익률&quot; 엘살바도르 대통령 '활짝'",
+      "link": "https://n.news.naver.com/mnews/article/448/0000449879?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 21:38:00 +0900",
+      "description": "<b>비트코인</b> 급등 소식이 연일 전해지고 있는데요. 국고까지 동원해 <b>비트코인</b>을 사들인 엘살바도르가 상당한 수익을 거둔 것으로 전해졌습니다. 가상화폐 신봉자인 미국의 유명 CEO도, 사흘 만에 재산이 1조 원... ",
+      "originalling": "https://news.tvchosun.com/site/data/html_dir/2024/03/01/2024030190095.html",
+      "img": "https://imgnews.pstatic.net/image/448/2024/03/01/2024030190095_thumb_094615_20240301215104380.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 27개월 만에 6만달러 돌파…한때 6만4천달러 '터치'(종합)",
+      "link": "https://n.news.naver.com/mnews/article/001/0014534298?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 05:32:00 +0900",
+      "description": "대장주 <b>비트코인</b>이 28일(현지시간) 급등하며 27개월 만에 6만 달러의 문턱을 넘었다. 한때 6만4천 달러선까지 치솟으며, 다소 이르긴 하지만 사상 최고점 경신의 기대를 품게 하는 수준에 이르렀다. 미 가상화폐 거래소... ",
+      "originalling": "https://www.yna.co.kr/view/AKR20240229002252091?input=1195m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PRU20240228300401009_P4_20240229091007189.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 역사적 고점 '가시권'…이더리움ETF 출시 기대감도 [투자360]",
+      "link": "https://n.news.naver.com/mnews/article/016/0002274076?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 07:02:00 +0900",
+      "description": "가상자산 대장주인 <b>비트코인</b>이 급등하면서 6만달러선을 돌파했다. 사상 최고치(6만9000달러) 사정권이 눈앞이다. <b>비트코인</b>이 ETF(상장지수펀드) 출시에 힘입어 상승세를 탄 것처럼 이더리움도 ETF 기대감에 가격이... ",
+      "originalling": "http://news.heraldcorp.com/view.php?ud=20240229050851",
+      "img": "https://imgnews.pstatic.net/image/016/2024/03/01/20240229050776_0_20240301073601298.jpg?type=w800"
+    },
+    {
+      "title": "‘반감기 효과’… <b>비트코인</b> 연일 최고가",
+      "link": "https://n.news.naver.com/mnews/article/022/0003909244?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 19:16:00 +0900",
+      "description": "원화 기준 한때 9000만원 ‘터치’ 반감기 채굴량 절반으로 줄어 현물ETF 수급 맞물려 파죽지세 연내 1억원 돌파 기대감 커져 <b>비트코인</b>이 반감기를 한 달 앞두고 원화 기준 역대 최고가인 9000만원을 기록하는 등... ",
+      "originalling": "http://www.segye.com/newsView/20240229515364?OutUrl=naver",
+      "img": "https://imgnews.pstatic.net/image/022/2024/02/29/20240229516832_20240229191604780.jpg?type=w800"
+    },
+    {
+      "title": "지금이라도 사나?…<b>비트코인</b>, 9000만원까지 뚫었다",
+      "link": "https://n.news.naver.com/mnews/article/005/0001677773?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 18:52:00 +0900",
+      "description": "<b>비트코인</b> 가격이 원화 시장에서 기존 최고가를 넘기며 사상 첫 9000만원대를 기록했다. 글로벌 거래소에서도 6만 달러를 돌파해 2021년 11월 기록한 사상 최고치 경신을 눈앞에 뒀다. 미국의 현물 상장지수펀드(ETF)... ",
+      "originalling": "https://www.kmib.co.kr/article/view.asp?arcid=0019846854&code=61141111&cp=nv",
+      "img": "https://imgnews.pstatic.net/image/005/2024/02/29/2024022914460757636_1709185570_0019846854_20240229185204061.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 9000만원 돌파… 하루만에 또 신고가",
+      "link": "https://n.news.naver.com/mnews/article/005/0001677741?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:32:00 +0900",
+      "description": "<b>비트코인</b> 가격이 개당 9000만원까지 치솟으며 신고가를 경신했다. 전날 8300만원을 돌파하며 2년 3개월 만에 최고가를 경신한 지 하루 만에 또다시 시세가 치솟았다. 29일 국내 최대 가상자산 거래소 업비트에 따르면... ",
+      "originalling": "https://www.kmib.co.kr/article/view.asp?arcid=0019846560&code=61141111&cp=nv",
+      "img": "https://imgnews.pstatic.net/image/005/2024/02/29/2024011013561195541_1704862571_0019846560_20240229181501487.jpg?type=w800"
+    },
+    {
+      "title": "&quot;2년3개월 만에 구조대 왔다&quot;…<b>비트코인</b>, 9000만원 터치",
+      "link": "https://n.news.naver.com/mnews/article/008/0005005978?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 16:41:00 +0900",
+      "description": "원화마켓에서 <b>비트코인</b>의 가격이 사상 처음 9000만원을 찍었다. 29일 오후 3시47분 국내 최대 가상자산(암호화폐) 거래소 업비트에서 <b>비트코인</b> 1개의 가격이 9000만원을 기록했다. 업비트에서 <b>비트코인</b>은... ",
+      "originalling": "http://news.mt.co.kr/mtview.php?no=2024022916325996929",
+      "img": "https://imgnews.pstatic.net/image/008/2024/02/29/0005005978_001_20240229164201009.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 사상최고가…코인시장 '들썩'",
+      "link": "https://n.news.naver.com/mnews/article/648/0000023707?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 11:10:00 +0900",
+      "description": "최근 들어 <b>비트코인</b>(BTC)이 하루새 1000만원 가량 급등하는 등 사상최고가를 경신하며 거침없는 상승세를 타고 있다. 기관투자자 유입, 반감기 등 호재와 함께 미국 금리정책 전환에 대한 기대감으로 향후 <b>비트코인</b>이... ",
+      "originalling": "http://news.bizwatch.co.kr/article/mobile/2024/02/29/0007",
+      "img": "https://imgnews.pstatic.net/image/648/2024/03/01/0000023707_001_20240301111001615.jpg?type=w800"
+    },
+    {
+      "title": "“광기의 영역 됐다” <b>비트코인</b> 연일 역대 최고치…과열 우려 없나",
+      "link": "https://n.news.naver.com/mnews/article/032/0003281840?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 16:58:00 +0900",
+      "description": "가상자산 대장주 <b>비트코인</b> 가격이 29일 국내 가상자산 시장에서 개당 8900만원대를 돌파하며 연일 역대 최고치를 기록하고 있다. <b>비트코인</b> 현물 상장지수펀드(ETF)에 대한 수요가 늘어난데다, <b>비트코인</b> 공급량이 반으로... ",
+      "originalling": "https://www.khan.co.kr/economy/finance/article/202402291657001",
+      "img": "https://imgnews.pstatic.net/image/032/2024/02/29/0003281840_001_20240229180501075.jpg?type=w800"
+    },
+    {
+      "title": "6만4천 달러 넘어선 <b>비트코인</b> '역대 최고가' 넘본다",
+      "link": "https://n.news.naver.com/mnews/article/088/0000864928?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 18:12:00 +0900",
+      "description": "가상화폐 <b>비트코인</b> 가격이 연일 사상 최고가를 갈아치우고 있다. 2년 3개월 만에 6만 달러 문턱을 넘은 데다 장중 한때는 6만4천 달러선까지 치솟았다. 2021년 11월 달성한 역대 최고점 6만9천 달러를 넘보는 수준이다.... ",
+      "originalling": "https://www.imaeil.com/page/view/2024022917290028778",
+      "img": "https://imgnews.pstatic.net/image/088/2024/02/29/0000864928_001_20240229181205147.jpg?type=w800"
+    },
+    {
+      "title": "‘널뛰기’ <b>비트코인</b>…6만1000달러서 숨고르기",
+      "link": "https://n.news.naver.com/mnews/article/016/0002274152?sid=104",
+      "pubDate": "Fri, 01 Mar 2024 11:22:00 +0900",
+      "description": "급등락을 반복했던 <b>비트코인</b>이 29일(현지시간)에는 숨고르기에 들어간 모습이다. 미 가상화폐 거래소 코인베이스에 따르면 미 동부시간 기준 이날 오후 5시 30분(서부 오후 2시 30분) 현재 <b>비트코인</b> 1개당 가격은 24시간... ",
+      "originalling": "http://news.heraldcorp.com/view.php?ud=20240301050078",
+      "img": "https://imgnews.pstatic.net/image/016/2024/03/01/20240301050058_0_20240301112201425.jpg?type=w800"
+    },
+    {
+      "title": "질주하는 <b>비트코인</b>, 6만4000달러까지 ‘터치’",
+      "link": "https://n.news.naver.com/mnews/article/366/0000974119?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 07:11:00 +0900",
+      "description": "27개월만에 6만달러 돌파 <b>비트코인</b>이 6만4000달러까지 치솟으며 무서운 상승세를 보이고 있다. 미국 가상화폐 거래소 코인베이스에 따르면 28일(현지시간) 오후 3시 31분 현재 <b>비트코인</b> 1개당 가격은 24시간 전보다 5.... ",
+      "originalling": "https://biz.chosun.com/stock/finance/2024/02/29/MPTP4LEBSRCPLE6NNZOXVAMEYY/?utm_source=naver&utm_medium=original&utm_campaign=biz",
+      "img": "https://imgnews.pstatic.net/image/366/2024/02/29/0000974119_001_20240229071101351.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 조정 오나…&quot;매우 거품 낀 수준&quot;",
+      "link": "https://n.news.naver.com/mnews/article/215/0001150909?sid=004",
+      "pubDate": "Fri, 01 Mar 2024 08:06:00 +0900",
+      "description": "가파르게 상승하던 가상화폐 <b>비트코인</b> 가격이 29일(현지시간)에는 숨고르기에 들어간 모습을 보이고 있다. 미 가상화폐 거래소 코인베이스에 따르면 미 동부시간 기준 이날 오후 5시 30분(서부 오후 2시 30분) 현재... ",
+      "originalling": "http://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202403010030&t=NN",
+      "img": "https://imgnews.pstatic.net/image/215/2024/03/01/A202403010030_1_20240301211401585.jpg?type=w800"
+    },
+    {
+      "title": "천장 뚫린 <b>비트코인</b>, 이번엔 1억 가나",
+      "link": "https://n.news.naver.com/mnews/article/011/0004306817?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 16:37:00 +0900",
+      "description": "<b>비트코인</b>이 국내 가상자산거래소에서 연일 역대 최고가 기록을 갈아치우면서 장중 9000만 원까지 터치했다. 최근 워낙 가파른 상승세를 보이고 있어 시장에서는 1억 원 돌파에 대한 기대감이 커지고 있다. 미국 현물... ",
+      "originalling": "https://www.sedaily.com/NewsView/2D5JREZUGJ",
+      "img": "https://imgnews.pstatic.net/image/011/2024/02/29/0004306817_001_20240229221240080.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 숨 고르기…2% 하락, 6만1000달러에 거래돼",
+      "link": "https://n.news.naver.com/mnews/article/421/0007384554?sid=104",
+      "pubDate": "Fri, 01 Mar 2024 09:13:00 +0900",
+      "description": "연일 급등했던 <b>비트코인</b>이 숨 고르기에 들어갔다. 1일 오전 9시 현재 글로벌 코인 시황 중계사이트인 코인마켓캡에서 <b>비트코인</b>은 24시간 전보다 1.95% 하락한 6만1325달러를 기록하고 있다. 이날 <b>비트코인</b>은 최고... ",
+      "originalling": "https://www.news1.kr/articles/5337126",
+      "img": "https://imgnews.pstatic.net/image/421/2024/03/01/0007384554_001_20240301091601513.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 27개월 만에 6만달러 돌파",
+      "link": "https://n.news.naver.com/mnews/article/366/0000974094?sid=004",
+      "pubDate": "Thu, 29 Feb 2024 01:48:00 +0900",
+      "description": "<b>비트코인</b> 가격이 27개월 만에 6만달러를 돌파했다. <b>비트코인</b> 가격이 6만달러를 넘어선 것은 2021년 11월 이후 처음이다. 28일(현지 시각) 미국 가상화폐 거래소 코인베이스에 따르면 미 동부 기준 이날 오전 11시 10분... ",
+      "originalling": "https://biz.chosun.com/stock/money/2024/02/29/X47EWGPYZJB2LBMAQ5CNI2URQA/?utm_source=naver&utm_medium=original&utm_campaign=biz",
+      "img": "https://imgnews.pstatic.net/image/366/2024/02/29/0000974094_001_20240229014801386.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 6만2천달러도 넘어서…역대 최고점 돌파도 가시권(종합)",
+      "link": "https://n.news.naver.com/mnews/article/001/0014534266?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 02:04:00 +0900",
+      "description": "27개월만에 6만 달러선 넘은 뒤 지속 상승…역대 최고점은 6만9천달러 &quot;ETF 유입 자금, 공급량 크게 웃돌아…반감기 앞두고 기록 가능성&quot; 김태종 특파원 = 가상화폐 대장주 <b>비트코인</b>이 28일(현지시간) 급등하며 27개월... ",
+      "originalling": "https://www.yna.co.kr/view/AKR20240229002251091?input=1195m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PRU20240228300401009_P4_20240229020510215.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 사상 최고가…“1억 돌파” vs “급락할 것”",
+      "link": "https://n.news.naver.com/mnews/article/018/0005683706?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 09:56:00 +0900",
+      "description": "국내 가상자산 거래소에서 <b>비트코인</b>이 사상 최고가를 기록했다. 기준금리 인하 전망, <b>비트코인</b> 반감기, <b>비트코인</b> 현물 상장지수펀드(ETF) 등의 여파로 오름세가 계속되는 것이다. 시장에선 계속 올라 1억원을 돌파할... ",
+      "originalling": "http://www.edaily.co.kr/news/newspath.asp?newsid=01334966638819056",
+      "img": "https://imgnews.pstatic.net/image/018/2024/03/01/0005683706_001_20240301095603138.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 고공행진",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536424?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터를 찾은 한 고객이 <b>비트코인</b> 시세 현황이 뜬 스크린을 바라보고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229058400013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022905840001300_P4_20240229170612964.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 고공행진",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536423?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터를 찾은 한 고객이 <b>비트코인</b> 시세 현황이 뜬 스크린을 바라보고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229059000013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022905900001300_P4_20240229170611106.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 고공행진",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536422?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터를 찾은 한 고객이 <b>비트코인</b> 시세 현황이 뜬 스크린을 바라보고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229058800013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022905880001300_P4_20240229170609201.jpg?type=w800"
+    },
+    {
+      "title": "&quot;<b>비트코인</b> 활황에 더 오른다&quot;...반년도 안돼 세배 뛴 '상장 VC'",
+      "link": "https://n.news.naver.com/mnews/article/421/0007384540?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 09:00:00 +0900",
+      "description": "<b>비트코인</b>이 역사상 최고점을 넘어서면서 관련주 주가가 덩달아 뛰었다. 대표적으로 코스닥시장에 소속된 벤처캐피탈(VC)인 우리기술투자(041190)는 반년도 안 돼 세 배 넘게 불었다. <b>비트코인</b> 가격은 상승세가 거세... ",
+      "originalling": "https://www.news1.kr/articles/5336825",
+      "img": "https://imgnews.pstatic.net/image/421/2024/03/01/0007384540_001_20240301090118278.jpg?type=w800"
+    },
+    {
+      "title": "지금 속도면 '금 넘어선다'… <b>비트코인</b> '급등' 이유는?",
+      "link": "https://n.news.naver.com/mnews/article/008/0005005710?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 10:48:00 +0900",
+      "description": "<b>비트코인</b> 가격이 2년3개월 만에 8800만원까지 돌파했다. 지난 1월 미국 규제당국의 <b>비트코인</b> 현물 상장지수펀드(ETF) 승인, 4월 예정된 <b>비트코인</b> 반감기, 미국 주식시장의 AI(인공지능)주 과열 경계감 등이 맞물린... ",
+      "originalling": "http://news.mt.co.kr/mtview.php?no=2024022910065373656",
+      "img": "https://imgnews.pstatic.net/image/008/2024/02/29/0005005710_001_20240229105001043.jpg?type=w800"
+    },
+    {
+      "title": "이젠 9000만원 넘보는 <b>비트코인</b>…하루 만에 1000만원 넘게 올랐다",
+      "link": "https://n.news.naver.com/mnews/article/421/0007382013?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 08:50:00 +0900",
+      "description": "사상 최고가를 경신한 <b>비트코인</b>의 '거센 질주'가 계속되고 있다. 올해 처음으로 10%가 넘는 상승률을 기록했으며, 하루 만에 1000만 원이 넘게 올랐다. 29일 업비트에 따르면 <b>비트코인</b> 가격은 이날 오전 8시40분 기준... ",
+      "originalling": "https://www.news1.kr/articles/5335753",
+      "img": "https://imgnews.pstatic.net/image/421/2024/02/29/0007382013_001_20240229093601533.jpg?type=w800"
+    },
+    {
+      "title": "9000만원 찍은 <b>비트코인</b>…전문가 &quot;1억3000만원까지 간다&quot;",
+      "link": "https://n.news.naver.com/mnews/article/031/0000816865?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 18:37:00 +0900",
+      "description": "<b>비트코인</b>이 파죽지세로 상승하며 한국 가격으로는 사상 최고가를 다시 뛰어 넘어 장중 한때 9000만원까지 터치했다. 시장 전문가들은 올해 말까지 <b>비트코인</b> 가격이 1억3000만원을 넘을 수 있다고 전망했다. 29일... ",
+      "originalling": "http://www.inews24.com/view/1692633",
+      "img": "https://imgnews.pstatic.net/image/031/2024/02/29/0000816865_001_20240229183701083.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 진짜 1억원 가나... 사상 최고가에 &quot;오름세 지속&quot; vs &quot;급락할 것&quot;",
+      "link": "https://n.news.naver.com/mnews/article/123/0002328611?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 11:00:00 +0900",
+      "description": "국내 가상자산 거래소에서 <b>비트코인</b>이 사상 최고가를 기록한 가운데 낙관론이 확산되고 있다. 다만 <b>비트코인</b>이 계속 올라 1억원을 돌파할 것이란 기대와 상승 속도가 예상을 벗어난 수준이라며 급락할 것이란... ",
+      "originalling": "http://www.joseilbo.com/news/news_read.php?uid=511030&class=18&grp=",
+      "img": "https://imgnews.pstatic.net/image/123/2024/03/01/0002328611_001_20240301171901216.png?type=w800"
+    },
+    {
+      "title": "가상자산 시장, <b>비트코인</b> 상승세에 활기…'크립토 스프링' 도래 주목",
+      "link": "https://n.news.naver.com/mnews/article/088/0000865083?sid=101",
+      "pubDate": "Sat, 02 Mar 2024 09:55:00 +0900",
+      "description": "최근 <b>비트코인</b> 가격이 크게 상승하며 가상자산 시장에 다시 활기가 돌고 있다. 특히 <b>비트코인</b> 현물 상장지수펀드(ETF)의 미국 증시 상장이라는 중대한 이벤트를 계기로, 이른바 '크립토 스프링'이 도래했다는 평가가... ",
+      "originalling": "https://www.imaeil.com/page/view/2024030209544318426",
+      "img": "https://imgnews.pstatic.net/image/088/2024/03/02/0000865083_001_20240302095501169.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 고공행진ing",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536286?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터 스크린 앞에서 직원이 <b>비트코인</b> 시세를 확인하고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229071600013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022907160001300_P4_20240229170107865.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 고공행진ing",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536287?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터 스크린 앞에서 직원이 <b>비트코인</b> 시세를 확인하고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229071400013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022907140001300_P4_20240229170111706.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 연일 고공행진",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536417?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터를 찾은 한 고객이 <b>비트코인</b> 시세 현황이 뜬 스크린 앞에서 물을 마시고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229059500013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022905950001300_P4_20240229170557550.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 연일 고공행진",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536421?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터를 찾은 한 고객이 <b>비트코인</b> 시세 현황이 뜬 스크린 앞에서 물을 마시고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229059700013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022905970001300_P4_20240229170607329.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 고공행진ing",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536288?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터 스크린 앞에서 직원이 <b>비트코인</b> 시세를 확인하고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229071300013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022907130001300_P4_20240229170113596.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 연일 고공행진",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536420?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터를 찾은 한 고객이 <b>비트코인</b> 시세 현황이 뜬 스크린 앞에서 물을 마시고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229060000013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022906000001300_P4_20240229170603155.jpg?type=w800"
+    },
+    {
+      "title": "급등세 이어가던 <b>비트코인</b> 숨고르기…“현물 ETF 비중 2배 될 것”",
+      "link": "https://n.news.naver.com/mnews/article/081/0003434123?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 10:39:00 +0900",
+      "description": "사흘간 급등세를 이어가며 원화마켓에서 사상 최고가를 찍었던 <b>비트코인</b>이 소폭 하락해 숨고르기에 들어간 모양새다. 연내 10만달러를 돌파할 거란 기대감이 확대되고 있는 가운데 국내 증권사에서는 <b>비트코인</b> 현물... ",
+      "originalling": "https://www.seoul.co.kr/news/economy/2024/03/01/20240301500039&wlog_tag3=naver",
+      "img": "https://imgnews.pstatic.net/image/081/2024/03/01/0003434123_001_20240301103901163.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 6만달러 돌파하자 관련주 일제히 ‘들썩’ [증시이슈]",
+      "link": "https://n.news.naver.com/mnews/article/243/0000056837?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 10:24:00 +0900",
+      "description": "가상자산인 <b>비트코인</b>이 6만달러를 돌파하자 관련주가 29일 장 초반 강세다. 이날 오전 10시 10분 기준 우리기술투자(041190)는 전일 대비 9.71% 오른 9720원에 거래되고 있다. 한화투자증권(003530)도 전 거래일 대비 5.01... ",
+      "originalling": "https://economist.co.kr/article/view/ecn202402290009",
+      "img": "https://imgnews.pstatic.net/image/243/2024/02/29/0000056837_001_20240229102401327.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 9000만원 터치…‘꿈의 1억’ 실현되나 [투자360]",
+      "link": "https://n.news.naver.com/mnews/article/016/0002273953?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 16:03:00 +0900",
+      "description": "가상자산 대장주 <b>비트코인</b>이 28일(현지시간) 급등하며 27개월 만에 6만달러의 문턱을 넘었다. 원화기준으로는 사상최고치를 돌파, 어느새 9000만원을 눈 앞에 두고 있다. 조만간 1억원 돌파도 노릴 수 있다는 전망이... ",
+      "originalling": "http://news.heraldcorp.com/view.php?ud=20240229050693",
+      "img": "https://imgnews.pstatic.net/image/016/2024/02/29/20240229050649_0_20240229160315594.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 폭주에…가상자산 시총, 엔비디아도 넘었다",
+      "link": "https://n.news.naver.com/mnews/article/018/0005683032?sid=105",
+      "pubDate": "Thu, 29 Feb 2024 09:51:00 +0900",
+      "description": "<b>비트코인</b> 가격이 6만2000달러 선을 돌파하면서 가파른 상승세를 보이고 있다. 가상자산 전체 시가총액은 2조2000억 달러를 기록하며 엔비디아 시총(1조 9416억 달러)도 뛰어넘었다. 가상자산 관련 이미지(사진... ",
+      "originalling": "http://www.edaily.co.kr/news/newspath.asp?newsid=01833526638795440",
+      "img": "https://imgnews.pstatic.net/image/018/2024/02/29/0005683032_001_20240229095101041.jpg?type=w800"
+    },
+    {
+      "title": "6만달러 넘어선 <b>비트코인</b>…관련주 강세",
+      "link": "https://n.news.naver.com/mnews/article/018/0005682955?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 09:08:00 +0900",
+      "description": "<b>비트코인</b> 가격이 6만달러를 넘어서는 등 상승세가 이어지며 29일 가상화폐 관련주도 오름세다. 마켓포인트에 따르면 이날 오전 9시 4분 현재 우리기술투자(041190)는 전 거래일 대비 15.91% 오른 10만270원에... ",
+      "originalling": "http://www.edaily.co.kr/news/newspath.asp?newsid=01590806638795440",
+      "img": "https://imgnews.pstatic.net/image/018/2024/02/29/0005682955_001_20240229091503219.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 사상 최고가…1억 돌파 기대감 ↑",
+      "link": "https://www.polinews.co.kr/news/articleView.html?idxno=637246",
+      "pubDate": "Fri, 01 Mar 2024 22:28:00 +0900",
+      "description": "<b>비트코인</b>이 연일 상승 랠리를 이어가며 사상 최고가를 경신하고 있다. 급등세가 계속되면서 시장에서는 <b>비트코인</b>이 1억원 돌파가 가능할 것이라는 기대도 나온다. 1일 국내 가상자산 거래소 업비트에 따르면 이날... ",
+      "originalling": "https://www.polinews.co.kr/news/articleView.html?idxno=637246",
+      "img": "https://cdn.polinews.co.kr/news/thumbnail/202403/637246_440958_5437_v150.jpg"
+    },
+    {
+      "title": "1억까지 이제 1천만 원…<b>비트코인</b>, 국내서 9천만 원 '터치'",
+      "link": "https://n.news.naver.com/mnews/article/374/0000372662?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 16:30:00 +0900",
+      "description": "<b>비트코인</b>이 국내 가상자산 시장에서 9천만 원까지 오르며 역대 최고가를 새롭게 썼습니다. 오늘(29일) 가상자산 거래소 업비트에서 <b>비트코인</b> 1개 가격은 오후 3시 47분쯤 9천만 원까지 올랐습니다. <b>비트코인</b>은 어제... ",
+      "originalling": "https://biz.sbs.co.kr/article_hub/20000159362?division=NAVER",
+      "img": "https://imgnews.pstatic.net/image/374/2024/02/29/0000372662_001_20240229211814170.jpg?type=w800"
+    },
+    {
+      "title": "&quot;<b>비트코인</b> 역대 신고가&quot;…관련주도 '불기둥'",
+      "link": "https://n.news.naver.com/mnews/article/215/0001150720?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 09:24:00 +0900",
+      "description": "<b>비트코인</b>의 가격이 역대 신고가를 다시 쓴 가운데, 국내 증시에서도 관련주들이 장 초반 강세다. 29일 오전 9시 5분 기준 코스닥 시장에서 우리기술투자의 주가는 전 거래일 대비 16.14% 상승한 1만 290원에 거래되고... ",
+      "originalling": "http://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202402290057&t=NN",
+      "img": "https://imgnews.pstatic.net/image/215/2024/02/29/A202402290057_1_20240229092501342.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 계속되는 고공행진",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536418?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터를 찾은 한 고객이 <b>비트코인</b> 시세 현황이 뜬 스크린 앞을 지나고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229059400013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022905940001300_P4_20240229170559411.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 계속되는 고공행진",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536419?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터를 찾은 한 고객이 <b>비트코인</b> 시세 현황이 뜬 스크린 앞을 지나고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229059200013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022905920001300_P4_20240229170601305.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 계속되는 고공행진",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536416?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터를 찾은 한 고객이 <b>비트코인</b> 시세 현황이 뜬 스크린 앞을 지나고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229059600013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022905960001300_P4_20240229170555476.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 연일 고공행진",
+      "link": "https://n.news.naver.com/mnews/article/001/0014536293?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:00:00 +0900",
+      "description": "<b>비트코인</b> 가격이 국내 원화거래소에서 연일 사상 최고가를 기록하고 있는 29일 오전 서울 서초구 빗썸 고객센터 스크린 앞으로 직원이 지나고 있다. 2024.2.29",
+      "originalling": "https://www.yna.co.kr/view/PYH20240229070900013?input=1196m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PYH2024022907090001300_P4_20240229170123792.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 사상 최고가 눈앞…월가 낙관론 봇물",
+      "link": "https://n.news.naver.com/mnews/article/215/0001150844?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:31:00 +0900",
+      "description": "원화 기준으로는 <b>비트코인</b>이 사상 최고가라고 하지만 달러 기준으로는 아직 아닙니다. 현재 6만 달러를 넘어선 <b>비트코인</b>이 지난 2021년에 기록했던 사상 최고가를 넘어설 수 있을까요? 월가에서는 낙관론이 쏟아지고... ",
+      "originalling": "https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202402290109&t=NNv",
+      "img": "https://imgnews.pstatic.net/image/215/2024/02/29/A202402290109_20240229173201332.jpg?type=w800"
+    },
+    {
+      "title": "'파죽지세' <b>비트코인</b>, 27개월 만에 6만달러 훌쩍 넘어",
+      "link": "https://n.news.naver.com/mnews/article/001/0014534260?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 01:16:00 +0900",
+      "description": "김태종 특파원 = 가상화폐 대장주 <b>비트코인</b>이 27개월 만에 6만 달러의 문턱을 훌쩍 넘었다. 28일(현지시간) 미 가상화폐 거래소 코인베이스에 따르면 미 동부 기준 이날 오전 11시 10분 현재 <b>비트코인</b> 1개당 가격은... ",
+      "originalling": "https://www.yna.co.kr/view/AKR20240229002200091?input=1195m",
+      "img": "https://imgnews.pstatic.net/image/001/2024/02/29/PRU20240228300401009_P4_20240229011725804.jpg?type=w800"
+    },
+    {
+      "title": "&quot;연내 1억 가나&quot; 환호…<b>비트코인</b>, 연일 '사상 최고가'",
+      "link": "https://n.news.naver.com/mnews/article/015/0004954263?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 11:18:00 +0900",
+      "description": "가상자산(암호화폐) 대장주인 <b>비트코인</b>이 원화시장에서 역대 최고가를 갈아치우고 있다. 29일 국내 암호화폐거래소 업비트에 따르면 <b>비트코인</b>은 이날 오전 8시30분 기준 8770만원에 거래되고 있다. 전날 오후 6시... ",
+      "originalling": "https://www.hankyung.com/article/2024022982077",
+      "img": "https://imgnews.pstatic.net/image/015/2024/02/29/0004954263_001_20240229112001023.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 10% 폭등, 6.3만달러 재돌파…청산 물량에도 상승반전",
+      "link": "https://n.news.naver.com/mnews/article/421/0007383591?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 15:31:00 +0900",
+      "description": "<b>비트코인</b>이 다시 6만3000달러를 돌파했다. 29일 오후 3시 10분 현재 글로벌 코인 시황 중계 사이트인 코인마켓캡에서 <b>비트코인</b>은 24시간 전보다 10.24% 폭등한 6만3010달러를 기록하고 있다. 앞서 <b>비트코인</b>은 이날 새벽... ",
+      "originalling": "https://www.news1.kr/articles/5336536",
+      "img": "https://imgnews.pstatic.net/image/421/2024/02/29/0007383591_001_20240301094001576.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> '파죽지세'…27개월 만에 6만달러 돌파",
+      "link": "https://n.news.naver.com/mnews/article/215/0001150675?sid=004",
+      "pubDate": "Thu, 29 Feb 2024 05:56:00 +0900",
+      "description": "<b>비트코인</b>이 28일(현지시간) 급등하며 27개월 만에 6만 달러의 문턱을 넘었다. 한때 6만4천 달러선까지 치솟으며, 다소 이르긴 하지만 사상 최고점 경신의 기대를 품게 하는 수준에 이르렀다. 미 가상화폐 거래소... ",
+      "originalling": "http://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202402290009&t=NN",
+      "img": "https://imgnews.pstatic.net/image/215/2024/02/29/A202402290009_1_20240229070601455.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 6만4천 달러 선 '터치'…사상 최고가 '가시권'",
+      "link": "https://n.news.naver.com/mnews/article/448/0000449685?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 08:10:00 +0900",
+      "description": "가상화폐 <b>비트코인</b> 가격이 27개월 만에 6만 달러를 넘겨 한때 6만4천 달러를 기록했습니다. 미국 증권거래위원회가 지난달 <b>비트코인</b> 현물 ETF를 승인한 이후 투자금이 몰린 것으로 분석되는데, 최고점 6만9천 달러... ",
+      "originalling": "https://news.tvchosun.com/site/data/html_dir/2024/02/29/2024022990025.html",
+      "img": "https://imgnews.pstatic.net/image/448/2024/02/29/2024022990025_thumb_081901_20240229082117011.jpg?type=w800"
+    },
+    {
+      "title": "&quot;준비는 끝났다&quot;…<b>비트코인</b> 훈풍에 다시 예고된 'ETF 전쟁'",
+      "link": "https://n.news.naver.com/mnews/article/586/0000073739?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 15:33:00 +0900",
+      "description": "미국 금융당국의 현물 상장지수펀드(ETF) 승인으로 <b>비트코인</b>이 제도권에 공식 편입된 뒤로, 역사적 고점을 향해 내달리고 있어서다. 이와 동시에 총선을 앞둔 정치권에선 코인 투자자들의 표심을 잡기 위한 공약... ",
+      "originalling": "http://www.sisajournal.com/news/articleView.html?idxno=284477",
+      "img": "https://imgnews.pstatic.net/image/586/2024/02/29/0000073739_001_20240229153301488.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 사상 최고가 턱밑…2년 만에 6만달러 돌파",
+      "link": "https://n.news.naver.com/mnews/article/018/0005682824?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 05:02:00 +0900",
+      "description": "현물 상장지수펀드(ETF) 자금 유입 등에 힘입어 <b>비트코인</b> 가격이 2년 만에 6만달러 선을 회복했다. 일각에선 최고가 경신도 가능할 것으로 기대하고 있다. 28일(현지시간) CNBC 등에 따르면 <b>비트코인</b>은 이날 개당 6만... ",
+      "originalling": "http://www.edaily.co.kr/news/newspath.asp?newsid=01207046638795440",
+      "img": "https://imgnews.pstatic.net/image/018/2024/02/29/0005682824_001_20240229050216456.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>으로 3일간 1조 벌었다…대박난 암호화폐 신봉자",
+      "link": "https://n.news.naver.com/mnews/article/009/0005266047?sid=101",
+      "pubDate": "Fri, 01 Mar 2024 09:21:00 +0900",
+      "description": "기업용 소프트웨어 전문 기업 마이크로스트래티지의 마이클 세일러 최고경영자(CEO)가 <b>비트코인</b> 급등에 자산이 사흘간 약 7억달러(약 9359억원) 급등했다. 28일(현지시간) CNBC에 따르면 세일러 회장의 자산은... ",
+      "originalling": "https://www.mk.co.kr/article/10954450",
+      "img": "https://imgnews.pstatic.net/image/009/2024/03/01/0005266047_001_20240301092101008.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 역대 최고가 경신하며 장중 9000만원 돌파…1억원 목표 '눈앞'",
+      "link": "https://n.news.naver.com/mnews/article/088/0000864914?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 17:21:00 +0900",
+      "description": "가상자산 <b>비트코인</b>이 29일 역대 최고가를 재차 경신하며 장중 9000만원선을 넘어섰다. 이로써 '1억원 목표'도 가시화되는 상황이다. 가상자산 거래소 업비트에 따르면, <b>비트코인</b>은 이날 오후 3시 47분경 9000만원선을... ",
+      "originalling": "https://www.imaeil.com/page/view/2024022917201132898",
+      "img": "https://imgnews.pstatic.net/image/088/2024/02/29/0000864914_001_20240229191801198.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 매도한 머스크 vs <b>비트코인</b> 계속 매집한 세일러",
+      "link": "https://n.news.naver.com/mnews/article/421/0007382467?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 10:44:00 +0900",
+      "description": "일론 머스크 테슬라 최고경영자(CEO)가 <b>비트코인</b> 대부분을 매도한 가운데, 마이클 세일러 마이크로스트래티지 CEO는 <b>비트코인</b>을 계속 매집, 최근 3일간 약 1조원을 벌었다. 암호화폐(가상화폐)가 본격적으로 부상한... ",
+      "originalling": "https://www.news1.kr/articles/5336036",
+      "img": "https://imgnews.pstatic.net/image/421/2024/02/29/0007382467_001_20240229153901433.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 6만달러 고지 넘었다…ETF 거래량도 사상 최대",
+      "link": "https://n.news.naver.com/mnews/article/015/0004954188?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 09:15:00 +0900",
+      "description": "가상화폐 대장주 <b>비트코인</b>이 28일(현지시간) 6만달러를 돌파한 가운데 <b>비트코인</b> 현물 상장지수펀드(ETF) 거래량도 역대 최대치를 기록했다. 이날 CNBC는 최대 자산운용사 블랙록이 운용하는 <b>비트코인</b> ETF인... ",
+      "originalling": "https://www.hankyung.com/article/202402298095i",
+      "img": "https://imgnews.pstatic.net/image/015/2024/02/29/0004954188_001_20240229091601058.jpg?type=w800"
+    },
+    {
+      "title": "전고점도 뚫은 <b>비트코인</b>…1억원 새역사 쓰나",
+      "link": "https://www.financialpost.co.kr/news/articleView.html?idxno=201554",
+      "pubDate": "Sat, 02 Mar 2024 09:24:00 +0900",
+      "description": "<b>비트코인</b> 시세가 역사점 고점도 뚫었다. 다시 조정을 받고 있지만 조만간 1억 원 돌파도 가능하다는 관측이 나오고 있다. 단기간 급등한 측면이 있지만 여전히 남은 호재 등을 고려한 매수 심리가 강해서 더 오를... ",
+      "originalling": "https://www.financialpost.co.kr/news/articleView.html?idxno=201554",
+      "img": "https://cdn.financialpost.co.kr/news/thumbnail/202403/201554_201830_1554_v150.jpg"
+    },
+    {
+      "title": "<b>비트코인</b>, 27개월 만에 6만 달러 돌파…사상 최고점 기대감 ‘솔솔’",
+      "link": "https://n.news.naver.com/mnews/article/022/0003908981?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 07:28:00 +0900",
+      "description": "가상화폐 <b>비트코인</b>이 28일(현지시간) 급등하며 27개월 만에 6만 달러를 돌파했다. <b>비트코인</b> 가격이 한때 6만4000달러선까지 치솟자 시장에선 사상 최고점(6만9000달러선) 경신에 대한 기대감도 나오고 있다. 미... ",
+      "originalling": "http://www.segye.com/newsView/20240229502800?OutUrl=naver",
+      "img": "https://imgnews.pstatic.net/image/022/2024/02/29/20240229502833_20240229072802677.jpg?type=w800"
+    },
+    {
+      "title": "&quot;<b>비트코인</b> 못샀으니 <b>비트코인</b>ETF라도&quot;…하룻밤새 7700억 뭉칫돈",
+      "link": "https://n.news.naver.com/mnews/article/008/0005005833?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 13:58:00 +0900",
+      "description": "<b>비트코인</b>이 사상 최고치를 향해 랠리를 펼치면서 <b>비트코인</b> 현물 상장지수펀드(ETF)로 뭉칫돈이 쏟아지고 있다. 블룸버그에 따르면 세계 최대 자산운용사 블랙록의 <b>비트코인</b> 현물 ETF인 아이셰어스 <b>비트코인</b> 트러스트... ",
+      "originalling": "http://news.mt.co.kr/mtview.php?no=2024022910224744580",
+      "img": "https://imgnews.pstatic.net/image/008/2024/02/29/0005005833_001_20240229135901022.jpg?type=w800"
+    },
+    {
+      "title": "6만 뚫은 <b>비트코인</b>…사상최고까지 9000달러 남아(상보)",
+      "link": "https://n.news.naver.com/mnews/article/421/0007381719?sid=104",
+      "pubDate": "Wed, 28 Feb 2024 22:39:00 +0900",
+      "description": "<b>비트코인</b> 가격이 28일 6만 달러를 넘어서며 사상 최고치를 코앞까지 따라잡았다. 이날 오후 10시 28분 기준 <b>비트코인</b>은 코인 시황 중계사이트인 코인마켓캡에서 전날보다 6% 가깝게 오른 6만251달러를 기록하는 등... ",
+      "originalling": "https://www.news1.kr/articles/5335603",
+      "img": "https://imgnews.pstatic.net/image/421/2024/02/28/0007381719_001_20240228224404082.jpg?type=w800"
+    },
+    {
+      "title": "“<b>비트코인</b>, 4년마다 돌아오는 마법의 시간 온다”…6만4000달러 찍자 국내 관...",
+      "link": "https://n.news.naver.com/mnews/article/009/0005265784?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 16:06:00 +0900",
+      "description": "가상화폐 대장주 <b>비트코인</b>이 사상 최고가를 갈아치우면서 투자자들의 얼굴에도 함박웃음이 번지고 있는 것이다. 국내 증시에서 관련 종목의 주가도 들썩이고 있는 모습이다. 29일 증권가에 따르면 우리기술투자는... ",
+      "originalling": "https://www.mk.co.kr/article/10954045",
+      "img": "https://imgnews.pstatic.net/image/009/2024/02/29/0005265784_001_20240229160603528.png?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b> 급등세…트래픽 증가로 코인베이스선 오류까지",
+      "link": "https://n.news.naver.com/mnews/article/003/0012399467?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 10:25:00 +0900",
+      "description": "<b>비트코인</b>이 연일 상승세를 이어가는 가운데, 세계 최대 암호화폐 거래소 코인베이스에서는 트래픽 증가로 이용자들의 계좌 잔액에 '0'이 찍히는 오류가 발생하기도 했다. 28일(현지시간) CNN비즈니스 등 외신에 따르면... ",
+      "originalling": "http://www.newsis.com/view/?id=NISX20240229_0002643621&cID=10101&pID=10100",
+      "img": "https://imgnews.pstatic.net/image/003/2024/02/29/NISI20240228_0020248290_web_20240228181752_20240229104013146.jpg?type=w800"
+    },
+    {
+      "title": "&quot;진짜 1억 가나&quot;…<b>비트코인</b> 한때 8천800만원 터치",
+      "link": "https://n.news.naver.com/mnews/article/374/0000372530?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 06:42:00 +0900",
+      "description": "<b>비트코인</b> 가격이 29일 원화마켓에서 장중 8천800만 원까지 오르면서 사상 최고가를 연일 경신하고 있습니다. 국내 가상자산 거래소 업비트에서 오전 6시 37분 기준 1<b>비트코인</b> 가격은 24시간 전보다 7.6% 오른... ",
+      "originalling": "https://biz.sbs.co.kr/article_hub/20000159212?division=NAVER",
+      "img": "https://imgnews.pstatic.net/image/374/2024/02/29/0000372530_001_20240229093101338.jpg?type=w800"
+    },
+    {
+      "title": "4차 불장엔 <b>비트코인</b> 레이어2가 뜬다?",
+      "link": "https://n.news.naver.com/mnews/article/009/0005265736?sid=004",
+      "pubDate": "Thu, 29 Feb 2024 15:11:00 +0900",
+      "description": "4차 반감기를 앞둔 <b>비트코인</b>의 상승세가 무섭다. <b>비트코인</b> 현물 ETF 승인 후 약세를 보이던 <b>비트코인</b>은 다시 상승세를 타면서 5만달러를 2년여 만에 돌파했다. 2월 29일 한화 기준으로는 8600만원 대에서 거래가 되고있다.... ",
+      "originalling": "https://www.mk.co.kr/article/10953967",
+      "img": "https://imgnews.pstatic.net/image/009/2024/02/29/0005265736_001_20240229172301035.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 연일 최고가 행진...관련주도 '들썩'",
+      "link": "https://n.news.naver.com/mnews/article/052/0002004446?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 18:12:00 +0900",
+      "description": "가상자산인 <b>비트코인</b>이 8천만 원을 훌쩍 넘어서며 연일 최고가를 다시 쓰고 있습니다. 관련주도 들썩이고 있는데, 투자에 신중해야 한다는 지적이 나옵니다. 이형원 기자입니다. [기자] <b>비트코인</b> 가격이 거침없이... ",
+      "originalling": "https://www.ytn.co.kr/_ln/0102_202402291812447497",
+      "img": "https://imgnews.pstatic.net/image/052/2024/02/29/202402291812447497_t_20240229181916734.jpg?type=w800"
+    },
+    {
+      "title": "&quot;<b>비트코인</b> 수익률 40%&quot;…엘살바도르 대통령 리더십 재주목",
+      "link": "https://n.news.naver.com/mnews/article/025/0003344484?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 14:52:00 +0900",
+      "description": "<b>비트코인</b>이 폭등하면서 나이브 부켈레 엘살바도르 대통령의 리더십이 주목받고 있다. 엘살바도르는 부켈레 대통령의 정책에 따라 2021년 9월 <b>비트코인</b>을 법정통화로 지정하고, <b>비트코인</b>을 매집하기 시작했다.... ",
+      "originalling": "https://www.joongang.co.kr/article/25232072",
+      "img": "https://imgnews.pstatic.net/image/025/2024/02/29/0003344484_001_20240229152701083.jpg?type=w800"
+    },
+    {
+      "title": "3일 만에 9300억 원 번 '이 사람'...<b>비트코인</b> 폭등 영향",
+      "link": "https://n.news.naver.com/mnews/article/057/0001802468?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 10:09:00 +0900",
+      "description": "미국 소프트웨어 개발사 마이크로스트래티지의 마이클 세일러 회장이 최근 <b>비트코인</b> 상승세로 이번 주 들어 지난 사흘 간 자산이 7억 달러, 한화로 약 9,300억 원이 늘었다는 외신 보도가 나왔습니다. CNBC 방송 보도에... ",
+      "originalling": "http://mbn.mk.co.kr/pages/news/newsView.php?category=mbn00008&news_seq_no=5006953",
+      "img": "https://imgnews.pstatic.net/image/057/2024/02/29/0001802468_001_20240229100902991.jpg?type=w800"
+    },
+    {
+      "title": "거침없는 <b>비트코인</b>, 6만달러대 돌파…역대 최고점도 가시권",
+      "link": "https://n.news.naver.com/mnews/article/277/0005386034?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 05:39:00 +0900",
+      "description": "가상화폐 대장주 <b>비트코인</b>이 28일(현지시간) 27개월 만에 6만달러 선을 돌파했다. 거침없는 상승세로 한때 6만4000달러 선까지 치솟으면서 2021년 11월의 역사적 고점(6만8982달러) 경신도 가시권에 들어섰다는 평가다.... ",
+      "originalling": "https://view.asiae.co.kr/article/2024022905394065357",
+      "img": "https://imgnews.pstatic.net/image/277/2024/02/29/0005386034_001_20240229083803637.jpg?type=w800"
+    },
+    {
+      "title": "9000만원 찍은 <b>비트코인</b>···&quot;1억돌파&quot; vs &quot;급락할것&quot;",
+      "link": "https://www.sisajournal-e.com/news/articleView.html?idxno=400905",
+      "pubDate": "Sat, 02 Mar 2024 11:16:00 +0900",
+      "description": "국내 가상자산 거래소에서 <b>비트코인</b>이 사상 최고가를 기록했다. 최근 <b>비트코인</b> 가격이 크게 상승하며 가상자산 시장도 간만에 활기를 되찾는 모습이다. 시장에서는 <b>비트코인</b> 가격이 계속 올라 1억원을 돌파할... ",
+      "originalling": "https://www.sisajournal-e.com/news/articleView.html?idxno=400905",
+      "img": "https://cdn.sisajournal-e.com/news/thumbnail/202403/400905_201167_5759_v150.jpg"
+    },
+    {
+      "title": "거침없는 <b>비트코인</b>, 이대로 계속 오를까",
+      "link": "http://coinreaders.com/100619",
+      "pubDate": "Sat, 02 Mar 2024 09:18:00 +0900",
+      "description": "©코인리더스 암호화폐 대장주 <b>비트코인</b>(BTC)이 최근 거침없는 랠리를 펼치며 2021년 11월에 기록한 6만9천 달러의 사상최고가 경신 기대감을 높이고 있다. <b>비트코인</b> 현물 상장지수펀드(ETF)의 미국 증시 상장을... ",
+      "originalling": "http://coinreaders.com/100619",
+      "img": "https://f.xza.co.kr/http://www.coinreaders.com/data/coinreaders_com/mainimages/202403/600_338_2023111446426290.jpg"
+    },
+    {
+      "title": "<b>비트코인</b> 6만 달러 돌파에 관련 주 급등",
+      "link": "https://n.news.naver.com/mnews/article/055/0001135029?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 15:32:00 +0900",
+      "description": "▲ 업비트의 시세 현황판에 표시된 <b>비트코인</b>의 원화 가격 가상화폐 대장주 <b>비트코인</b>이 2년 3개월 만에 6만 달러를 넘어서면서 오늘(29일) 국내 증시에서 관련 종목의 주가가 일제히 오르고 있습니다. 오늘 오전 9시 25분... ",
+      "originalling": "https://news.sbs.co.kr/news/endPage.do?news_id=N1007555380&plink=ORI&cooper=NAVER",
+      "img": "https://imgnews.pstatic.net/image/055/2024/02/29/0001135029_001_20240229153404594.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 27개월 만에 6만달러 돌파…6만4000달러도 ‘터치’",
+      "link": "https://n.news.naver.com/mnews/article/016/0002273457?sid=104",
+      "pubDate": "Thu, 29 Feb 2024 05:37:00 +0900",
+      "description": "가상화폐 대장주 <b>비트코인</b>이 28일(현지시간) 한때 6만4000달러선까지 치솟으며 27개월 만에 6만 달러의 문턱을 훌쩍 넘는 등 상승세를 이어가고 있다. 이에 따라 <b>비트코인</b>은 역사적 고점이었던 2021년 11월의... ",
+      "originalling": "http://news.heraldcorp.com/view.php?ud=20240229050016",
+      "img": "https://imgnews.pstatic.net/image/016/2024/02/29/20240229050001_0_20240229054501371.jpg?type=w800"
+    },
+    {
+      "title": "“<b>비트코인</b> 무조건 오른다”던 이 남자…3일만에 1조원 벌었다",
+      "link": "https://n.news.naver.com/mnews/article/024/0000087727?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 19:07:00 +0900",
+      "description": "최근 <b>비트코인</b> 가격이 급등하면서다. 세일러 회장은 오랜 기간 <b>비트코인</b> 강세론을 주장해 왔다. 재산 중 상당 비율을 <b>비트코인</b>으로 보유하고 있다. 지난 28일(현지시간) CNBC에 따르면 세일러 회장의 재산은 <b>비트코인</b>... ",
+      "originalling": "https://www.mk.co.kr/article/10954311",
+      "img": "https://imgnews.pstatic.net/image/024/2024/02/29/0000087727_001_20240229190707356.png?type=w800"
+    },
+    {
+      "title": "&quot;또 올랐네&quot;…<b>비트코인</b>, 8800만원도 뚫어",
+      "link": "https://n.news.naver.com/mnews/article/003/0012399255?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 09:31:00 +0900",
+      "description": "대장주 <b>비트코인</b>이 29일 새벽 한때 8800만원을 돌파했다. 역대 최고가를 경신한 이후에도 폭풍 랠리를 이어가는 모습이다. 29일 오전 8시40분 기준 <b>비트코인</b>은 국내 가상자산 거래소 빗썸에서 24시간 전보다 3.60... ",
+      "originalling": "http://www.newsis.com/view/?id=NISX20240229_0002643731&cID=15001&pID=15000",
+      "img": "https://imgnews.pstatic.net/image/003/2024/02/29/NISI20240228_0020248290_web_20240228181752_20240229093703294.jpg?type=w800"
+    },
+    {
+      "title": "<b>비트코인</b>, 8300만원 돌파…역대 최고가 경신",
+      "link": "https://n.news.naver.com/mnews/article/448/0000449654?sid=101",
+      "pubDate": "Wed, 28 Feb 2024 21:35:00 +0900",
+      "description": "'디지털 금'으로 불리는 가상자산 <b>비트코인</b> 가격이 오늘 한때 8300만 원을 돌파하며, 역대 최고가를 갈아치웠습니다. 미국 증권거래위원회가 지난달 <b>비트코인</b> 현물 ETF를 승인한 이후, 투자 자금이 대거 유입된 영향으로... ",
+      "originalling": "https://news.tvchosun.com/site/data/html_dir/2024/02/28/2024022890176.html",
+      "img": "https://imgnews.pstatic.net/image/448/2024/02/28/2024022890176_thumb_094317_20240228214601643.jpg?type=w800"
+    },
+    {
+      "title": "“폭락 때 더 샀다”…<b>비트코인</b> ‘올인’ 3일만에 1조 번 남자",
+      "link": "https://n.news.naver.com/mnews/article/081/0003433891?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 14:22:00 +0900",
+      "description": "<b>비트코인</b>이 10만 달러를 돌파해도 팔지 않겠다는 의지를 내비쳤던 ‘<b>비트코인</b> 큰손’ 마이클 세일러 마이크로스트래티지 회장이 최근 <b>비트코인</b> 가격의 폭풍 랠리로 단 3일 만에 자산 1조원을 쌓아올렸다. 28일... ",
+      "originalling": "https://www.seoul.co.kr/news/economy/2024/02/29/20240229500097&wlog_tag3=naver",
+      "img": "https://imgnews.pstatic.net/image/081/2024/02/29/0003433891_001_20240229145101139.jpg?type=w800"
+    },
+    {
+      "title": "[특징주] <b>비트코인</b> 고공행진에 관련주 급등… 우리기술투자 14%↑",
+      "link": "https://n.news.naver.com/mnews/article/366/0000974152?sid=101",
+      "pubDate": "Thu, 29 Feb 2024 09:20:00 +0900",
+      "description": "가상자산인 <b>비트코인</b>이 6만달러를 돌파하자 관련주가 29일 장 초반 강세다. 이날 오전 9시 16분 기준 우리기술투자는 전 거래일 대비 1260원(14.22%) 오른 1만120원에 거래되고 있다. 우리기술투자는 국내 가상자산… ",
+      "originalling": "https://biz.chosun.com/stock/stock_general/2024/02/29/3BZVSEVH6BDMBCJOYIRMXXLAQU/?utm_source=naver&utm_medium=original&utm_campaign=biz",
+      "img": "https://imgnews.pstatic.net/image/366/2024/02/29/0000974152_001_20240229092105263.jpg?type=w800"
+    },
+    {
+      "title": "[코인 시황] 61K <b>비트코인</b>, 3년래 최대 월간 상승 전망",
+      "link": "https://www.newspim.com/news/view/20240301000116",
+      "pubDate": "Fri, 01 Mar 2024 14:54:00 +0900",
+      "description": "권지언 특파원 = <b>비트코인</b> 가격이 6만달러 위로 치솟으면서 3년래 최대 월간 상승 기록을 앞두고 있다. 코인데스크에 따르면 한국시간 3월 1일 오후 2시 47분 현재 <b>비트코인</b> 가격은 24시간 전보다 1.07% 내린 6만1499…. ",
+      "originalling": "https://www.newspim.com/news/view/20240301000116",
+      "img": "http://img.newspim.com/news/2024/03/01/2403011450195200.jpg"
+    }
+  ]
+}
