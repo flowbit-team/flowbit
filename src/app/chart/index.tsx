@@ -7,9 +7,9 @@ export default function Chart() {
 
   return (
     <Fragment>
-      {data.map((article: Props["article"]) => {
+      {data?.map((article: Props["article"]) => {
         console.log(article);
-        return <NewsCard article={article} />;
+        return <NewsCard article={article} key={article.originalLink} />;
       })}
     </Fragment>
   );

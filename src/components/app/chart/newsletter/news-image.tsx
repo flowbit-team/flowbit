@@ -1,11 +1,23 @@
 import { css } from "@emotion/react";
-import React from "react";
 
 type imageProps = {
   src?: string;
+  date?: string;
 };
 
-export default function NewImage({ src }: imageProps) {
+export default function NewImage({ src, date }: imageProps) {
+  const dateSet = date?.split(" ");
+  let day = "--",
+    month = "--",
+    year = "--";
+
+  if (dateSet && dateSet.length > 1) {
+    // ['Sun,', '10', 'Mar', '2024', '19:03:00', '+0900']
+    day = dateSet[1];
+    month = dateSet[2];
+    year = dateSet[3];
+  }
+
   return (
     <div
       css={css`
@@ -15,6 +27,9 @@ export default function NewImage({ src }: imageProps) {
         background-color: gray;
         border: none;
         border-radius: 8px;
+        background-image: url(${src});
+        background-size: cover;
+        background-repeat: no-repeat;
       `}
     >
       <div
@@ -29,7 +44,7 @@ export default function NewImage({ src }: imageProps) {
           border-bottom-right-radius: 4px;
         `}
       >
-        Mar 25, 2024
+        {`${month} ${day}, ${year}`}
       </div>
     </div>
   );

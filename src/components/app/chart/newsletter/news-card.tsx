@@ -18,7 +18,6 @@ export type Props = {
 };
 
 export default function NewsCard({ article }: Props) {
-  console.log(article);
   return (
     <div
       css={css`
@@ -28,20 +27,18 @@ export default function NewsCard({ article }: Props) {
         width: 232px;
       `}
     >
-      <NewImage />
+      <NewImage src={article.img} date={article.pubDate} />
       <div
         css={css`
           display: flex;
           column-gap: 8px;
         `}
       >
-        <NewsTag tagName="비트코인" />
-        <NewsTag tagName="도지코인" />
+        {article.tag.map((tag) => {
+          return <NewsTag tagName={tag} key={tag} />;
+        })}
       </div>
-      <NewContents
-        title="비트코인, 2년여 만에 최고치 기록…연내 1억 돌파하나? (김광식 한양대 겸임교수) 비트코인, 2년여 만에 최고치 기록…연내 1억 돌파하나? (김광식 한양대 겸임교수)"
-        content="주 대표는 테라, FTX 사태를 예측했듯 최근 급박하ㅇㄴㄹㄴㄹ"
-      />
+      <NewContents title={article.title} content={article.description} />
       <div
         css={css`
           display: flex;
