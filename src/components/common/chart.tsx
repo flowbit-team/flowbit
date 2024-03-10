@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { chartDataParser, useGetChartDataQuery } from "@/api/chartApi";
-import { testData } from "@/api/testData";
+import { useGetChartDataQuery } from "@/api/chartApi";
 import { Chart, ChartType } from "@/lib/Chart";
 import { css } from "@emotion/react";
 import { useEffect } from "react";
