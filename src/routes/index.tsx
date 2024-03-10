@@ -1,6 +1,6 @@
 import Test from "@/components/app/Test";
 import GlobalLayout from "@/components/layout";
-import DefaultLayout from "@/components/layout/default";
+import ChartContainer from "@/components/common/chart";
 import {
   RouterProvider,
   createBrowserRouter,
@@ -12,6 +12,10 @@ const routerChildren: RouteObject[] = [
     path: "/",
     element: <Test />,
   },
+  {
+    path: "/chart",
+    element: <ChartContainer />
+  }
 ];
 
 const router = createBrowserRouter([
