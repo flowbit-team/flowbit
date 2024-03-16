@@ -6,17 +6,9 @@ type imageProps = {
 };
 
 export default function NewImage({ src, date }: imageProps) {
-  const dateSet = date?.split(" ");
-  let day = "--",
-    month = "--",
-    year = "--";
-
-  if (dateSet && dateSet.length > 1) {
-    // ['Sun,', '10', 'Mar', '2024', '19:03:00', '+0900']
-    day = dateSet[1];
-    month = dateSet[2];
-    year = dateSet[3];
-  }
+  const dateSet = date?.split(" ") ?? [];
+  /** ['Sun,', '10', 'Mar', '2024', '09:02:00', '+0900'] */
+  const [day, month, year] = dateSet.slice(1, 4).map((item) => item ?? "--");
 
   return (
     <div

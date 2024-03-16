@@ -17,8 +17,6 @@ export default function NewsTag({ tagName }: tagNameProps) {
     },
   };
 
-  console.log(platform);
-
   return (
     <div
       css={css`

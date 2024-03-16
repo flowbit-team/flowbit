@@ -4,7 +4,7 @@ import NewContents from "./news-content";
 import NewImage from "./news-image";
 import Arrow from "@/assets/arrow.svg?react";
 
-export type Props = {
+export type newsLetterProps = {
   article: {
     description: string;
     img: string;
@@ -17,7 +17,7 @@ export type Props = {
   };
 };
 
-export default function NewsCard({ article }: Props) {
+export default function NewsCard({ article }: newsLetterProps) {
   return (
     <div
       css={css`
