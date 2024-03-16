@@ -1,6 +1,6 @@
+import PredictPage from "@/app/chart";
 import Test from "@/components/app/Test";
 import GlobalLayout from "@/components/layout";
-import ChartContainer from "@/components/common/chart";
 import {
   RouterProvider,
   createBrowserRouter,
@@ -13,9 +13,9 @@ const routerChildren: RouteObject[] = [
     element: <Test />,
   },
   {
-    path: "/chart",
-    element: <ChartContainer />
-  }
+    path: "/predict",
+    element: <PredictPage />,
+  },
 ];
 
 const router = createBrowserRouter([

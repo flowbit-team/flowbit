@@ -1,3 +1,4 @@
+import "@/style/global.css";
 import { Fragment, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./header";
