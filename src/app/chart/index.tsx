@@ -15,7 +15,7 @@ export default function PredictPage() {
         data.map((article: newsLetterProps["article"]) => {
           return <NewsCard article={article} key={article.originalLink} />;
         })} */}
-      <FitNess />
+      <FitNess fitnessScore={96} />
     </Fragment>
   );
 }

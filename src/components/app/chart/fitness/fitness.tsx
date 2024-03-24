@@ -1,7 +1,36 @@
 import { css } from "@emotion/react";
-import { Fragment } from "react";
+import { useEffect, useState } from "react";
 
-export default function FitNess() {
+type fitnessProps = {
+  fitnessScore: number;
+};
+
+export default function FitNess({ fitnessScore }: fitnessProps) {
+  const [count, setCount] = useState<number>(fitnessScore);
+  const [score, setScore] = useState(0.5);
+  const stepTime = Math.abs(Math.floor(1500 / (fitnessScore - 0)));
+
+  useEffect(() => {
+    let currentNumber: number = 0;
+    const counter = setInterval(() => {
+      currentNumber += 1;
+      setCount(currentNumber);
+
+      if (currentNumber === fitnessScore) {
+        clearInterval(counter);
+      }
+    }, stepTime);
+  }, [fitnessScore, stepTime]);
+
+  setTimeout(() => {
+    const scaledScore = fitnessScore / 100 / 2 + 0.5;
+    /**  */
+    if (scaledScore >= 0.97) {
+      return setScore(0.97);
+    }
+    setScore(fitnessScore / 100 / 2 + 0.5);
+  }, 100);
+
   return (
     <article
       css={css`
@@ -48,23 +77,7 @@ export default function FitNess() {
       <div
         css={css`
           position: absolute;
-
-          &:before {
-            content: "";
-            display: block;
-            position: absolute;
-            top: 7%;
-            left: 50%;
-            width: 15px;
-            height: 15px;
-            margin-left: -5px;
-            border-left: 1px solid #ddd;
-            border-top: 1px solid #ddd;
-            background-color: #fff;
-            -webkit-transform: rotate(45deg);
-            -moz-transform: rotate(45deg);
-            transform: rotate(45deg);
-          }
+          margin-top: 20px;
         `}
       >
         <svg
@@ -130,49 +143,86 @@ export default function FitNess() {
               <stop offset="1" stopColor="white" stopOpacity="0" />
             </linearGradient>
           </defs>
-          <text width="500" css={css``}>
-            <textPath xlinkHref="#curve">Dangerous Curves Ahead</textPath>
-          </text>
         </svg>
-      </div>
-      <div
-        css={css`
-          position: absolute;
-        `}
-      >
-        {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="22"
-          height="18"
-          viewBox="0 0 28 24"
-          fill="none"
-          xlinkHref="#curve"
+        <div
+          css={css`
+            z-index: 2;
+            position: absolute;
+            background-color: #5664f9;
+            background-color: transparent;
+            margin-top: -5px;
+            width: 236px;
+            height: 128px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 0px 0px 200px 200px;
+            transform-origin: center top;
+            transform: rotate(${score}turn);
+            transition: all 1.3s ease-in-out;
+
+            &:before {
+              z-index: -1;
+              content: "";
+              display: block;
+              position: absolute;
+              left: 100%;
+              width: 0;
+              height: 0;
+              margin-left: -5px;
+              border-bottom: 9px solid transparent;
+              border-top: 9px solid transparent;
+              border-left: 16px solid #717c8b;
+              border-right: 16px solid transparent;
+              background-color: transparent;
+              -webkit-transform: rotate(0deg);
+              -moz-transform: rotate(0deg);
+              transform: rotate(0deg);
+            }
+          `}
+        ></div>
+        <div
+          css={css`
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            row-gap: 0.7rem;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            justify-content: flex-end;
+            margin-top: -1.3rem;
+          `}
         >
-          <path
-            d="M27.4257 0.244285L13.1306 23.2711L0.383117 2.05665L27.4257 0.244285Z"
-            fill="#717C8B"
-          />
-        </svg> */}
-        {/* <svg viewBox="0 0 180 90" width="100%" height="180px" css={css``}>
-          <rect
-            className="dial"
-            x="90"
-            y="30"
-            width="3"
-            height="10"
-            rx="1"
-            stroke="purple"
-            fill="white"
-          ></rect>
-          <path
-            d="M13.1389 0.453125L25.5138 24.5663H0.764013L13.1389 0.453125Z"
-            fill="#717C8B"
-            width="3"
-            height="10"
-            x="90"
-            y="30"
-          />
-        </svg> */}
+          <div
+            css={css`
+              display: flex;
+              align-items: center;
+              column-gap: 0.3rem;
+
+              span:nth-of-type(1) {
+                font-size: 3.5rem;
+                font-weight: 600;
+              }
+              span:nth-of-type(2) {
+                font-size: 2.2rem;
+              }
+            `}
+          >
+            <span>{count}</span>
+            <span>%</span>
+          </div>
+          <span
+            css={css`
+              color: #757575;
+            `}
+          >
+            적합도
+          </span>
+        </div>
       </div>
     </article>
   );
