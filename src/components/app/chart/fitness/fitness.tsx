@@ -20,6 +20,10 @@ export default function FitNess({ fitnessScore }: fitnessProps) {
         clearInterval(counter);
       }
     }, stepTime);
+    
+    return () => {
+       clearInterval(counter)
+    }
   }, [fitnessScore, stepTime]);
 
   setTimeout(() => {
