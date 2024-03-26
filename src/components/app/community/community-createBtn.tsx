@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import Profile from "@/assets/Profile.png";
 import PencileIcon from "@/assets/PencileIcon.svg";
-import B2 from "@/components/common/text/B2_bold copy";
+import B2 from "@/components/common/text/B2";
 
 export default function CommunityCreateBtn() {
   return (
