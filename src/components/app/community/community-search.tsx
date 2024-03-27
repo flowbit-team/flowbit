@@ -5,6 +5,8 @@ import S1 from "@/components/common/text/S1";
 import Glass from "@/assets/Glass.svg";
 import B2 from "@/components/common/text/B2";
 
+const TAG_LIST = ["#비트코인", "#이더리움", "#리플"];
+
 export default function CommunitySearch() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchedList, setSearchedList] = useState<string[]>([
@@ -13,8 +15,6 @@ export default function CommunitySearch() {
     "검색어34",
     "검색어345",
   ]);
-
-  const tagList = ["#비트코인", "#이더리움", "#리플"];
 
   return (
     <aside
@@ -150,7 +150,7 @@ export default function CommunitySearch() {
             <B2>태그 검색</B2>
           </div>
           <div>
-            {tagList.map((tag) => {
+            {TAG_LIST.map((tag) => {
               return (
                 <span
                   css={css`
