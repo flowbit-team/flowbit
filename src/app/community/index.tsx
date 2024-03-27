@@ -1,4 +1,5 @@
 import CommunityCreateBtn from "@/components/app/community/community-createBtn";
+import CommunityHotBoard from "@/components/app/community/community-hotBoard";
 import CommunitySearch from "@/components/app/community/community-search";
 import CommunityTab from "@/components/app/community/community-tab";
 import { Fragment } from "react";
@@ -9,6 +10,7 @@ export default function CommunityPage() {
       <CommunityCreateBtn></CommunityCreateBtn>
       <CommunityTab></CommunityTab>
       <CommunitySearch></CommunitySearch>
+      <CommunityHotBoard></CommunityHotBoard>
     </Fragment>
   );
 }
