@@ -6,7 +6,6 @@ export default function E_caption(props: PropsWithChildren<NativeButtonProps>) {
   return (
     <span
       css={css`
-        font-family: "Pretandard";
         font-weight: 300;
         font-size: 12px;
         line-height: 16px;
