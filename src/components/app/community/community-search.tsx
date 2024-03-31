@@ -3,6 +3,7 @@ import Cursor from "@/assets/Cursor.png";
 import S1 from "@/components/common/text/S1";
 import Glass from "@/assets/Glass.svg";
 import B2 from "@/components/common/text/B2";
+import Tag from "@/components/common/tag";
 
 const TAG_LIST = ["#비트코인", "#이더리움", "#리플"];
 
@@ -81,33 +82,7 @@ export default function CommunitySearch() {
           </div>
           <div>
             {TAG_LIST.map((tag) => {
-              return (
-                <span
-                  css={css`
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: spac;
-                    background-color: #f5f5f5;
-                    border-radius: 3px;
-                    padding: 2px 5px;
-                    cursor: pointer;
-                    color: #757575;
-                    margin-right: 10px;
-                    margin-bottom: 7px;
-                    &:hover {
-                      background-color: #e8f2ff;
-                      color: #0056ca;
-                      font-weight: bold;
-                    }
-
-                    &:hover path {
-                      stroke: #0056ca;
-                    }
-                  `}
-                >
-                  <B2>{tag}</B2>
-                </span>
-              );
+              return <Tag>{tag}</Tag>;
             })}
           </div>
         </div>
