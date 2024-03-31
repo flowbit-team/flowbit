@@ -1,3 +1,4 @@
+import CommunityBoard from "@/components/app/community/community-board";
 import CommunityCreateBtn from "@/components/app/community/community-createBtn";
 import CommunityHotBoard from "@/components/app/community/community-hotBoard";
 import CommunitySearch from "@/components/app/community/community-search";
@@ -11,6 +12,7 @@ export default function CommunityPage() {
       <CommunityTab></CommunityTab>
       <CommunitySearch></CommunitySearch>
       <CommunityHotBoard></CommunityHotBoard>
+      <CommunityBoard></CommunityBoard>
     </Fragment>
   );
 }
