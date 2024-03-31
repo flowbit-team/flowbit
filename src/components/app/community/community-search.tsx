@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { css } from "@emotion/react";
 import Cursor from "@/assets/Cursor.png";
 import S1 from "@/components/common/text/S1";
@@ -8,14 +7,6 @@ import B2 from "@/components/common/text/B2";
 const TAG_LIST = ["#비트코인", "#이더리움", "#리플"];
 
 export default function CommunitySearch() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [searchedList, setSearchedList] = useState<string[]>([
-    "검색어1",
-    "검색어2",
-    "검색어34",
-    "검색어345",
-  ]);
-
   return (
     <aside
       css={css`
@@ -49,7 +40,7 @@ export default function CommunitySearch() {
           border: 1px solid #eeeeee;
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 28px;
           border-radius: 5px;
         `}
       >
@@ -63,7 +54,6 @@ export default function CommunitySearch() {
             border-radius: 5px;
             background-color: #fafafa;
             padding: 7px 15px;
-            gap: 5px;
           `}
         >
           <input
@@ -79,66 +69,6 @@ export default function CommunitySearch() {
             placeholder="검색어를 입력하세요."
           />
           <img src={Glass} alt="glass" />
-        </div>
-        {/* Search By Latest */}
-        <div>
-          <div
-            css={css`
-              margin-bottom: 10px;
-            `}
-          >
-            <B2>최근 검색</B2>
-          </div>
-          <div>
-            {searchedList.map((searched) => {
-              return (
-                <span
-                  css={css`
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: spac;
-                    background-color: #f5f5f5;
-                    border-radius: 3px;
-                    padding: 2px 5px;
-                    cursor: pointer;
-                    color: #757575;
-                    margin-right: 10px;
-                    margin-bottom: 7px;
-                    &:hover {
-                      background-color: #e8f2ff;
-                      color: #0056ca;
-                      font-weight: bold;
-                    }
-
-                    &:hover path {
-                      stroke: #0056ca;
-                    }
-                  `}
-                >
-                  <B2>{searched}</B2>
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_1463_8852)">
-                      <path
-                        d="M9.53553 2.46449L2.46447 9.53556M2.46447 2.46449L9.53553 9.53556"
-                        stroke="#616161"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1463_8852">
-                        <rect width="12" height="12" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </span>
-              );
-            })}
-          </div>
         </div>
         {/* Search By Tag */}
         <div>
