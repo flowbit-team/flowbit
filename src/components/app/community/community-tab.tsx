@@ -49,11 +49,24 @@ export default function CommunityTab() {
 
             & label {
               cursor: pointer;
+              position: relative;
             }
 
             & input:checked + label > span {
               color: #222222;
               font-weight: bold;
+            }
+
+            & input:checked + label::after {
+              content: " ";
+              display: block;
+              width: 100%;
+              height: 2px;
+              background-color: #0056ca;
+
+              position: absolute;
+              bottom: -100%;
+              transform: translateY(-4px);
             }
           `}
         >

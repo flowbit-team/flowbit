@@ -23,7 +23,7 @@ export default function Header({ isScroll }: { isScroll: boolean }) {
         height: 56px;
         background-color: ${isScroll ? "white" : "none"};
         color: ${isScroll ? "black" : "white"};
-        position: ${isScroll ? "fixed" : "relative"};
+        position: ${isScroll ? "fixed" : "fixed"};
         border-bottom: ${isScroll ? "1px solid #f5f5f5" : "none"};
       `}
     >
