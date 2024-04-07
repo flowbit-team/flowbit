@@ -1,4 +1,5 @@
-import Chart from "@/app/chart";
+import PredictPage from "@/app/chart";
+import CommunityPage from "@/app/community";
 import Test from "@/components/app/Test";
 import GlobalLayout from "@/components/layout";
 import {
@@ -13,8 +14,12 @@ const routerChildren: RouteObject[] = [
     element: <Test />,
   },
   {
-    path: "/chart",
-    element: <Chart />,
+    path: "/predict",
+    element: <PredictPage />,
+  },
+  {
+    path: "/community",
+    element: <CommunityPage />,
   },
 ];
 

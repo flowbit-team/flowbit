@@ -1,5 +1,4 @@
 import { css } from "@emotion/react";
-import React from "react";
 
 type contentsProps = {
   title: string;
@@ -29,7 +28,7 @@ export default function NewContents({ title, content }: contentsProps) {
           -webkit-box-orient: vertical;
         `}
       >
-        {title}
+        {title.replace(/<[^>]*>?/g, "")}
       </div>
       <div
         css={css`
@@ -45,7 +44,7 @@ export default function NewContents({ title, content }: contentsProps) {
           -webkit-box-orient: vertical;
         `}
       >
-        {content}
+        {content.replace(/<[^>]*>?/g, "")}
       </div>
     </div>
   );
