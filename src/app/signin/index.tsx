@@ -7,12 +7,23 @@ import ContainerToCenter from "@/components/common/ContainerToCenter.tsx";
 import Button from "@/components/common/Button.tsx";
 import { Link } from "react-router-dom";
 import { css } from "@emotion/react";
+import Logo from "@/assets/logo.png";
 import SplitLine from "@/components/common/SplitLine.tsx";
 
 export default function SignIn() {
   return (
     <ContainerToCenter>
       {/*  입력 창 섹션 */}
+      <img
+        src={Logo}
+        alt="로고 이미지"
+        css={css`
+          width: 17.1rem;
+          height: auto;
+          margin: 0 auto;
+          margin-bottom: 5.3rem;
+        `}
+      />
       <div
         css={css`
           display: flex;
@@ -21,7 +32,11 @@ export default function SignIn() {
         `}
       >
         <Input icon={mail} placeholder={`이메일을 입력해주세요`} />
-        <Input icon={lock} placeholder={`비밀번호를 입력해주세요`} />
+        <Input
+          type="password"
+          icon={lock}
+          placeholder={`비밀번호를 입력해주세요`}
+        />
       </div>
       <Button
         css={css`

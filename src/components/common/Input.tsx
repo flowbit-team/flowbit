@@ -3,10 +3,11 @@ import { css } from "@emotion/react";
 type inputProps = {
   placeholder: string;
   icon: string;
-};
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "types">;
 export default function Input({
   placeholder = "텍스트를 입력해주세요",
   icon,
+  ...props
 }: inputProps) {
   return (
     <div
@@ -47,6 +48,7 @@ export default function Input({
           }
         `}
         placeholder={placeholder}
+        {...props}
       />
     </div>
   );

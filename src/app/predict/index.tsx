@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import FitNess from "@/components/app/predict/fitness/fitness.tsx";
 // import UseApiNewLetter from "@/hooks/api/newsletter/UseApiNewLetter";
 
 export default function PredictPage() {
@@ -11,7 +12,7 @@ export default function PredictPage() {
         data.map((article: newsLetterProps["article"]) => {
           return <NewsCard article={article} key={article.originalLink} />;
         })} */}
-      {/*<FitNess fitnessScore={96} />*/}
+      <FitNess fitnessScore={90} />
     </Fragment>
   );
 }

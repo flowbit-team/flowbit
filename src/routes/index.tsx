@@ -1,17 +1,17 @@
-import PredictPage from "@/app/chart";
 import CommunityPage from "@/app/community";
-import Test from "@/components/app/Test";
+import PredictPage from "@/app/predict";
 import GlobalLayout from "@/components/layout";
 import {
   RouterProvider,
   createBrowserRouter,
   RouteObject,
 } from "react-router-dom";
+import SignIn from "@/app/signin";
 
 const routerChildren: RouteObject[] = [
   {
     path: "/",
-    element: <Test />,
+    element: <PredictPage />,
   },
   {
     path: "/predict",
@@ -20,6 +20,10 @@ const routerChildren: RouteObject[] = [
   {
     path: "/community",
     element: <CommunityPage />,
+  },
+  {
+    path: "/signin",
+    element: <SignIn />,
   },
 ];
 
