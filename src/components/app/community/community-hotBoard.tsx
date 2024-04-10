@@ -162,6 +162,7 @@ export default function CommunityHotBoard() {
               data.content.map((row, index) => {
                 return (
                   <li
+                    key={"hotBoard" + row.boardId}
                     css={css`
                       display: flex;
                       justify-content: space-between;
@@ -176,6 +177,7 @@ export default function CommunityHotBoard() {
                       <span
                         css={css`
                           ${DESIGN_SYSTEM_TEXT.B1_BOLD}
+                          color: ${DESIGN_SYSTEM_COLOR.GRAY_900};
                         `}
                       >
                         0{index + 1}
@@ -183,6 +185,7 @@ export default function CommunityHotBoard() {
                       <span
                         css={css`
                           ${DESIGN_SYSTEM_TEXT.B1}
+                          color: ${DESIGN_SYSTEM_COLOR.GRAY_700};
                           white-space: nowrap;
                           overflow: hidden;
                           text-overflow: ellipsis;
