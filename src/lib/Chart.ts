@@ -1329,7 +1329,7 @@ export class Chart {
     this.getTarget()?.append(this.hoverCardContainer);
 
     // 마우스 Y 에서 차트 Y 빼면 댐
-    // console.log(this.chart.getBoundingClientRect().y);
+    // console.log(this.predict.getBoundingClientRect().y);
 
     this.hoverCardContainer.style.visibility = 'visible';
     this.hoverCardContainer.style.top = `${e.offsetY + 20}px`;
