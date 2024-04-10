@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { css } from "@emotion/react";
 import Fire from "@/assets/Fire.png";
-import S1 from "@/components/common/text/S1";
-import B2 from "@/components/common/text/B2";
-import B1_bold from "@/components/common/text/B1_bold";
-import B1 from "@/components/common/text/B1";
+import UseApiCommunity, {
+  ApiCommunityProps,
+} from "@/hooks/api/newsletter/UseApiComminity";
+import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable";
 
 const eng2Kr: { [key: string]: string } = {
   LATEST: "실시간",
@@ -15,10 +15,44 @@ const eng2Kr: { [key: string]: string } = {
 const TAB_LIST = ["LATEST", "WEEKLY", "COMMENT"];
 
 export default function CommunityHotBoard() {
+  const [communityProps, setCommunityProps] = useState<ApiCommunityProps>({
+    page: 0,
+    size: 5,
+    sort: "Sort=boardLikeCount,desc",
+  });
+  const { data } = UseApiCommunity(communityProps);
+
   const [curTab, setCurTab] = useState("LATEST");
 
   const handleChangeTab = (tab: string) => {
     setCurTab(tab);
+
+    let newCommunityProps: ApiCommunityProps = communityProps;
+
+    switch (tab) {
+      case "LATEST":
+        newCommunityProps = {
+          ...newCommunityProps,
+          sort: "Sort=boardLikeCount,desc",
+        };
+        break;
+      case "WEEKLY":
+        newCommunityProps = {
+          ...newCommunityProps,
+          sort: "setDataForPastWeeks=1",
+        };
+        break;
+      case "COMMENT":
+        newCommunityProps = {
+          ...newCommunityProps,
+          sort: "Sort=boardCommentCount,desc",
+        };
+        break;
+      default:
+        break;
+    }
+
+    setCommunityProps(newCommunityProps);
   };
 
   return (
@@ -45,13 +79,19 @@ export default function CommunityHotBoard() {
           src={Fire}
           alt="커서 이미지"
         />
-        <S1>가장 많이 읽은 글</S1>
+        <span
+          css={css`
+            ${DESIGN_SYSTEM_TEXT.S1}
+          `}
+        >
+          가장 많이 읽은 글
+        </span>
       </header>
       {/* Layout */}
       <div
         css={css`
           padding: 2rem 1.8rem;
-          border: 0.1rem solid #eeeeee;
+          border: 0.1rem solid ${DESIGN_SYSTEM_COLOR.GRAY_200};
           display: flex;
           flex-direction: column;
           gap: 1rem;
@@ -80,12 +120,12 @@ export default function CommunityHotBoard() {
 
               & > li.selected {
                 border-radius: 10rem;
-                background-color: #0056ca;
+                background-color: ${DESIGN_SYSTEM_COLOR.BRAND_BLUE};
               }
 
               & > li.selected span {
                 font-weight: bold;
-                color: #fafafa;
+                color: ${DESIGN_SYSTEM_COLOR.GRAY_50};
               }
             `}
           >
@@ -94,13 +134,14 @@ export default function CommunityHotBoard() {
                 onClick={() => handleChangeTab(tab)}
                 className={tab === curTab ? "selected" : ""}
               >
-                <B2
+                <span
                   css={css`
-                    color: #757575;
+                    ${DESIGN_SYSTEM_TEXT.B2}
+                    color: ${DESIGN_SYSTEM_COLOR.GRAY_600};
                   `}
                 >
                   {eng2Kr[tab]}
-                </B2>
+                </span>
               </li>
             ))}
           </ul>
@@ -117,126 +158,50 @@ export default function CommunityHotBoard() {
               gap: 1.5rem;
             `}
           >
-            <li
-              css={css`
-                display: flex;
-                gap: 0.8rem;
-              `}
-            >
-              <B1_bold>01</B1_bold>
-              <B1
-                css={css`
-                  white-space: nowrap;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                `}
-              >
-                도지코인 이대로 괜찮은가...
-              </B1>
-              <B1
-                css={css`
-                  color: #e74c4c;
-                `}
-              >
-                (3)
-              </B1>
-            </li>
-            <li
-              css={css`
-                display: flex;
-                gap: 0.8rem;
-              `}
-            >
-              <B1_bold>01</B1_bold>
-              <B1
-                css={css`
-                  white-space: nowrap;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                `}
-              >
-                도지코인 이대로 괜찮은가...
-              </B1>
-              <B1
-                css={css`
-                  color: #e74c4c;
-                `}
-              >
-                (3)
-              </B1>
-            </li>
-            <li
-              css={css`
-                display: flex;
-                gap: 0.8rem;
-              `}
-            >
-              <B1_bold>01</B1_bold>
-              <B1
-                css={css`
-                  white-space: nowrap;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                `}
-              >
-                도지코인 이대로 괜찮은가...
-              </B1>
-              <B1
-                css={css`
-                  color: #e74c4c;
-                `}
-              >
-                (3)
-              </B1>
-            </li>
-            <li
-              css={css`
-                display: flex;
-                gap: 0.8rem;
-              `}
-            >
-              <B1_bold>01</B1_bold>
-              <B1
-                css={css`
-                  white-space: nowrap;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                `}
-              >
-                도지코인 이대로 괜찮은가...
-              </B1>
-              <B1
-                css={css`
-                  color: #e74c4c;
-                `}
-              >
-                (3)
-              </B1>
-            </li>
-            <li
-              css={css`
-                display: flex;
-                gap: 0.8rem;
-              `}
-            >
-              <B1_bold>01</B1_bold>
-              <B1
-                css={css`
-                  white-space: nowrap;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                `}
-              >
-                도지코인 이대로 괜찮은가...
-              </B1>
-              <B1
-                css={css`
-                  color: #e74c4c;
-                `}
-              >
-                (3)
-              </B1>
-            </li>
+            {data &&
+              data.content.map((row, index) => {
+                return (
+                  <li
+                    css={css`
+                      display: flex;
+                      justify-content: space-between;
+                    `}
+                  >
+                    <div
+                      css={css`
+                        display: flex;
+                        gap: 0.8rem;
+                      `}
+                    >
+                      <span
+                        css={css`
+                          ${DESIGN_SYSTEM_TEXT.B1_BOLD}
+                        `}
+                      >
+                        0{index + 1}
+                      </span>
+                      <span
+                        css={css`
+                          ${DESIGN_SYSTEM_TEXT.B1}
+                          white-space: nowrap;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                        `}
+                      >
+                        {row.title}
+                      </span>
+                    </div>
+                    <span
+                      css={css`
+                        ${DESIGN_SYSTEM_TEXT.B1}
+                        color: ${DESIGN_SYSTEM_COLOR.RED_500};
+                      `}
+                    >
+                      {row.comments.length ? `(${row.comments.length})` : ""}
+                    </span>
+                  </li>
+                );
+              })}
           </ul>
         </div>
       </div>
