@@ -25,7 +25,7 @@ export default function CommunityHotBoard() {
     <aside
       css={css`
         display: block;
-        width: 260px;
+        width: 26rem;
       `}
     >
       {/* Title */}
@@ -33,14 +33,14 @@ export default function CommunityHotBoard() {
         css={css`
           display: flex;
           align-items: center;
-          gap: 5px;
-          margin-bottom: 17px;
+          gap: 0.5rem;
+          margin-bottom: 1.7rem;
         `}
       >
         <img
           css={css`
-            width: 24px;
-            height: 24px;
+            width: 2.4rem;
+            height: 2.4rem;
           `}
           src={Fire}
           alt="커서 이미지"
@@ -50,18 +50,18 @@ export default function CommunityHotBoard() {
       {/* Layout */}
       <div
         css={css`
-          padding: 20px 18px;
-          border: 1px solid #eeeeee;
+          padding: 2rem 1.8rem;
+          border: 0.1rem solid #eeeeee;
           display: flex;
           flex-direction: column;
-          gap: 10px;
-          border-radius: 5px;
+          gap: 1rem;
+          border-radius: 0.5rem;
         `}
       >
         {/* tab */}
         <nav
           css={css`
-            margin-bottom: 16px;
+            margin-bottom: 1.6rem;
           `}
         >
           <ul
@@ -71,15 +71,15 @@ export default function CommunityHotBoard() {
               list-style: none;
               padding: 0;
               margin: 0;
-              gap: 10px;
+              gap: 1rem;
 
               & > li {
-                padding: 5px 15px;
+                padding: 0.5rem 1.5rem;
                 cursor: pointer;
               }
 
               & > li.selected {
-                border-radius: 100px;
+                border-radius: 10rem;
                 background-color: #0056ca;
               }
 
@@ -114,13 +114,13 @@ export default function CommunityHotBoard() {
               margin: 0;
               display: flex;
               flex-direction: column;
-              gap: 15px;
+              gap: 1.5rem;
             `}
           >
             <li
               css={css`
                 display: flex;
-                gap: 8px;
+                gap: 0.8rem;
               `}
             >
               <B1_bold>01</B1_bold>
@@ -144,7 +144,7 @@ export default function CommunityHotBoard() {
             <li
               css={css`
                 display: flex;
-                gap: 8px;
+                gap: 0.8rem;
               `}
             >
               <B1_bold>01</B1_bold>
@@ -168,7 +168,7 @@ export default function CommunityHotBoard() {
             <li
               css={css`
                 display: flex;
-                gap: 8px;
+                gap: 0.8rem;
               `}
             >
               <B1_bold>01</B1_bold>
@@ -192,7 +192,7 @@ export default function CommunityHotBoard() {
             <li
               css={css`
                 display: flex;
-                gap: 8px;
+                gap: 0.8rem;
               `}
             >
               <B1_bold>01</B1_bold>
@@ -216,7 +216,7 @@ export default function CommunityHotBoard() {
             <li
               css={css`
                 display: flex;
-                gap: 8px;
+                gap: 0.8rem;
               `}
             >
               <B1_bold>01</B1_bold>

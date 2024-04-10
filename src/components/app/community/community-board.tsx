@@ -24,15 +24,15 @@ export default function CommunityBoard() {
         css={css`
           display: flex;
           align-items: center;
-          gap: 24px;
-          margin-bottom: 10px;
+          gap: 2.4rem;
+          margin-bottom: 1rem;
         `}
       >
         {/* Profile */}
         <img
           css={css`
-            width: 55px;
-            height: 55px;
+            width: 5.5rem;
+            height: 5.5rem;
           `}
           src={Profile}
           alt="profile"
@@ -42,7 +42,7 @@ export default function CommunityBoard() {
           {/* Name */}
           <div
             css={css`
-              margin-bottom: 3px;
+              margin-bottom: 0.3rem;
             `}
           >
             <E_S2>Dong Gyun Yang</E_S2>
@@ -62,19 +62,19 @@ export default function CommunityBoard() {
       <div
         css={css`
           display: flex;
-          gap: 24px;
+          gap: 2.4rem;
         `}
       >
         <div
           css={css`
-            min-width: 55px;
+            min-width: 5.5rem;
           `}
         ></div>
         <div
           css={css`
-            padding: 10px 35px;
-            border: 1px solid #f5f5f5;
-            border-radius: 10px;
+            padding: 1rem 3.5rem;
+            border: 0.1rem solid #f5f5f5;
+            border-radius: 1rem;
             background-color: #fafafa;
           `}
         >
@@ -90,7 +90,7 @@ export default function CommunityBoard() {
           {/* Title */}
           <div
             css={css`
-              margin-bottom: 17px;
+              margin-bottom: 1.7rem;
             `}
           >
             <T4>도지코인 이대로 괜찮은가?</T4>
@@ -98,7 +98,7 @@ export default function CommunityBoard() {
           {/* Description */}
           <div
             css={css`
-              margin-bottom: 23px;
+              margin-bottom: 2.3rem;
             `}
           >
             <B1
@@ -122,7 +122,7 @@ export default function CommunityBoard() {
             <div
               css={css`
                 display: flex;
-                gap: 46px;
+                gap: 4.6rem;
               `}
             >
               {/* Button */}
@@ -143,22 +143,22 @@ export default function CommunityBoard() {
               return (
                 <li
                   css={css`
-                    margin-top: 29px;
-                    padding-top: 29px;
-                    border-top: 1px solid #eeeeee;
+                    margin-top: 2.9rem;
+                    padding-top: 2.9rem;
+                    border-top: 0.1rem solid #eeeeee;
                   `}
                 >
                   <div
                     css={css`
                       display: flex;
-                      gap: 12px;
+                      gap: 1.2rem;
                     `}
                   >
                     {/* IMG */}
                     <img
                       css={css`
-                        width: 45px;
-                        height: 45px;
+                        width: 4.5rem;
+                        height: 4.5rem;
                       `}
                       src={Profile}
                       alt=""
@@ -170,7 +170,7 @@ export default function CommunityBoard() {
                         css={css`
                           display: flex;
                           align-items: center;
-                          gap: 20px;
+                          gap: 2rem;
                         `}
                       >
                         <E_S2>Hello</E_S2>
@@ -204,19 +204,19 @@ export default function CommunityBoard() {
               display: flex;
               justify-content: space-between;
               align-items: center;
-              border-radius: 100px;
-              margin-top: 29px;
-              margin-bottom: 33px;
-              padding: 9px 22px;
+              border-radius: 10rem;
+              margin-top: 2.9rem;
+              margin-bottom: 3.3rem;
+              padding: 0.9rem 2.2rem;
               background-color: #e0edff;
             `}
           >
             <input
               css={css`
                 width: 90%;
-                font-size: 14px;
-                line-height: 22px;
-                letter-spacing: -0.2px;
+                font-size: 1.4rem;
+                line-height: 2.2rem;
+                letter-spacing: -0.2rem;
                 border: none;
                 background-color: #e0edff;
                 outline: none;

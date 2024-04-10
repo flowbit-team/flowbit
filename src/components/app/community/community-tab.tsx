@@ -34,7 +34,7 @@ export default function CommunityTab() {
         display: flex;
         justify-content: space-between;
 
-        border-bottom: 2px solid #e0e0e0;
+        border-bottom: 0.2rem solid #e0e0e0;
       `}
     >
       {/* Tab */}
@@ -42,7 +42,7 @@ export default function CommunityTab() {
         <ul
           css={css`
             display: flex;
-            gap: 20px;
+            gap: 2rem;
             padding: 0;
             margin: 0;
             list-style: none;
@@ -61,12 +61,12 @@ export default function CommunityTab() {
               content: " ";
               display: block;
               width: 100%;
-              height: 2px;
+              height: 0.2rem;
               background-color: #0056ca;
 
               position: absolute;
               bottom: -100%;
-              transform: translateY(-4px);
+              transform: translateY(-0.4rem);
             }
           `}
         >
@@ -100,16 +100,16 @@ export default function CommunityTab() {
         <ul
           css={css`
             display: flex;
-            gap: 10px;
+            gap: 1rem;
             padding: 0;
-            padding-bottom: 12px;
-            padding-right: 10px;
+            padding-bottom: 1.2rem;
+            padding-right: 1rem;
             margin: 0;
             list-style: none;
 
             & label {
-              padding: 5px 15px;
-              border-radius: 100px;
+              padding: 0.5rem 1.5rem;
+              border-radius: 10rem;
               cursor: pointer;
             }
 
