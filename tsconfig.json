@@ -30,6 +30,11 @@
     /* types */
     "types": ["@emotion/react/types/css-prop", "vite-plugin-svgr/client"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/components/common/text/B1tsx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

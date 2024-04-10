@@ -3,6 +3,8 @@ import Logo from "../common/logo";
 import B2_bold from "../common/text/B2_bold";
 import E_caption from "../common/text/E_caption";
 import { NavLink } from "react-router-dom";
+import WhiteAlarm from "@/assets/alarm-white.svg";
+import Alarm from "@/assets/alarm.svg";
 
 const HOME_URL = "/";
 const PREDICT_URL = "/predict";
@@ -21,7 +23,7 @@ export default function Header({ isScroll }: { isScroll: boolean }) {
         height: 56px;
         background-color: ${isScroll ? "white" : "none"};
         color: ${isScroll ? "black" : "white"};
-        position: ${isScroll ? "fixed" : "relative"};
+        position: ${isScroll ? "fixed" : "fixed"};
         border-bottom: ${isScroll ? "1px solid #f5f5f5" : "none"};
       `}
     >
@@ -129,11 +131,7 @@ export default function Header({ isScroll }: { isScroll: boolean }) {
               회원가입
             </E_caption>
           </NavLink>
-          {isScroll ? (
-            <img src="/alarm.svg" alt="알람" />
-          ) : (
-            <img src="/alarm-white.svg" alt="알람" />
-          )}
+          <img src={isScroll ? Alarm : WhiteAlarm} alt="" />
         </div>
       </div>
     </header>
