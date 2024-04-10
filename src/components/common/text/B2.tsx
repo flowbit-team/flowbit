@@ -2,13 +2,13 @@ import { css } from "@emotion/react";
 import { PropsWithChildren } from "react";
 import { NativeButtonProps } from "./type";
 
-export default function E_caption(props: PropsWithChildren<NativeButtonProps>) {
+export default function B2(props: PropsWithChildren<NativeButtonProps>) {
   return (
     <span
       css={css`
-        font-weight: 300;
-        font-size: 12px;
-        line-height: 16px;
+        font-size: 14px;
+        line-height: 22px;
+        letter-spacing: 2%;
       `}
       {...props}
     >
