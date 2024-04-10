@@ -131,6 +131,7 @@ export default function CommunityHotBoard() {
           >
             {TAB_LIST.map((tab) => (
               <li
+                key={tab}
                 onClick={() => handleChangeTab(tab)}
                 className={tab === curTab ? "selected" : ""}
               >
