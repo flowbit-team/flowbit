@@ -10,17 +10,25 @@ export type getCommunityBoardResType = CommunityPageType & {
 };
 
 export type ApiCommunityProps = {
-  page: number;
-  size: number;
-  sort?: string;
+  page: string;
+  size: string;
+  sort: string;
+  category: string;
+  searchWord: string;
 };
 
 export default function UseApiCommunity(props: ApiCommunityProps) {
   const getCommunityBoard = async (props: ApiCommunityProps) => {
-    const { page = 0, size = 10, sort = "" } = props;
+    const { page, size, sort, category, searchWord } = props;
+
+    const param = [page, size, sort, category, searchWord].reduce(
+      (acc, value) => acc + value,
+      "?",
+    );
+    console.log(param);
 
     return await api
-      .get(`/board-service/api/v1/board?page=${page}&size=${size}&${sort}`)
+      .get(`/board-service/api/v1/board${param}`)
       .then((res) => res.data.data as getCommunityBoardResType);
   };
 

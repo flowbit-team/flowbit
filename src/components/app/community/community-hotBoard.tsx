@@ -6,53 +6,42 @@ import UseApiCommunity, {
 } from "@/hooks/api/newsletter/UseApiComminity";
 import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable";
 
-const eng2Kr: { [key: string]: string } = {
-  LATEST: "실시간",
-  WEEKLY: "주간",
-  COMMENT: "댓글순",
-};
-
-const TAB_LIST = ["LATEST", "WEEKLY", "COMMENT"];
+const TAB_LIST = ["실시간", "주간", "댓글순"];
 
 export default function CommunityHotBoard() {
   const [communityProps, setCommunityProps] = useState<ApiCommunityProps>({
-    page: 0,
-    size: 5,
-    sort: "Sort=boardLikeCount,desc",
+    page: `page=0`,
+    size: `&size=5`,
+    sort: "&Sort=boardLikeCount,desc",
+    category: "",
+    searchWord: "",
   });
   const { data } = UseApiCommunity(communityProps);
 
-  const [curTab, setCurTab] = useState("LATEST");
+  const [curTab, setCurTab] = useState("실시간");
 
   const handleChangeTab = (tab: string) => {
     setCurTab(tab);
 
-    let newCommunityProps: ApiCommunityProps = communityProps;
-
+    let sort = "";
     switch (tab) {
-      case "LATEST":
-        newCommunityProps = {
-          ...newCommunityProps,
-          sort: "Sort=boardLikeCount,desc",
-        };
+      case "실시간":
+        sort = "&Sort=boardLikeCount,desc";
         break;
-      case "WEEKLY":
-        newCommunityProps = {
-          ...newCommunityProps,
-          sort: "setDataForPastWeeks=1",
-        };
+      case "주간":
+        sort = "&setDataForPastWeeks=1";
         break;
-      case "COMMENT":
-        newCommunityProps = {
-          ...newCommunityProps,
-          sort: "Sort=boardCommentCount,desc",
-        };
+      case "댓글순":
+        sort = "&Sort=boardCommentCount,desc";
         break;
       default:
         break;
     }
 
-    setCommunityProps(newCommunityProps);
+    setCommunityProps({
+      ...communityProps,
+      sort,
+    });
   };
 
   return (
@@ -131,7 +120,7 @@ export default function CommunityHotBoard() {
           >
             {TAB_LIST.map((tab) => (
               <li
-                key={tab}
+                key={"tag" + tab}
                 onClick={() => handleChangeTab(tab)}
                 className={tab === curTab ? "selected" : ""}
               >
@@ -141,7 +130,7 @@ export default function CommunityHotBoard() {
                     color: ${DESIGN_SYSTEM_COLOR.GRAY_600};
                   `}
                 >
-                  {eng2Kr[tab]}
+                  {tab}
                 </span>
               </li>
             ))}

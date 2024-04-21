@@ -1,30 +1,32 @@
 import { useState } from "react";
 import { css } from "@emotion/react";
-import B2 from "@/components/common/text/B2";
-import S3 from "@/components/common/text/S3";
+import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable";
 
-const eng2Kor: { [key: string]: string } = {
-  TOTAL: "전체",
-  DOZI: "도지코인",
-  BIT: "비트코인",
-  ETHER: "이더리움",
-  LATEST: "최신순",
-  POPULAR: "인기순",
-};
+const COIN_TYPE_LIST = ["전체", "리플", "비트코인", "이더리움"];
+const ORDER_TYPE_LIST = ["최신순", "인기순"];
 
-const COIN_TYPE_LIST = ["TOTAL", "DOZI", "BIT", "ETHER"];
-const ORDER_TYPE_LIST = ["LATEST", "POPULAR"];
-
-export default function CommunityTab() {
-  const [selectedCoinType, setSelectedCoinType] = useState("TOTAL");
-  const [selectedOrderType, setSelectedOrderType] = useState("LATEST");
+export default function CommunityTab({
+  onClickCategoryTab,
+  onClickSortTab,
+}: {
+  onClickCategoryTab: (category: string) => void;
+  onClickSortTab: (sort: string) => void;
+}) {
+  const [selectedCoinType, setSelectedCoinType] = useState("전체");
+  const [selectedOrderType, setSelectedOrderType] = useState("최신순");
 
   const handleTabChange = (coinType: string) => {
     setSelectedCoinType(coinType);
+    onClickCategoryTab(`&boardCategory=${coinType}`);
   };
 
   const handleOrderChange = (dateType: string) => {
     setSelectedOrderType(dateType);
+    if (dateType === "최신순") {
+      onClickSortTab(`&Sort=createdAt,desc`);
+    } else if (dateType === "인기순") {
+      onClickSortTab(`&Sort=boardLikeCount,desc`);
+    }
   };
 
   return (
@@ -66,7 +68,7 @@ export default function CommunityTab() {
 
               position: absolute;
               bottom: -100%;
-              transform: translateY(-0.4rem);
+              transform: translateY(-0.3rem);
             }
           `}
         >
@@ -82,13 +84,14 @@ export default function CommunityTab() {
                   onChange={() => handleTabChange(type)}
                 />
                 <label htmlFor={`community-tab-${type}`}>
-                  <S3
+                  <span
                     css={css`
-                      color: #bdbdbd;
+                      ${DESIGN_SYSTEM_TEXT.S3};
+                      color: ${DESIGN_SYSTEM_COLOR.GRAY_400};
                     `}
                   >
-                    {eng2Kor[type]}
-                  </S3>
+                    {type}
+                  </span>
                 </label>
               </li>
             );
@@ -134,13 +137,14 @@ export default function CommunityTab() {
                   onChange={() => handleOrderChange(type)}
                 />
                 <label htmlFor={`community-order-${type}`}>
-                  <B2
+                  <span
                     css={css`
-                      color: #757575;
+                      ${DESIGN_SYSTEM_TEXT.B2};
+                      color: ${DESIGN_SYSTEM_COLOR.GRAY_600};
                     `}
                   >
-                    {eng2Kor[type]}
-                  </B2>
+                    {type}
+                  </span>
                 </label>
               </li>
             );

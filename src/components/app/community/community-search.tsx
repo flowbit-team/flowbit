@@ -2,12 +2,39 @@ import { css } from "@emotion/react";
 import Cursor from "@/assets/Cursor.png";
 import S1 from "@/components/common/text/S1";
 import Glass from "@/assets/Glass.svg";
-import B2 from "@/components/common/text/B2";
 import Tag from "@/components/common/tag";
+import { useState } from "react";
+import { DESIGN_SYSTEM_TEXT } from "@/style/variable";
 
-const TAG_LIST = ["#비트코인", "#이더리움", "#리플"];
+const TAG_LIST = ["비트코인", "이더리움", "리플"];
 
-export default function CommunitySearch() {
+export default function CommunitySearch({
+  onClickTag,
+  onSearchWord,
+}: {
+  onClickTag: (tag: string) => void;
+  onSearchWord: (word: string) => void;
+}) {
+  const [searchWord, setSearchWord] = useState("");
+  const [curTag, setCurTag] = useState(TAG_LIST[0]);
+
+  const handleTagChange = (tag: string) => {
+    setCurTag(tag);
+    onClickTag(`&boardCategory=${tag}`);
+  };
+
+  const handleKeyEventInput = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.code === "Enter") {
+      onSearchWord(`&searchWord=${searchWord}`);
+      setSearchWord("");
+    }
+  };
+
+  const handleClickSearchBtn = () => {
+    onSearchWord(`&searchWord=${searchWord}`);
+    setSearchWord("");
+  };
+
   return (
     <aside
       css={css`
@@ -68,21 +95,32 @@ export default function CommunitySearch() {
             `}
             type="text"
             placeholder="검색어를 입력하세요."
+            onChange={(e) => setSearchWord(e.target.value)}
+            onKeyDown={handleKeyEventInput}
+            value={searchWord}
           />
-          <img src={Glass} alt="glass" />
+          <img src={Glass} alt="glass" onClick={handleClickSearchBtn} />
         </div>
         {/* Search By Tag */}
         <div>
           <div
             css={css`
+              ${DESIGN_SYSTEM_TEXT.B2}
               margin-bottom: 1rem;
             `}
           >
-            <B2>태그 검색</B2>
+            태그 검색
           </div>
           <div>
             {TAG_LIST.map((tag) => {
-              return <Tag>{tag}</Tag>;
+              return (
+                <Tag
+                  selected={tag === curTag}
+                  onClick={() => handleTagChange(tag)}
+                >
+                  #{tag}
+                </Tag>
+              );
             })}
           </div>
         </div>
