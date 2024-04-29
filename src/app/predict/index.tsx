@@ -1,5 +1,6 @@
+import Chart from "@/components/app/predict/chart/chart";
 import { Fragment } from "react";
-import FitNess from "@/components/app/predict/fitness/fitness.tsx";
+// import FitNess from "@/components/app/predict/fitness/fitness.tsx";
 // import UseApiNewLetter from "@/hooks/api/newsletter/UseApiNewLetter";
 
 export default function PredictPage() {
@@ -8,11 +9,12 @@ export default function PredictPage() {
   return (
     <Fragment>
       {/* TODO : 추후 컴포넌트 구성 진행, 현재 예측 페이지 공통 컴포넌트 제작 */}
+      <Chart></Chart>
       {/* {data &&
         data.map((article: newsLetterProps["article"]) => {
           return <NewsCard article={article} key={article.originalLink} />;
         })} */}
-      <FitNess fitnessScore={90} />
+      {/* <FitNess fitnessScore={90} /> */}
     </Fragment>
   );
 }

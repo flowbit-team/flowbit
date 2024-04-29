@@ -19,12 +19,14 @@
 
 html {
   font-size: 62.5%;
+  margin: 0;
 }
 
 body {
   font-size: 1.4rem;
   width: 100vw;
   height: 100vh;
+  margin: 0;
 }
 
 html {
