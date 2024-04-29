@@ -8,6 +8,7 @@ import CommunityTab from "@/components/app/community/community-tab";
 import UseApiCommunity from "@/hooks/api/newsletter/UseApiComminity";
 
 export default function CommunityPage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [communityPage, setCommunityPage] = useState<{
     page: number;
     size: number;
