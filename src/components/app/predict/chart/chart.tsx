@@ -26,13 +26,7 @@ export default function Chart() {
   }, [getChartDataResponse.isSuccess, getChartDataResponse.data]);
 
   return (
-    <div
-      css={css`
-        max-width: 111.6rem;
-        margin: 0 auto;
-        padding-top: 9.7rem;
-      `}
-    >
+    <div>
       {/* Header */}
       <div
         css={css`
