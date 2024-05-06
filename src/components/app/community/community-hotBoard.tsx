@@ -7,6 +7,11 @@ import UseApiCommunity, {
 import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable";
 
 const TAB_LIST = ["실시간", "주간", "댓글순"];
+const TAB_DICT: { [key: string]: string } = {
+  실시간: "&Sort=boardLikeCount,desc",
+  주간: "&setDataForPastWeeks=1",
+  댓글순: "&Sort=boardCommentCount,desc",
+};
 
 export default function CommunityHotBoard() {
   const [communityProps, setCommunityProps] = useState<ApiCommunityProps>({
@@ -18,29 +23,14 @@ export default function CommunityHotBoard() {
   });
   const { data } = UseApiCommunity(communityProps);
 
-  const [curTab, setCurTab] = useState("실시간");
+  const [curTab, setCurTab] = useState(TAB_LIST[0]);
 
   const handleChangeTab = (tab: string) => {
     setCurTab(tab);
 
-    let sort = "";
-    switch (tab) {
-      case "실시간":
-        sort = "&Sort=boardLikeCount,desc";
-        break;
-      case "주간":
-        sort = "&setDataForPastWeeks=1";
-        break;
-      case "댓글순":
-        sort = "&Sort=boardCommentCount,desc";
-        break;
-      default:
-        break;
-    }
-
     setCommunityProps({
       ...communityProps,
-      sort,
+      sort: TAB_DICT[tab],
     });
   };
 

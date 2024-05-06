@@ -4,6 +4,10 @@ import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable";
 
 const COIN_TYPE_LIST = ["전체", "리플", "비트코인", "이더리움"];
 const ORDER_TYPE_LIST = ["최신순", "인기순"];
+const ORDER_TYPE_DICT: { [key: string]: string } = {
+  최신순: "&Sort=createdAt,desc",
+  인기순: "&Sort=boardLikeCount,desc",
+};
 
 export default function CommunityTab({
   onClickCategoryTab,
@@ -12,8 +16,10 @@ export default function CommunityTab({
   onClickCategoryTab: (category: string) => void;
   onClickSortTab: (sort: string) => void;
 }) {
-  const [selectedCoinType, setSelectedCoinType] = useState("전체");
-  const [selectedOrderType, setSelectedOrderType] = useState("최신순");
+  const [selectedCoinType, setSelectedCoinType] = useState(COIN_TYPE_LIST[0]);
+  const [selectedOrderType, setSelectedOrderType] = useState(
+    ORDER_TYPE_LIST[0],
+  );
 
   const handleTabChange = (coinType: string) => {
     setSelectedCoinType(coinType);
@@ -22,10 +28,9 @@ export default function CommunityTab({
 
   const handleOrderChange = (dateType: string) => {
     setSelectedOrderType(dateType);
-    if (dateType === "최신순") {
-      onClickSortTab(`&Sort=createdAt,desc`);
-    } else if (dateType === "인기순") {
-      onClickSortTab(`&Sort=boardLikeCount,desc`);
+    const sort = ORDER_TYPE_DICT[dateType];
+    if (sort) {
+      onClickSortTab(sort);
     }
   };
 
