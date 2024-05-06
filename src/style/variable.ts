@@ -1,6 +1,21 @@
 /** 플로우 빗 스타일 가이드 */
 
 export const DESIGN_SYSTEM_TEXT = {
+  E_S2: {
+    fontWeight: "Bold",
+    fontSize: "1.8rem",
+    lineHeight: "2.4rem",
+  },
+  E_S3: {
+    fontWeight: "Regular",
+    fontSize: "1.8rem",
+    lineHeight: "2.4rem",
+  },
+  E_B1: {
+    fontWeight: "Regular",
+    fontSize: "1.6rem",
+    lineHeight: "2.2rem",
+  },
   E1: {
     fontWeight: "Bold",
     fontSize: "9.6rem",
@@ -62,7 +77,7 @@ export const DESIGN_SYSTEM_TEXT = {
     letterSpacing: "-2%",
   },
   S3: {
-    fontWeight: "Bold",
+    fontWeight: "Regular",
     fontSize: "1.8rem",
     lineHeight: "2.6rem",
     letterSpacing: "-2%",
