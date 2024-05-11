@@ -998,7 +998,7 @@ export class Chart {
     const legendHeight = 50;
     const lineWidth = 50;
     const gap = 24;
-    const fontSize = 18;
+    const fontSize = 12;
 
     // legend 사이의 갭들을 나타내는 변수
     let accGap = 0;

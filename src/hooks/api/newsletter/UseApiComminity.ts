@@ -25,7 +25,6 @@ export default function UseApiCommunity(props: ApiCommunityProps) {
       (acc, value) => acc + value,
       "?",
     );
-    console.log(param);
 
     return await api
       .get(`/board-service/api/v1/board${param}`)
