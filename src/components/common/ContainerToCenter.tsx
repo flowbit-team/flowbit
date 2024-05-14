@@ -8,11 +8,11 @@ export default function ContainerToCenter({
   return (
     <section
       css={css`
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        margin: 0 auto;
         width: 45rem;
+        padding-top: 14rem;
+        padding-bottom: 5rem;
+
         height: 100%;
 
         display: flex;
