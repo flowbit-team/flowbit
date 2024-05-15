@@ -7,6 +7,9 @@ import {
   RouteObject,
 } from "react-router-dom";
 import SignIn from "@/app/signin";
+import SignUp from "@/app/signup";
+import Complete from "@/app/signup/complete";
+import Consent from "@/app/signup/consent";
 
 const routerChildren: RouteObject[] = [
   {
@@ -24,6 +27,18 @@ const routerChildren: RouteObject[] = [
   {
     path: "/signin",
     element: <SignIn />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
+  {
+    path: "/consent",
+    element: <Consent />,
+  },
+  {
+    path: "/complete",
+    element: <Complete />,
   },
 ];
 

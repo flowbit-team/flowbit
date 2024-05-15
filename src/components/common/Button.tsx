@@ -28,7 +28,6 @@ export default function Button({ icon, children, ...props }: buttonProps) {
       )}
       <button
         css={css`
-          min-width: 30rem;
           width: 100%;
           height: 5rem;
           border-radius: 0.5rem;

@@ -1,8 +1,9 @@
 import { css } from "@emotion/react";
+import { DESIGN_SYSTEM_TEXT } from "@/style/variable.ts";
 
 type inputProps = {
   placeholder: string;
-  icon: string;
+  icon?: string;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "types">;
 export default function Input({
   placeholder = "텍스트를 입력해주세요",
@@ -29,15 +30,14 @@ export default function Input({
         />
       )}
       <input
+        {...DESIGN_SYSTEM_TEXT.B1}
         css={css`
           border: none;
           box-shadow: inset 0 0 0 1px #eeeeee;
-          min-width: 30rem;
           width: 100%;
           height: 5.6rem;
           border-radius: 0.5rem;
-          padding-left: 6rem;
-          font-size: 1.6rem;
+          padding-left: ${icon ? `6rem` : `2rem`};
 
           &:focus {
             outline: none;
