@@ -10,11 +10,12 @@ import SignIn from "@/app/signin";
 import SignUp from "@/app/signup";
 import Complete from "@/app/signup/complete";
 import Consent from "@/app/signup/consent";
+import HomePage from "@/app/home";
 
 const routerChildren: RouteObject[] = [
   {
     path: "/",
-    element: <PredictPage />,
+    element: <HomePage />,
   },
   {
     path: "/predict",
