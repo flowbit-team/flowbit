@@ -1,6 +1,6 @@
 import Button from "@/components/common/Button";
 import Lottie from "lottie-react";
-import { DESIGN_SYSTEM_COLOR } from "@/style/variable";
+import { BREAK_POINTS, DESIGN_SYSTEM_COLOR } from "@/style/variable";
 import { css } from "@emotion/react";
 import {
   COMMUNITY_URL,
@@ -12,6 +12,9 @@ import BitImg from "@/assets/blue_bit.svg";
 import EtherImg from "@/assets/blue_ether.svg";
 import RippleImg from "@/assets/blue_rip.svg";
 import Chart1 from "@/assets/chart1.svg";
+import MOBILE_CHART1 from "@/assets/mobile_chart1.svg";
+import MOBILE_CHART2 from "@/assets/mobile_chart2.svg";
+import MOBILE_CHART3 from "@/assets/mobile_chart3.svg";
 import Chart2 from "@/assets/chart2.svg";
 import Chart3 from "@/assets/chart3.svg";
 import MAINBOTTOMIMG from "@/assets/main-bottom.png";
@@ -87,9 +90,21 @@ export default function HomePage() {
   return (
     <article
       css={css`
-        max-width: 111.6rem;
+        max-width: 112rem;
         margin: 0 auto;
         padding-top: 9.8rem;
+
+        ${BREAK_POINTS.TABLET} {
+          max-width: 72.7rem;
+          margin: 0 auto;
+          padding-top: 9.8rem;
+        }
+
+        ${BREAK_POINTS.MOBILE} {
+          max-width: 32rem;
+          margin: 0 auto;
+          padding-top: 9.8rem;
+        }
       `}
     >
       {/* 메인 화면 */}
@@ -98,6 +113,14 @@ export default function HomePage() {
           css={css`
             display: flex;
             justify-content: space-between;
+
+            ${BREAK_POINTS.TABLET} {
+              flex-direction: column;
+            }
+
+            ${BREAK_POINTS.MOBILE} {
+              flex-direction: column;
+            }
           `}
         >
           {/* LEFT SIDE */}
@@ -106,6 +129,13 @@ export default function HomePage() {
               css={css`
                 font-size: 4.8rem;
                 line-height: 7.2rem;
+
+                ${BREAK_POINTS.TABLET} {
+                }
+                ${BREAK_POINTS.MOBILE} {
+                  font-size: 2.4rem;
+                  line-height: 3.6rem;
+                }
               `}
             >
               데이터 속 예측력, <br />
@@ -116,6 +146,12 @@ export default function HomePage() {
               css={css`
                 display: flex;
                 gap: 1.6rem;
+
+                ${BREAK_POINTS.TABLET} {
+                }
+                ${BREAK_POINTS.MOBILE} {
+                  margin-top: 4rem;
+                }
               `}
             >
               <Button
@@ -152,6 +188,15 @@ export default function HomePage() {
             css={css`
               width: 54.6rem;
 
+              ${BREAK_POINTS.TABLET} {
+                margin-top: 6.4rem;
+                width: 100%;
+              }
+              ${BREAK_POINTS.MOBILE} {
+                margin-top: 4rem;
+                width: 100%;
+              }
+
               & .card {
                 width: 100%;
                 padding: 2.8rem;
@@ -160,6 +205,39 @@ export default function HomePage() {
                 background-color: rgba(249, 251, 255, 1);
                 position: relative;
                 cursor: pointer;
+
+                & .desktop {
+                  display: initial;
+                }
+
+                & .tablet {
+                  display: none;
+                }
+
+                ${BREAK_POINTS.TABLET} {
+                  & .desktop {
+                    display: none;
+                  }
+
+                  & .tablet {
+                    display: initial;
+                  }
+                }
+
+                ${BREAK_POINTS.MOBILE} {
+                  & .desktop {
+                    display: none;
+                  }
+
+                  & .tablet {
+                    display: none;
+                  }
+
+                  & .char-logo {
+                    width: 3.2rem;
+                    height: 3.2rem;
+                  }
+                }
 
                 & .card-item {
                   width: 100%;
@@ -197,6 +275,16 @@ export default function HomePage() {
                   & .percent.red {
                     color: ${DESIGN_SYSTEM_COLOR.RED_500};
                   }
+
+                  ${BREAK_POINTS.MOBILE} {
+                    & .money {
+                      font-size: 1.6rem;
+                    }
+
+                    & .percent {
+                      font-size: 1.2rem;
+                    }
+                  }
                 }
 
                 & .card-item:last-child {
@@ -228,7 +316,7 @@ export default function HomePage() {
                 onClick={() => navigation(PREDICT_URL)}
               >
                 {/* 이미지 */}
-                <img src={BitImg} alt="Logo Img" />
+                <img className="char-logo" src={BitImg} alt="Logo Img" />
                 <div
                   css={css`
                     width: 15rem;
@@ -255,8 +343,11 @@ export default function HomePage() {
                   </span>
                 )}
                 {/* 차트 */}
-                <div>
+                <div className="desktop">
                   <img src={Chart1} alt="" />
+                </div>
+                <div className="tablet">
+                  <img src={MOBILE_CHART1} alt="" />
                 </div>
               </div>
               {/* 이더리움 */}
@@ -265,7 +356,7 @@ export default function HomePage() {
                 onClick={() => navigation(PREDICT_URL)}
               >
                 {/* 이미지 */}
-                <img src={EtherImg} alt="Logo Img" />
+                <img className="char-logo" src={EtherImg} alt="Logo Img" />
                 <div
                   css={css`
                     width: 15rem;
@@ -292,8 +383,11 @@ export default function HomePage() {
                   </span>
                 )}
                 {/* 차트 */}
-                <div>
+                <div className="desktop">
                   <img src={Chart2} alt="" />
+                </div>
+                <div className="tablet">
+                  <img src={MOBILE_CHART2} alt="" />
                 </div>
               </div>
               {/* 리플 */}
@@ -302,7 +396,7 @@ export default function HomePage() {
                 onClick={() => navigation(PREDICT_URL)}
               >
                 {/* 이미지 */}
-                <img src={RippleImg} alt="Logo Img" />
+                <img className="char-logo" src={RippleImg} alt="Logo Img" />
                 <div
                   css={css`
                     width: 15rem;
@@ -325,12 +419,15 @@ export default function HomePage() {
                   </span>
                 ) : (
                   <span className="percent red">
-                    - {coinInfo?.XRP.persent.toFixed(2)}%
+                    - {Math.abs(Number(coinInfo?.XRP.persent.toFixed(2)))}%
                   </span>
                 )}
                 {/* 차트 */}
-                <div>
+                <div className="desktop">
                   <img src={Chart3} alt="" />
+                </div>
+                <div className="tablet">
+                  <img src={MOBILE_CHART3} alt="" />
                 </div>
               </div>
             </div>
@@ -340,6 +437,10 @@ export default function HomePage() {
                 display: flex;
                 margin-top: 2.2rem;
                 gap: 2rem;
+
+                ${BREAK_POINTS.MOBILE} {
+                  flex-direction: column;
+                }
               `}
             >
               {/* 뉴스레타 로티 */}

@@ -156,3 +156,8 @@ export const DESIGN_SYSTEM_COLOR = {
   BRAND_OCEAN: "#00BECA",
   BRAND_PURPLE: "#0056CA",
 };
+
+export const BREAK_POINTS = {
+  TABLET: "@media screen and (max-width: 1119px)",
+  MOBILE: "@media screen and (max-width: 767px)",
+};
