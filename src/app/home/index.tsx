@@ -2,17 +2,88 @@ import Button from "@/components/common/Button";
 import Lottie from "lottie-react";
 import { DESIGN_SYSTEM_COLOR } from "@/style/variable";
 import { css } from "@emotion/react";
-import { numberWithCommas } from "@/utils/util";
+import {
+  COMMUNITY_URL,
+  NEWS_LETTER_URL,
+  PREDICT_URL,
+  numberWithCommas,
+} from "@/utils/util";
 import BitImg from "@/assets/blue_bit.svg";
 import EtherImg from "@/assets/blue_ether.svg";
 import RippleImg from "@/assets/blue_rip.svg";
 import Chart1 from "@/assets/chart1.svg";
 import Chart2 from "@/assets/chart2.svg";
 import Chart3 from "@/assets/chart3.svg";
+import MAINBOTTOMIMG from "@/assets/main-bottom.png";
 import NewletterAni from "@/assets/newletter.json";
 import CommunityAni from "@/assets/community.json";
+import { useGetChartDataQuery } from "@/api/chartApi";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+type CoinInfoType = {
+  [coin in "BTC" | "ETH" | "XRP"]: {
+    price: number; // 가격
+    persent: number; // 상승률 혹은 하락률
+    datas: unknown[]; // 그래프 데이터
+  };
+};
 
 export default function HomePage() {
+  // 차트 데이터 가지고 오기
+  const getBTCData = useGetChartDataQuery("BTC");
+  const getETHData = useGetChartDataQuery("ETH");
+  const getXRPData = useGetChartDataQuery("XRP");
+
+  const [coinInfo, setCoinInfo] = useState<CoinInfoType>();
+
+  const navigation = useNavigate();
+
+  useEffect(() => {
+    if (!getBTCData.isSuccess || !getETHData.isSuccess || !getXRPData.isSuccess)
+      return;
+
+    // get BTC, 0번째 인덱스는 항상 실제 BTC로 가정해야 한다.
+    let lastIndex = getBTCData.data?.datas[0].data.length - 1;
+    const btcPrice = getBTCData.data?.datas[0].data[lastIndex];
+    const prevBtcPrice = getBTCData.data?.datas[0].data[lastIndex - 1];
+
+    // get ETH
+    lastIndex = getETHData.data?.datas[0].data.length - 1;
+    const ethPrice = getETHData.data?.datas[0].data[lastIndex];
+    const prevEthPrice = getETHData.data?.datas[0].data[lastIndex - 1];
+
+    // get XRP
+    lastIndex = getXRPData.data?.datas[0].data.length - 1;
+    const xrpPrice = getXRPData.data?.datas[0].data[lastIndex];
+    const prevXrpPrice = getXRPData.data?.datas[0].data[lastIndex - 1];
+
+    setCoinInfo({
+      BTC: {
+        price: btcPrice,
+        datas: getBTCData.data?.datas,
+        persent: ((btcPrice - prevBtcPrice) / prevBtcPrice) * 100,
+      },
+      ETH: {
+        price: ethPrice,
+        datas: getETHData.data?.datas,
+        persent: ((ethPrice - prevEthPrice) / prevEthPrice) * 100,
+      },
+      XRP: {
+        price: xrpPrice,
+        datas: getXRPData.data?.datas,
+        persent: ((xrpPrice - prevXrpPrice) / prevXrpPrice) * 100,
+      },
+    });
+  }, [
+    getBTCData.data?.datas,
+    getBTCData.isSuccess,
+    getETHData.data?.datas,
+    getETHData.isSuccess,
+    getXRPData.data?.datas,
+    getXRPData.isSuccess,
+  ]);
+
   return (
     <article
       css={css`
@@ -87,6 +158,8 @@ export default function HomePage() {
                 border-radius: 1.6rem;
                 border: 1px solid ${DESIGN_SYSTEM_COLOR.BLUEGRAY_100};
                 background-color: rgba(249, 251, 255, 1);
+                position: relative;
+                cursor: pointer;
 
                 & .card-item {
                   width: 100%;
@@ -133,6 +206,16 @@ export default function HomePage() {
                 }
 
                 & .badge {
+                  display: inline-block;
+                  background-color: #2f3b4b;
+                  padding: 8px 12px;
+                  margin-bottom: 2.4rem;
+
+                  font-size: 1.6rem;
+                  font-weight: bold;
+                  color: white;
+
+                  border-radius: 24px;
                 }
               }
             `}
@@ -140,7 +223,10 @@ export default function HomePage() {
             {/* TOP */}
             <div className="card">
               {/* 비트코인 */}
-              <div className="card-item">
+              <div
+                className="card-item"
+                onClick={() => navigation(PREDICT_URL)}
+              >
                 {/* 이미지 */}
                 <img src={BitImg} alt="Logo Img" />
                 <div
@@ -152,19 +238,32 @@ export default function HomePage() {
                   `}
                 >
                   {/* 돈 */}
-                  <span className="money">{numberWithCommas(90666000)}</span>
+                  <span className="money">
+                    {numberWithCommas(coinInfo?.BTC.price || 0)}
+                  </span>
                   {/* 단위 */}
                   <span className="unit">KRW</span>
                 </div>
                 {/* 상승률 */}
-                <span className="percent green">+ 4.62%</span>
+                {coinInfo?.BTC.persent && coinInfo?.BTC.persent > 0 ? (
+                  <span className="percent green">
+                    + {coinInfo?.BTC.persent.toFixed(2)}%
+                  </span>
+                ) : (
+                  <span className="percent red">
+                    - {coinInfo?.BTC.persent.toFixed(2)}%
+                  </span>
+                )}
                 {/* 차트 */}
                 <div>
                   <img src={Chart1} alt="" />
                 </div>
               </div>
               {/* 이더리움 */}
-              <div className="card-item">
+              <div
+                className="card-item"
+                onClick={() => navigation(PREDICT_URL)}
+              >
                 {/* 이미지 */}
                 <img src={EtherImg} alt="Logo Img" />
                 <div
@@ -176,19 +275,32 @@ export default function HomePage() {
                   `}
                 >
                   {/* 돈 */}
-                  <span className="money">{numberWithCommas(4879000)}</span>
+                  <span className="money">
+                    {numberWithCommas(coinInfo?.ETH.price || 0)}
+                  </span>
                   {/* 단위 */}
                   <span className="unit">KRW</span>
                 </div>
                 {/* 상승률 */}
-                <span className="percent green">+ 4.62%</span>
+                {coinInfo?.ETH.persent && coinInfo?.ETH.persent > 0 ? (
+                  <span className="percent green">
+                    + {coinInfo?.ETH.persent.toFixed(2)}%
+                  </span>
+                ) : (
+                  <span className="percent red">
+                    - {coinInfo?.ETH.persent.toFixed(2)}%
+                  </span>
+                )}
                 {/* 차트 */}
                 <div>
                   <img src={Chart2} alt="" />
                 </div>
               </div>
               {/* 리플 */}
-              <div className="card-item last">
+              <div
+                className="card-item last"
+                onClick={() => navigation(PREDICT_URL)}
+              >
                 {/* 이미지 */}
                 <img src={RippleImg} alt="Logo Img" />
                 <div
@@ -200,12 +312,22 @@ export default function HomePage() {
                   `}
                 >
                   {/* 돈 */}
-                  <span className="money">{numberWithCommas(913)}</span>
+                  <span className="money">
+                    {numberWithCommas(coinInfo?.XRP.price || 0)}
+                  </span>
                   {/* 단위 */}
                   <span className="unit">KRW</span>
                 </div>
                 {/* 상승률 */}
-                <span className="percent red">+ 4.62%</span>
+                {coinInfo?.XRP.persent && coinInfo?.XRP.persent > 0 ? (
+                  <span className="percent green">
+                    + {coinInfo?.XRP.persent.toFixed(2)}%
+                  </span>
+                ) : (
+                  <span className="percent red">
+                    - {coinInfo?.XRP.persent.toFixed(2)}%
+                  </span>
+                )}
                 {/* 차트 */}
                 <div>
                   <img src={Chart3} alt="" />
@@ -221,13 +343,12 @@ export default function HomePage() {
               `}
             >
               {/* 뉴스레타 로티 */}
-              <div className="card">
-                {/* 뱃지 */}
+              <div className="card" onClick={() => navigation(NEWS_LETTER_URL)}>
                 <div className="badge">뉴스레터</div>
                 <Lottie animationData={NewletterAni} />
               </div>
               {/* 코멘트 로티 */}
-              <div className="card">
+              <div className="card" onClick={() => navigation(COMMUNITY_URL)}>
                 <div className="badge">커뮤니티</div>
                 <Lottie animationData={CommunityAni} />
               </div>
@@ -237,7 +358,20 @@ export default function HomePage() {
       </section>
 
       {/* 하단 이미지 */}
-      <section></section>
+      <section
+        css={css`
+          margin-top: 21.4rem;
+          width: 100%;
+        `}
+      >
+        <img
+          css={css`
+            width: 100%;
+          `}
+          src={MAINBOTTOMIMG}
+          alt=""
+        />
+      </section>
     </article>
   );
 }
