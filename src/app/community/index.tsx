@@ -77,7 +77,7 @@ export default function CommunityPage() {
       >
         <main
           css={css`
-            min-width: 735px;
+            min-width: 73.5rem;
             display: flex;
             flex-direction: column;
             gap: 4.2rem;

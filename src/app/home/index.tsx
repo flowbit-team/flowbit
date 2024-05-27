@@ -339,7 +339,7 @@ export default function HomePage() {
                   </span>
                 ) : (
                   <span className="percent red">
-                    - {coinInfo?.BTC.persent.toFixed(2)}%
+                    - {Math.abs(Number(coinInfo?.BTC.persent.toFixed(2)))}%
                   </span>
                 )}
                 {/* 차트 */}
@@ -379,7 +379,7 @@ export default function HomePage() {
                   </span>
                 ) : (
                   <span className="percent red">
-                    - {coinInfo?.ETH.persent.toFixed(2)}%
+                    - {Math.abs(Number(coinInfo?.ETH.persent.toFixed(2)))}%
                   </span>
                 )}
                 {/* 차트 */}
