@@ -24,7 +24,7 @@ export default function NewsCard({ article }: newsLetterProps) {
         display: flex;
         flex-direction: column;
         row-gap: 8px;
-        width: 232px;
+        width: 100%;
       `}
     >
       <NewImage src={article.img} date={article.pubDate} />
