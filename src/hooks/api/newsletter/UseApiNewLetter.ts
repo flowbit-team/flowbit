@@ -49,11 +49,11 @@ export function UseInfiniteApiNewLetter() {
       .get(
         `/board-service/api/v1/news?sort=createdAt&page=${pageParam}&size=${6}`,
       )
-      .then((res) => res.data.data as GetPostType);
+      .then((res) => res.data?.data as GetPostType);
   };
 
   return useInfiniteQuery({
-    queryKey: ["newsletter"],
+    queryKey: ["newsletterInfinite"],
     queryFn: ({ pageParam }) => getNewsLetter({ pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage: GetPostType) => {
