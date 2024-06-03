@@ -7,12 +7,12 @@ export const DESIGN_SYSTEM_TEXT = {
     lineHeight: "2.4rem",
   },
   E_S3: {
-    fontWeight: "lighter",
+    fontWeight: "300",
     fontSize: "1.8rem",
     lineHeight: "2.4rem",
   },
   E_B1: {
-    fontWeight: "lighter",
+    fontWeight: "300",
     fontSize: "1.6rem",
     lineHeight: "2.2rem",
   },
@@ -77,7 +77,7 @@ export const DESIGN_SYSTEM_TEXT = {
     letterSpacing: "-0.02em",
   },
   S3: {
-    fontWeight: "lighter",
+    fontWeight: "300",
     fontSize: "1.8rem",
     lineHeight: "2.6rem",
     letterSpacing: "-0.02em",
@@ -89,7 +89,7 @@ export const DESIGN_SYSTEM_TEXT = {
     letterSpacing: "-0.02em",
   },
   B1: {
-    fontWeight: "lighter",
+    fontWeight: "300",
     fontSize: "1.6rem",
     lineHeight: "2.4rem",
     letterSpacing: "-0.02em",
@@ -101,19 +101,19 @@ export const DESIGN_SYSTEM_TEXT = {
     letterSpacing: "-0.02em",
   },
   B2: {
-    fontWeight: "lighter",
+    fontWeight: "300",
     fontSize: "1.4rem",
     lineHeight: "2.2rem",
     letterSpacing: "-0.02em",
   },
   CAPTION: {
-    fontWeight: "lighter",
+    fontWeight: "300",
     fontSize: "1.2rem",
     lineHeight: "1.8rem",
     letterSpacing: "-0.02em",
   },
   OVERLINE: {
-    fontWeight: "lighter",
+    fontWeight: "300",
     fontSize: "1rem",
     lineHeight: "1.6rem",
     letterSpacing: "-0.02em",

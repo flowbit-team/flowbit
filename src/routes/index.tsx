@@ -13,6 +13,7 @@ import Complete from "@/app/signup/complete";
 import Consent from "@/app/signup/consent";
 import HomePage from "@/app/home";
 import Carousel from "@/components/common/carousel";
+import News from "@/app/news";
 
 const routerChildren: RouteObject[] = [
   {
@@ -46,6 +47,10 @@ const routerChildren: RouteObject[] = [
   {
     path: "/carousel",
     element: <Carousel />,
+  },
+  {
+    path: "/news",
+    element: <News />,
   },
 ];
 
