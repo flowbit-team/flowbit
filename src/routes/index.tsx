@@ -12,6 +12,7 @@ import SignUp from "@/app/signup";
 import Complete from "@/app/signup/complete";
 import Consent from "@/app/signup/consent";
 import HomePage from "@/app/home";
+import Carousel from "@/components/common/carousel";
 
 const routerChildren: RouteObject[] = [
   {
@@ -41,6 +42,10 @@ const routerChildren: RouteObject[] = [
   {
     path: "/complete",
     element: <Complete />,
+  },
+  {
+    path: "/carousel",
+    element: <Carousel />,
   },
 ];
 
