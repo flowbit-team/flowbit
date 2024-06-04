@@ -2,21 +2,29 @@ import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable.ts";
 import { Dispatch, SetStateAction } from "react";
 import { css } from "@emotion/react";
 import Glass from "@/assets/Glass.svg";
+import value from "*.svg";
 
 interface selectorProps {
   categoryList: string[];
   orderList: string[];
   category: string;
   order: string;
+  inputValue: string;
+  searchWord: string;
   setOrder: Dispatch<SetStateAction<string>>;
   setCategory: Dispatch<SetStateAction<string>>;
+  setSearchWord: Dispatch<SetStateAction<string>>;
+  setInputValue: Dispatch<SetStateAction<string>>;
 }
 export default function Selector({
   categoryList,
   orderList,
   category,
   order,
+  inputValue,
   setCategory,
+  setSearchWord,
+  setInputValue,
   setOrder,
 }: selectorProps) {
   return (
@@ -157,8 +165,23 @@ export default function Selector({
               `}
               type="text"
               placeholder="검색어를 입력하세요."
+              value={inputValue}
+              onChange={(e) =>
+                setInputValue((e.target as HTMLInputElement).value)
+              }
+              onKeyDown={(e) =>
+                e.key === "Enter" &&
+                setSearchWord((e.target as HTMLInputElement).value)
+              }
             />
-            <img src={Glass} alt="glass" />
+            <img
+              src={Glass}
+              alt="glass"
+              onClick={() => setSearchWord(inputValue)}
+              css={css`
+                cursor: pointer;
+              `}
+            />
           </div>
         </nav>
       </section>
