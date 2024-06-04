@@ -2,7 +2,6 @@ import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable.ts";
 import { Dispatch, SetStateAction } from "react";
 import { css } from "@emotion/react";
 import Glass from "@/assets/Glass.svg";
-import value from "*.svg";
 
 interface selectorProps {
   categoryList: string[];
