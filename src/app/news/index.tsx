@@ -10,23 +10,26 @@ import { useInView } from "react-intersection-observer";
 import Carousel from "@/components/common/carousel";
 
 export default function News() {
-  const CATEGORY = ["전체", "도지코인", "비트코인", "이더리움"];
+  const CATEGORY = ["전체", "리플", "비트코인", "이더리움"];
   const ORDER = ["최신순", "인기순"];
   const [category, setCategory] = useState("전체");
   const [order, setOrder] = useState("최신순");
+  const [inputValue, setInputValue] = useState("");
+  const [searchWord, setSearchWord] = useState("");
   const [ref, inView] = useInView();
 
   const {
     data: dataSet,
     hasNextPage,
     fetchNextPage,
-  } = UseInfiniteApiNewLetter();
+  } = UseInfiniteApiNewLetter(category, order, searchWord);
 
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView, dataSet, fetchNextPage, hasNextPage]);
+  }, [inView, hasNextPage]);
+
   return (
     <>
       <Carousel></Carousel>
@@ -43,8 +46,12 @@ export default function News() {
           orderList={ORDER}
           category={category}
           order={order}
+          inputValue={inputValue}
           setOrder={setOrder}
           setCategory={setCategory}
+          setInputValue={setInputValue}
+          searchWord={searchWord}
+          setSearchWord={setSearchWord}
         />
         <div
           css={css`

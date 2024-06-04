@@ -43,22 +43,37 @@ export default function UseApiNewLetter() {
   });
 }
 
-export function UseInfiniteApiNewLetter() {
+export function UseInfiniteApiNewLetter(
+  search: string,
+  sort: string,
+  searchWord: string,
+) {
   const getNewsLetter = async ({ pageParam }: { pageParam: number }) => {
+    const scaledSearch: { [key: string]: string } = {
+      전체: "",
+      리플: "리플",
+      비트코인: "비트코인",
+      이더리움: "이더리움",
+    };
+    const scaledOrder: { [key: string]: string } = {
+      최신순: "createdAt,newsViewCount",
+      인기순: "newsViewCount,desc",
+    };
+
     return await api
       .get(
-        `/board-service/api/v1/news?sort=createdAt&page=${pageParam}&size=${6}`,
+        `/board-service/api/v1/news?page=${pageParam}&size=${20}&searchword=${searchWord}&sort=${scaledOrder[sort]}&tag=${scaledSearch[search]}`,
       )
       .then((res) => res.data?.data as GetPostType);
   };
 
   return useInfiniteQuery({
-    queryKey: ["newsletterInfinite"],
+    queryKey: ["newsletterInfinite", search, sort, searchWord],
     queryFn: ({ pageParam }) => getNewsLetter({ pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage: GetPostType) => {
-      // if (lastPage.last) return undefined;
-      return lastPage.number + 1;
+      if (lastPage.last) return undefined;
+      if (lastPage) return lastPage.number + 1;
     },
   });
 }

@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { DESIGN_SYSTEM_COLOR } from "@/style/variable.ts";
 
 type imageProps = {
   src?: string;
@@ -22,6 +23,7 @@ export default function NewImage({ src, date }: imageProps) {
         background-image: url(${src});
         background-size: cover;
         background-repeat: no-repeat;
+        box-shadow: inset 0 0 0 0.1rem ${DESIGN_SYSTEM_COLOR.GRAY_200};
       `}
     >
       <div
