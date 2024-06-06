@@ -33,7 +33,7 @@ export interface GetPostType {
 export default function UseApiNewLetter() {
   const getNewsLetter = async () => {
     return await api
-      .get(`/board-service/api/v1/news?sort=createdAt&page=0&size=3`)
+      .get(`/board-service/api/v1/news?sort=createdAt,desc&page=0&size=3`)
       .then((res) => res.data.data.content as newsLetterProps["article"][]);
   };
 
@@ -56,7 +56,7 @@ export function UseInfiniteApiNewLetter(
       이더리움: "이더리움",
     };
     const scaledOrder: { [key: string]: string } = {
-      최신순: "createdAt,newsViewCount",
+      최신순: "createdAt,newsViewCount,desc",
       인기순: "newsViewCount,desc",
     };
 

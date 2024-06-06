@@ -11,6 +11,16 @@ export default function NewImage({ src, date }: imageProps) {
   /** ['Sun,', '10', 'Mar', '2024', '09:02:00', '+0900'] */
   const [day, month, year] = dateSet.slice(1, 4).map((item) => item ?? "--");
 
+  let parsedSrc = src;
+  if (src !== undefined) {
+    const pathname = new URL(src).pathname;
+    if (pathname.split("//").length > 1) {
+      parsedSrc = `https://${pathname.split("//")[1]}`;
+    } else {
+      parsedSrc = src;
+    }
+  }
+
   return (
     <div
       css={css`
@@ -20,7 +30,7 @@ export default function NewImage({ src, date }: imageProps) {
         background-color: gray;
         border: none;
         border-radius: 8px;
-        background-image: url(${src});
+        background-image: url(${parsedSrc});
         background-size: cover;
         background-repeat: no-repeat;
         box-shadow: inset 0 0 0 0.1rem ${DESIGN_SYSTEM_COLOR.GRAY_200};
