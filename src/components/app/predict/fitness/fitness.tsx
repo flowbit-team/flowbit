@@ -1,3 +1,8 @@
+import {
+  BREAK_POINTS,
+  DESIGN_SYSTEM_COLOR,
+  DESIGN_SYSTEM_TEXT,
+} from "@/style/variable";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 
@@ -20,10 +25,10 @@ export default function FitNess({ fitnessScore }: fitnessProps) {
         clearInterval(counter);
       }
     }, stepTime);
-    
+
     return () => {
-       clearInterval(counter)
-    }
+      clearInterval(counter);
+    };
   }, [fitnessScore, stepTime]);
 
   setTimeout(() => {
@@ -39,12 +44,23 @@ export default function FitNess({ fitnessScore }: fitnessProps) {
     <article
       css={css`
         position: relative;
-        width: 355px;
-        height: 218px;
+        width: 35.5rem;
+        height: 21.8rem;
         background: var(--gray50, #fafafa);
         display: flex;
         justify-content: center;
         align-items: center;
+
+        ${BREAK_POINTS.TABLET} {
+          width: 100%;
+          background-color: white;
+        }
+
+        ${BREAK_POINTS.MOBILE} {
+          width: 100%;
+          height: 24.3rem;
+          background-color: white;
+        }
       `}
     >
       <div
@@ -53,9 +69,21 @@ export default function FitNess({ fitnessScore }: fitnessProps) {
         `}
       >
         <svg
+          css={css`
+            width: 28.4rem;
+            height: 14.3rem;
+
+            ${BREAK_POINTS.TABLET} {
+              width: 47.8rem;
+              height: 24rem;
+            }
+
+            ${BREAK_POINTS.MOBILE} {
+              width: 26.2rem;
+              height: 13.1rem;
+            }
+          `}
           xmlns="http://www.w3.org/2000/svg"
-          width="284"
-          height="143"
           viewBox="0 0 284 143"
           fill="none"
         >
@@ -85,9 +113,21 @@ export default function FitNess({ fitnessScore }: fitnessProps) {
         `}
       >
         <svg
+          css={css`
+            width: 23.6rem;
+            height: 12.8rem;
+
+            ${BREAK_POINTS.TABLET} {
+              width: 47.8rem;
+              height: 24rem;
+            }
+
+            ${BREAK_POINTS.MOBILE} {
+              width: 26.2rem;
+              height: 13.1rem;
+            }
+          `}
           xmlns="http://www.w3.org/2000/svg"
-          width="236"
-          height="128"
           viewBox="0 0 236 128"
           fill="none"
         >
@@ -148,6 +188,7 @@ export default function FitNess({ fitnessScore }: fitnessProps) {
             </linearGradient>
           </defs>
         </svg>
+        {/* 화살표 */}
         <div
           css={css`
             z-index: 2;
@@ -155,14 +196,22 @@ export default function FitNess({ fitnessScore }: fitnessProps) {
             background-color: #5664f9;
             background-color: transparent;
             margin-top: -5px;
-            width: 236px;
-            height: 128px;
+            width: 23.6rem;
+            height: 12.8rem;
             margin-left: auto;
             margin-right: auto;
             border-radius: 0px 0px 200px 200px;
             transform-origin: center top;
             transform: rotate(${score}turn);
             transition: all 1.3s ease-in-out;
+
+            ${BREAK_POINTS.TABLET} {
+              width: 44.5rem;
+            }
+
+            ${BREAK_POINTS.MOBILE} {
+              width: 23.6rem;
+            }
 
             &:before {
               z-index: -1;
@@ -199,6 +248,14 @@ export default function FitNess({ fitnessScore }: fitnessProps) {
             width: 100%;
             justify-content: flex-end;
             margin-top: -1.3rem;
+
+            ${BREAK_POINTS.TABLET} {
+              top: 38%;
+            }
+
+            ${BREAK_POINTS.MOBILE} {
+              top: 50%;
+            }
           `}
         >
           <div
@@ -206,22 +263,53 @@ export default function FitNess({ fitnessScore }: fitnessProps) {
               display: flex;
               align-items: center;
               column-gap: 0.3rem;
-
-              span:nth-of-type(1) {
-                font-size: 3.5rem;
-                font-weight: 600;
-              }
-              span:nth-of-type(2) {
-                font-size: 2.2rem;
-              }
             `}
           >
-            <span>{count}</span>
-            <span>%</span>
+            <span
+              css={css`
+                font-size: 3.5rem;
+                font-weight: 600;
+
+                ${BREAK_POINTS.TABLET} {
+                  ${DESIGN_SYSTEM_TEXT.E2}
+                }
+
+                ${BREAK_POINTS.MOBILE} {
+                  ${DESIGN_SYSTEM_TEXT.T1}
+                }
+              `}
+            >
+              {count}
+            </span>
+            <span
+              css={css`
+                font-size: 2.2rem;
+
+                ${BREAK_POINTS.TABLET} {
+                  ${DESIGN_SYSTEM_TEXT.T1}
+                }
+
+                ${BREAK_POINTS.MOBILE} {
+                  ${DESIGN_SYSTEM_TEXT.S2}
+                }
+              `}
+            >
+              %
+            </span>
           </div>
           <span
             css={css`
-              color: #757575;
+              color: ${DESIGN_SYSTEM_COLOR.GRAY_600};
+
+              ${BREAK_POINTS.TABLET} {
+                ${DESIGN_SYSTEM_TEXT.S1}
+                color: ${DESIGN_SYSTEM_COLOR.BLUE_GRAY_600};
+              }
+
+              ${BREAK_POINTS.MOBILE} {
+                ${DESIGN_SYSTEM_TEXT.B2_BOLD}
+                color: ${DESIGN_SYSTEM_COLOR.BLUE_GRAY_600};
+              }
             `}
           >
             적합도
