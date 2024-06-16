@@ -14,6 +14,7 @@ interface selectorProps {
   setCategory: Dispatch<SetStateAction<string>>;
   setSearchWord: Dispatch<SetStateAction<string>>;
   setInputValue: Dispatch<SetStateAction<string>>;
+  setScroll: Dispatch<SetStateAction<number>>;
 }
 export default function Selector({
   categoryList,
@@ -21,6 +22,7 @@ export default function Selector({
   category,
   order,
   inputValue,
+  setScroll,
   setCategory,
   setSearchWord,
   setInputValue,
@@ -58,11 +60,12 @@ export default function Selector({
             return (
               <div
                 key={item}
-                onClick={(event) =>
+                onClick={(event) => {
+                  setScroll(window.scrollY);
                   setCategory(
                     (event.target as HTMLElement).textContent as string,
-                  )
-                }
+                  );
+                }}
                 css={css`
                   span {
                     cursor: pointer;
@@ -108,9 +111,10 @@ export default function Selector({
             return (
               <div
                 key={item}
-                onClick={(event) =>
-                  setOrder((event.target as HTMLElement).textContent as string)
-                }
+                onClick={(event) => {
+                  setScroll(window.scrollY);
+                  setOrder((event.target as HTMLElement).textContent as string);
+                }}
                 css={css`
                   span {
                     cursor: pointer;
@@ -165,13 +169,16 @@ export default function Selector({
               type="text"
               placeholder="검색어를 입력하세요."
               value={inputValue}
-              onChange={(e) =>
-                setInputValue((e.target as HTMLInputElement).value)
-              }
-              onKeyDown={(e) =>
-                e.key === "Enter" &&
-                setSearchWord((e.target as HTMLInputElement).value)
-              }
+              onChange={(e) => {
+                setScroll(window.scrollY);
+                setInputValue((e.target as HTMLInputElement).value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setScroll(window.scrollY);
+                  setSearchWord((e.target as HTMLInputElement).value);
+                }
+              }}
             />
             <img
               src={Glass}

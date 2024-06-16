@@ -16,12 +16,14 @@ export default function News() {
   const [order, setOrder] = useState("최신순");
   const [inputValue, setInputValue] = useState("");
   const [searchWord, setSearchWord] = useState("");
+  const [prevScroll, setScroll] = useState(0);
   const [ref, inView] = useInView();
 
   const {
     data: dataSet,
     hasNextPage,
     fetchNextPage,
+    isSuccess,
   } = UseInfiniteApiNewLetter(category, order, searchWord);
 
   useEffect(() => {
@@ -29,6 +31,14 @@ export default function News() {
       fetchNextPage();
     }
   }, [inView, hasNextPage]);
+
+  /** 성공했을 경우 저장한 스크롤 상태 값을 현재 상태로 적용합니다. */
+  useEffect(() => {
+    if (isSuccess) {
+      window.scrollTo(0, prevScroll);
+      setScroll(0);
+    }
+  }, [category, isSuccess, order]);
 
   return (
     <>
@@ -52,6 +62,7 @@ export default function News() {
           setInputValue={setInputValue}
           searchWord={searchWord}
           setSearchWord={setSearchWord}
+          setScroll={setScroll}
         />
         <div
           css={css`
