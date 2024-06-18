@@ -22,6 +22,7 @@ import {
 } from "@/style/variable";
 import { CommunityBoardType } from "@/components/app/community/type";
 import { useInView } from "react-intersection-observer";
+import { useNavigate } from "react-router-dom";
 
 export default function CommunityPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -34,6 +35,7 @@ export default function CommunityPage() {
   const [modal, setModal] = useState(false);
 
   const [ref, inView] = useInView();
+  const navigate = useNavigate();
 
   const {
     data: dataSet,
@@ -44,6 +46,13 @@ export default function CommunityPage() {
     category: communityCategory,
     searchWord: communitySearchWord,
   });
+
+  useEffect(() => {
+    if (!localStorage.getItem("FLOWBIT_ACT")) {
+      alert("이용 전 로그인을 먼저 진행해주세요!");
+      navigate("/signin");
+    }
+  }, []);
 
   useEffect(() => {
     if (inView && hasNextPage) {

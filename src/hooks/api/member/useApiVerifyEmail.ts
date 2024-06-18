@@ -2,14 +2,16 @@ import { api } from "@/api";
 
 interface verifyEmailProps {
   email: string;
-  emailPurpose: string;
+  randomNumber: string;
 }
-export const verifyEmail = ({ email, emailPurpose }: verifyEmailProps) => {
-  const res = api.post(`/user-service/api/v1/mail`, {
+export const verifyEmail = ({ email, randomNumber }: verifyEmailProps) => {
+  const res = api.post(`/user-service/api/v1/mail/verify`, {
     email: email,
-    emailPurpose: emailPurpose,
+    randomNumber: randomNumber,
+    emailPurpose: "SIGNUP",
   });
 
   return res;
 };
+
 export const useApiVerifyEmail = () => {};
