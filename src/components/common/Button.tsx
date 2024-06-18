@@ -2,13 +2,20 @@ import { css } from "@emotion/react";
 
 type buttonProps = {
   icon?: string;
+  state?: boolean;
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "types">;
 
-export default function Button({ icon, children, ...props }: buttonProps) {
+export default function Button({
+  icon,
+  state = true,
+  children,
+  ...props
+}: buttonProps) {
   return (
     <div
       css={css`
         position: relative;
+        width: 100%;
         height: auto;
         display: flex;
         align-items: center;
@@ -34,6 +41,11 @@ export default function Button({ icon, children, ...props }: buttonProps) {
           color: white;
           border: none;
           font-weight: 700;
+          ${!state &&
+          css`
+            pointer-events: none;
+            filter: grayscale(100%);
+          `}
         `}
         {...props}
       >

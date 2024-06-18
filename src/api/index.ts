@@ -5,6 +5,7 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
+import { useNavigate } from "react-router-dom";
 
 /** API 사용 전, ENV 파일을 통해 서버 연동 설정을 해주세요 */
 const API_URL = import.meta.env.VITE_API_URL as string;
@@ -27,7 +28,12 @@ const logOnDev = (message: string) => {
 
 /** API 요청이 실패한 경우 호출되는 함수 */
 const onError = (status: number, message: string) => {
+  const navigate = useNavigate();
   const error = { status, message };
+  if (status === 401) {
+    alert("토큰 정보가 만료되었습니다, 로그인 페이지로 이동합니다.");
+    navigate("/signin");
+  }
   throw error;
 };
 
@@ -35,7 +41,7 @@ const onError = (status: number, message: string) => {
 const onRequest = (
   config: AxiosRequestConfig,
 ): Promise<InternalAxiosRequestConfig> => {
-  const token = localStorage.getItem("AT");
+  const token = localStorage.getItem("FLOWBIT_ACT");
   const { method, url, headers = {} } = config;
 
   headers.Authorization = token ? `Bearer ${token}` : "";

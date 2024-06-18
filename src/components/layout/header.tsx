@@ -18,9 +18,12 @@ import {
   DESIGN_SYSTEM_TEXT,
 } from "@/style/variable";
 import Logo from "../common/logo";
+import { useState } from "react";
 
 export default function Header({ isScroll }: { isScroll: boolean }) {
   const navigation = useNavigate();
+  const [isLogin, _] = useState(() => localStorage.getItem("FLOWBIT_ACT"));
+  console.log(isLogin);
 
   return (
     <header
@@ -202,7 +205,7 @@ export default function Header({ isScroll }: { isScroll: boolean }) {
                 font-weight: 300;
               `}
             >
-              로그인
+              {isLogin ? "로그아웃" : "로그인"}
             </span>
           </NavLink>
           <div
@@ -221,7 +224,7 @@ export default function Header({ isScroll }: { isScroll: boolean }) {
                 font-weight: 300;
               `}
             >
-              회원가입
+              {isLogin ? "마이페이지" : "회원가입"}
             </span>
           </NavLink>
           <div className="desktop">
