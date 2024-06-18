@@ -27,7 +27,7 @@ export default function CommunityPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [communityCategory, setCommunityCategory] = useState("");
 
-  const [communitySort, setCommunitySort] = useState("");
+  const [communitySort, setCommunitySort] = useState("&sort=createdAt,desc");
 
   const [communitySearchWord, setCommunitySearchWord] = useState("");
 
@@ -54,7 +54,7 @@ export default function CommunityPage() {
   const hotBoard = UseApiCommunity({
     page: `page=0`,
     size: `&size=5`,
-    sort: "&Sort=boardLikeCount,desc",
+    sort: "",
     category: "",
     searchWord: "",
   });
