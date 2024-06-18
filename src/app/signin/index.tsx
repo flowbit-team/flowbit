@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { css } from "@emotion/react";
 import Logo from "@/assets/logo.png";
 import SplitLine from "@/components/common/SplitLine.tsx";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { signIn } from "@/hooks/api/member/useApiSignIn.ts";
 
 export default function SignIn() {
