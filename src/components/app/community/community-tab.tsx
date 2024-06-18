@@ -9,7 +9,7 @@ import {
 const COIN_TYPE_LIST = ["전체", "리플", "비트코인", "이더리움"];
 const ORDER_TYPE_LIST = ["최신순", "인기순"];
 const ORDER_TYPE_DICT: { [key: string]: string } = {
-  최신순: "&Sort=createdAt,desc",
+  최신순: "&sort=createdAt,desc",
   인기순: "&Sort=boardLikeCount,desc",
 };
 

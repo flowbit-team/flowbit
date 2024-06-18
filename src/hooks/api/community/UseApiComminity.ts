@@ -62,7 +62,6 @@ export function UseInfiniteApiCommunity({
     queryFn: ({ pageParam }) => getCommunityBoard({ pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage: GetPostType) => {
-      console.log(lastPage);
       if (lastPage.last) return undefined;
       if (lastPage) return lastPage.number + 1;
     },
