@@ -10,10 +10,10 @@ export default function NewsTag({ tagName }: tagNameProps) {
       color: "#0056CA",
     },
     이더리움: {
-      color: "29D86F",
+      color: "#29D86F",
     },
     리플: {
-      color: "E74C4C",
+      color: "#E74C4C",
     },
   };
 

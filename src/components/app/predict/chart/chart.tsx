@@ -3,7 +3,11 @@ import { useGetChartDataQuery, useGetPredictPriceQuery } from "@/api/chartApi";
 import { Chart as ChartLib, ChartType } from "@/lib/Chart";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
-import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable";
+import {
+  BREAK_POINTS,
+  DESIGN_SYSTEM_COLOR,
+  DESIGN_SYSTEM_TEXT,
+} from "@/style/variable";
 import BITImg from "@/assets/Bitcoin.svg";
 import ETHImg from "@/assets/eth.png";
 import XRPImg from "@/assets/xrp.png";
@@ -85,15 +89,43 @@ export default function Chart() {
             gap: 1.6rem;
             padding-left: 2rem;
             position: relative;
+
+            ${BREAK_POINTS.TABLET} {
+              padding-left: 0;
+            }
+
+            ${BREAK_POINTS.MOBILE} {
+              padding-left: 0;
+            }
           `}
         >
           {/* Icon */}
-          <img src={COIN_TO_IMG[coinType]} alt="" />
+          <img
+            css={css`
+              ${BREAK_POINTS.TABLET} {
+                display: none;
+              }
+
+              ${BREAK_POINTS.MOBILE} {
+                display: none;
+              }
+            `}
+            src={COIN_TO_IMG[coinType]}
+            alt=""
+          />
           {/* Title */}
           <span
             css={css`
               ${DESIGN_SYSTEM_TEXT.T1}
               color: #323743;
+
+              ${BREAK_POINTS.TABLET} {
+                ${DESIGN_SYSTEM_TEXT.T2}
+              }
+
+              ${BREAK_POINTS.MOBILE} {
+                ${DESIGN_SYSTEM_TEXT.S1}
+              }
             `}
           >
             {COIN_DICT[coinType]}
@@ -103,6 +135,14 @@ export default function Chart() {
             css={css`
               ${DESIGN_SYSTEM_TEXT.S1}
               color: ${DESIGN_SYSTEM_COLOR.GRAY_700};
+
+              ${BREAK_POINTS.TABLET} {
+                ${DESIGN_SYSTEM_TEXT.B1_BOLD}
+              }
+
+              ${BREAK_POINTS.MOBILE} {
+                ${DESIGN_SYSTEM_TEXT.B1_BOLD}
+              }
             `}
           >
             {getPredictPriceResponse.isSuccess
@@ -117,6 +157,18 @@ export default function Chart() {
             onClick={handleDropdown}
             css={css`
               cursor: pointer;
+              width: 2.4rem;
+              height: 2.4rem;
+
+              ${BREAK_POINTS.TABLET} {
+                width: 2rem;
+                height: 2rem;
+              }
+
+              ${BREAK_POINTS.MOBILE} {
+                width: 1.6rem;
+                height: 1.6rem;
+              }
             `}
             src={DownArrow}
             alt=""
@@ -193,7 +245,15 @@ export default function Chart() {
       {/* Chart */}
       <div
         css={css`
-          width: 1116px;
+          width: 111.6rem;
+
+          ${BREAK_POINTS.TABLET} {
+            width: 74.7rem;
+          }
+
+          ${BREAK_POINTS.MOBILE} {
+            width: 34rem;
+          }
         `}
         id="chartContainer"
       >

@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import Profile from "@/assets/Profile.png";
 import PencileIcon from "@/assets/PencileIcon.svg";
 import B2 from "@/components/common/text/B2";
+import { BREAK_POINTS } from "@/style/variable";
 
 export default function CommunityCreateBtn({ ...props }) {
   return (
@@ -15,6 +16,10 @@ export default function CommunityCreateBtn({ ...props }) {
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+
+        ${BREAK_POINTS.MOBILE} {
+          display: none;
+        }
       `}
       {...props}
     >

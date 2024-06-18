@@ -8,6 +8,12 @@ import { DESIGN_SYSTEM_TEXT } from "@/style/variable";
 
 const TAG_LIST = ["비트코인", "이더리움", "리플"];
 
+const korToEngDict: { [key: string]: string } = {
+  비트코인: "BITCOIN",
+  이더리움: "ETHEREUM",
+  리플: "RIPPLE",
+};
+
 export default function CommunitySearch({
   onClickTag,
   onSearchWord,
@@ -20,18 +26,18 @@ export default function CommunitySearch({
 
   const handleTagChange = (tag: string) => {
     setCurTag(tag);
-    onClickTag(`&boardCategory=${tag}`);
+    onClickTag(`&category=${tag}`);
   };
 
   const handleKeyEventInput = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.code === "Enter") {
-      onSearchWord(`&searchWord=${searchWord}`);
+      onSearchWord(`&searchword=${searchWord}`);
       setSearchWord("");
     }
   };
 
   const handleClickSearchBtn = () => {
-    onSearchWord(`&searchWord=${searchWord}`);
+    onSearchWord(`&searchword=${searchWord}`);
     setSearchWord("");
   };
 
@@ -116,7 +122,7 @@ export default function CommunitySearch({
               return (
                 <Tag
                   selected={tag === curTag}
-                  onClick={() => handleTagChange(tag)}
+                  onClick={() => handleTagChange(korToEngDict[tag])}
                 >
                   #{tag}
                 </Tag>

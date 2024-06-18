@@ -1,4 +1,5 @@
-:root, textarea {
+:root,
+textarea {
   font-family:
     "Pretendard Variable",
     Pretendard,
@@ -35,7 +36,9 @@ body {
   padding: 0;
 }
 
-table, th, td {
+table,
+th,
+td {
   border-collapse: collapse;
 }
 

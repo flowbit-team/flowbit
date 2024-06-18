@@ -460,6 +460,14 @@ export class Chart {
         display: flex;
         gap: 24px;
         z-index: 1;
+
+        @media screen and (max-width: 1119px) {
+          display: none;
+        }
+
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
       }
       .flowbit-control-bar__wrapper {
         display: flex;
@@ -505,6 +513,14 @@ export class Chart {
         right: 0;
         border-radius: 30px;
         background-color: #E8E9EC;
+
+        @media screen and (max-width: 1119px) {
+          display: none;
+        }
+
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
       }
       .flowbit-date-pick-bar__list {
         display: flex;

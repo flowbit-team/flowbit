@@ -1,6 +1,10 @@
 import { css } from "@emotion/react";
 import { CommunityBoardType } from "./type";
-import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable";
+import {
+  BREAK_POINTS,
+  DESIGN_SYSTEM_COLOR,
+  DESIGN_SYSTEM_TEXT,
+} from "@/style/variable";
 import moment from "moment";
 import Collapse from "@/assets/collapse.svg";
 import Heart from "@/assets/heart.svg";
@@ -47,6 +51,14 @@ export default function CommunityBoard(props: CommunityBoardType) {
           align-items: center;
           gap: 2.4rem;
           margin-bottom: 1rem;
+
+          ${BREAK_POINTS.TABLET} {
+            margin-bottom: 3.2rem;
+          }
+
+          ${BREAK_POINTS.MOBILE} {
+            margin-bottom: 2.4rem;
+          }
         `}
       >
         {/* Profile */}
@@ -54,6 +66,7 @@ export default function CommunityBoard(props: CommunityBoardType) {
           css={css`
             width: 5.5rem;
             height: 5.5rem;
+            border-radius: 100%;
           `}
           src={`${IMG_URL}/${profile}`}
           alt="profile"
@@ -102,16 +115,22 @@ export default function CommunityBoard(props: CommunityBoardType) {
           gap: 2.4rem;
         `}
       >
+        {/* Empty div */}
         <div
           css={css`
             min-width: 5.5rem;
+
+            ${BREAK_POINTS.TABLET} {
+              display: none;
+            }
+            ${BREAK_POINTS.MOBILE} {
+              display: none;
+            }
           `}
-        >
-          {/* Empty div */}
-        </div>
+        ></div>
         <div
           css={css`
-            width: 65.5rem;
+            width: 100%;
             padding: 1rem 3.5rem;
             border: 0.1rem solid #f5f5f5;
             border-radius: 1rem;

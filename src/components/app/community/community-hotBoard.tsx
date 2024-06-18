@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { css } from "@emotion/react";
 import Fire from "@/assets/Fire.png";
-import UseApiCommunity, {
+import {
+  UseApiCommunity,
   ApiCommunityProps,
-} from "@/hooks/api/newsletter/UseApiComminity";
+} from "@/hooks/api/community/UseApiComminity";
 import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable";
 
 const TAB_LIST = ["실시간", "주간", "댓글순"];
@@ -17,7 +18,7 @@ export default function CommunityHotBoard() {
   const [communityProps, setCommunityProps] = useState<ApiCommunityProps>({
     page: `page=0`,
     size: `&size=5`,
-    sort: "&Sort=boardLikeCount,desc",
+    sort: "&Sort=boardLikeCount,desc ",
     category: "",
     searchWord: "",
   });

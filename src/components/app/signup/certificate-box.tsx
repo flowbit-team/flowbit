@@ -2,13 +2,16 @@ import { css } from "@emotion/react";
 import { PropsWithChildren } from "react";
 import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable.ts";
 
-interface certificateProps {
+interface certificateProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "type"> {
   icon?: string;
+  check?: boolean;
 }
 
 export default function CertificateBox({
   icon,
   children,
+  check = false,
   ...props
 }: PropsWithChildren<certificateProps>) {
   return (
@@ -22,7 +25,15 @@ export default function CertificateBox({
         color: ${DESIGN_SYSTEM_COLOR.GRAY_50};
         white-space: nowrap;
         width: auto;
+        transition: 0.4s all;
+        cursor: pointer;
+
         ${icon && `padding-right: 0`}
+        ${!check &&
+        css`
+          pointer-events: none;
+          filter: grayscale(100%);
+        `}
       `}
       {...props}
     >

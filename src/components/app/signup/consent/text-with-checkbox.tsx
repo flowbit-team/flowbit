@@ -1,12 +1,17 @@
 import { css } from "@emotion/react";
 import CheckBox from "@/components/common/checkbox.tsx";
 import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable.ts";
+import React from "react";
 
-interface boxProps {
+interface boxProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "types"> {
   text: string;
   checked: boolean;
 }
-export default function TextWithCheckBox({ text, checked = false }: boxProps) {
+export default function TextWithCheckBox({
+  text,
+  checked = false,
+  ...props
+}: boxProps) {
   return (
     <div
       css={css`
@@ -14,6 +19,7 @@ export default function TextWithCheckBox({ text, checked = false }: boxProps) {
         align-items: center;
         column-gap: 1.6rem;
       `}
+      {...props}
     >
       <CheckBox checked={checked} />
       <div
