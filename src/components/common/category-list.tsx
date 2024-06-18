@@ -46,9 +46,9 @@ export default function CategoryList({
                 background-color: #e8f2ff;
               }
             `}
-            onClick={(event) =>
-              setCategory((event.target as HTMLElement).textContent as string)
-            }
+            onClick={(event) => {
+              setCategory((event.target as HTMLElement).textContent as string);
+            }}
           >
             {item}
           </td>

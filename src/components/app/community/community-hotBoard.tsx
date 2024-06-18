@@ -18,7 +18,7 @@ export default function CommunityHotBoard() {
   const [communityProps, setCommunityProps] = useState<ApiCommunityProps>({
     page: `page=0`,
     size: `&size=5`,
-    sort: "&Sort=boardLikeCount,desc",
+    sort: "&sort=boardLikeCount,desc",
     category: "",
     searchWord: "",
   });

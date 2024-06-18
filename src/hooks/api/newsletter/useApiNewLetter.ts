@@ -43,7 +43,7 @@ export default function UseApiNewLetter() {
   });
 }
 
-export function UseInfiniteApiNewLetter(
+export function useInfiniteApiNewLetter(
   search: string,
   sort: string,
   searchWord: string,
