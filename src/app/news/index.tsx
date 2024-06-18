@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import { Fragment, useEffect, useState } from "react";
 import _ from "lodash";
 import Selector from "@/components/app/news/selector.tsx";
-import { UseInfiniteApiNewLetter } from "@/hooks/api/newsletter/UseApiNewLetter.ts";
+import { useInfiniteApiNewLetter } from "@/hooks/api/newsletter/useApiNewLetter.ts";
 import NewsCard, {
   newsLetterProps,
 } from "@/components/app/predict/newsletter/news-card.tsx";
@@ -24,7 +24,7 @@ export default function News() {
     hasNextPage,
     fetchNextPage,
     isSuccess,
-  } = UseInfiniteApiNewLetter(category, order, searchWord);
+  } = useInfiniteApiNewLetter(category, order, searchWord);
 
   useEffect(() => {
     if (inView && hasNextPage) {

@@ -7,7 +7,7 @@ import {
 } from "@/style/variable";
 import { css } from "@emotion/react";
 import { Fragment } from "react";
-import UseApiNewLetter from "@/hooks/api/newsletter/UseApiNewLetter";
+import UseApiNewLetter from "@/hooks/api/newsletter/useApiNewLetter.ts";
 import NewsCard, {
   newsLetterProps,
 } from "@/components/app/predict/newsletter/news-card";

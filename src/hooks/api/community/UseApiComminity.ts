@@ -4,7 +4,7 @@ import {
   CommunityPageType,
 } from "@/components/app/community/type";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { GetPostType } from "../newsletter/UseApiNewLetter";
+import { GetPostType } from "../newsletter/useApiNewLetter.ts";
 
 export type getCommunityBoardResType = CommunityPageType & {
   content: CommunityBoardType[];

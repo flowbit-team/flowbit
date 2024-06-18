@@ -3,7 +3,7 @@ import NewsTag from "./news-tag";
 import NewContents from "./news-content";
 import NewImage from "./news-image";
 import Arrow from "@/assets/arrow.svg?react";
-import { increaseViews } from "@/hooks/api/newsletter/UseApiIncreaseViews.ts";
+import { increaseViews } from "@/hooks/api/newsletter/useApiIncreaseViews.ts";
 
 export type newsLetterProps = {
   article: {

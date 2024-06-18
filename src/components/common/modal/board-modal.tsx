@@ -1,4 +1,12 @@
-import { Dispatch, PropsWithChildren, SetStateAction, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  PropsWithChildren,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
 import { css } from "@emotion/react";
 import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable.ts";
@@ -8,6 +16,7 @@ import CategoryIcon from "@/assets/modal/board/category.svg?react";
 import ImageIcon from "@/assets/modal/board/image.svg?react";
 import TagInput from "@/components/common/tag-input.tsx";
 import CategoryList from "@/components/common/category-list.tsx";
+import { useApiPostBoard } from "@/hooks/api/community/useApiPostBoard.ts";
 
 interface modalProps {
   setModalState: Dispatch<SetStateAction<boolean>>;
@@ -21,8 +30,20 @@ export const ModalPortal = ({ children }: PropsWithChildren) => {
 export function BoardModal({ setModalState }: modalProps) {
   const [isExpand, setExpand] = useState(false);
   const [isSelect, setSelect] = useState(false);
-  const [category, setCategory] = useState("");
   const CATEGORY = ["도지코인", "비트코인", "이더리움"];
+
+  const [title, setTitle] = useState("");
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [category, setCategory] = useState("");
+  // TODO: 추후 백엔드 에디터 API 수정 후 이미지 반영 예정
+  // const [pictures, setPictures] = useState([]);
+  const [boardTags, setBoardTags] = useState<string | string[]>([]);
+
+  const { mutate, isSuccess } = useApiPostBoard();
+
+  useEffect(() => {
+    if (isSuccess) setModalState(false);
+  }, [isSuccess]);
 
   return (
     <div
@@ -118,6 +139,10 @@ export function BoardModal({ setModalState }: modalProps) {
             <textarea
               id="title"
               placeholder="아티클의 제목을 입력해주세요"
+              value={title}
+              onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                setTitle(e.target.value)
+              }
               css={css`
                 ${DESIGN_SYSTEM_TEXT.T4}
                 width: 100%;
@@ -134,6 +159,7 @@ export function BoardModal({ setModalState }: modalProps) {
             <div
               id="content"
               contentEditable={true}
+              ref={contentRef}
               css={css`
                 ${DESIGN_SYSTEM_TEXT.S3};
                 color: ${DESIGN_SYSTEM_COLOR.GRAY_700};
@@ -156,7 +182,12 @@ export function BoardModal({ setModalState }: modalProps) {
               flex-direction: column;
             `}
           >
-            <TagInput placeholder={"#태그입력"} />
+            <TagInput
+              placeholder={"#태그입력"}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setBoardTags(e.target.value)
+              }
+            />
             <div
               css={css`
                 width: 100%;
@@ -219,6 +250,31 @@ export function BoardModal({ setModalState }: modalProps) {
                   color: white;
                   margin-left: auto;
                 `}
+                onClick={() => {
+                  let boardCategory = "";
+                  if (category === CATEGORY[0]) {
+                    boardCategory = "RIPPLE";
+                  } else if (category === CATEGORY[1]) {
+                    boardCategory = "BITCOIN";
+                  } else if (category === CATEGORY[2]) {
+                    boardCategory = "ETHEREUM";
+                  }
+
+                  if (boardCategory === "") {
+                    alert("게시글의 카테고리를 선택해주세요");
+                  } else {
+                    mutate({
+                      title: title,
+                      content: contentRef.current
+                        ? contentRef.current.innerHTML
+                        : "",
+                      boardCategory: boardCategory,
+                      pictures: [],
+                      boardTags:
+                        typeof boardTags === "string" ? [boardTags] : boardTags,
+                    });
+                  }
+                }}
               >
                 업로드
               </button>
