@@ -17,7 +17,7 @@ import MOBILE_CHART2 from "@/assets/mobile_chart2.svg";
 import MOBILE_CHART3 from "@/assets/mobile_chart3.svg";
 import Chart2 from "@/assets/chart2.svg";
 import Chart3 from "@/assets/chart3.svg";
-import MAINBOTTOMIMG from "@/assets/main-bottom.png";
+import MAINBOTTOMIMG from "@/assets/main-bottom.gif";
 import NewletterAni from "@/assets/newletter.json";
 import CommunityAni from "@/assets/community.json";
 import { useGetChartDataQuery } from "@/api/chartApi";
@@ -461,13 +461,18 @@ export default function HomePage() {
       {/* 하단 이미지 */}
       <section
         css={css`
-          margin-top: 21.4rem;
+          margin-top: 5.4rem;
           width: 100%;
         `}
       >
         <img
           css={css`
             width: 100%;
+            box-shadow:
+              0 1px 3px 0 rgb(0 0 0 / 0.3),
+              0 1px 2px -1px rgb(0 0 0 / 0.1);
+            border-radius: 0.7rem;
+            margin-bottom: 10rem;
           `}
           src={MAINBOTTOMIMG}
           alt=""
