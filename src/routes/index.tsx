@@ -1,6 +1,5 @@
-import PredictPage from "@/app/chart";
 import CommunityPage from "@/app/community";
-import Test from "@/components/app/Test";
+import PredictPage from "@/app/predict";
 import GlobalLayout from "@/components/layout";
 import {
   RouterProvider,
@@ -8,10 +7,18 @@ import {
   RouteObject,
 } from "react-router-dom";
 
+import SignIn from "@/app/signin";
+import SignUp from "@/app/signup";
+import Complete from "@/app/signup/complete";
+import Consent from "@/app/signup/consent";
+import HomePage from "@/app/home";
+import Carousel from "@/components/common/carousel";
+import News from "@/app/news";
+
 const routerChildren: RouteObject[] = [
   {
     path: "/",
-    element: <Test />,
+    element: <HomePage />,
   },
   {
     path: "/predict",
@@ -20,6 +27,30 @@ const routerChildren: RouteObject[] = [
   {
     path: "/community",
     element: <CommunityPage />,
+  },
+  {
+    path: "/signin",
+    element: <SignIn />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
+  {
+    path: "/consent",
+    element: <Consent />,
+  },
+  {
+    path: "/complete",
+    element: <Complete />,
+  },
+  {
+    path: "/carousel",
+    element: <Carousel />,
+  },
+  {
+    path: "/news",
+    element: <News />,
   },
 ];
 

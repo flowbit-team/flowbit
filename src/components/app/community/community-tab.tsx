@@ -1,30 +1,43 @@
 import { useState } from "react";
 import { css } from "@emotion/react";
-import B2 from "@/components/common/text/B2";
-import S3 from "@/components/common/text/S3";
+import {
+  BREAK_POINTS,
+  DESIGN_SYSTEM_COLOR,
+  DESIGN_SYSTEM_TEXT,
+} from "@/style/variable";
 
-const eng2Kor: { [key: string]: string } = {
-  TOTAL: "전체",
-  DOZI: "도지코인",
-  BIT: "비트코인",
-  ETHER: "이더리움",
-  LATEST: "최신순",
-  POPULAR: "인기순",
+const COIN_TYPE_LIST = ["전체", "리플", "비트코인", "이더리움"];
+const ORDER_TYPE_LIST = ["최신순", "인기순"];
+const ORDER_TYPE_DICT: { [key: string]: string } = {
+  최신순: "&sort=createdAt,desc",
+  인기순: "&Sort=boardLikeCount,desc",
 };
 
-const COIN_TYPE_LIST = ["TOTAL", "DOZI", "BIT", "ETHER"];
-const ORDER_TYPE_LIST = ["LATEST", "POPULAR"];
-
-export default function CommunityTab() {
-  const [selectedCoinType, setSelectedCoinType] = useState("TOTAL");
-  const [selectedOrderType, setSelectedOrderType] = useState("LATEST");
+export default function CommunityTab({
+  onClickCategoryTab,
+  onClickSortTab,
+}: {
+  onClickCategoryTab: (category: string) => void;
+  onClickSortTab: (sort: string) => void;
+}) {
+  const [selectedCoinType, setSelectedCoinType] = useState(COIN_TYPE_LIST[0]);
+  const [selectedOrderType, setSelectedOrderType] = useState(
+    ORDER_TYPE_LIST[0],
+  );
+  const [isTabOpen, setIsTapOpen] = useState(false);
 
   const handleTabChange = (coinType: string) => {
     setSelectedCoinType(coinType);
+    onClickCategoryTab(`&boardCategory=${coinType}`);
+    setIsTapOpen(!isTabOpen);
   };
 
   const handleOrderChange = (dateType: string) => {
     setSelectedOrderType(dateType);
+    const sort = ORDER_TYPE_DICT[dateType];
+    if (sort) {
+      onClickSortTab(sort);
+    }
   };
 
   return (
@@ -34,18 +47,68 @@ export default function CommunityTab() {
         display: flex;
         justify-content: space-between;
 
-        border-bottom: 2px solid #e0e0e0;
+        border-bottom: 0.2rem solid #e0e0e0;
       `}
     >
       {/* Tab */}
-      <div>
+      <div
+        css={css`
+          position: relative;
+        `}
+      >
+        <div
+          css={css`
+            display: none;
+
+            ${BREAK_POINTS.MOBILE} {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              width: 9.5rem;
+              cursor: pointer;
+            }
+          `}
+          onClick={() => setIsTapOpen(!isTabOpen)}
+        >
+          <span
+            css={css`
+              ${DESIGN_SYSTEM_TEXT.B1_BOLD}
+            `}
+          >
+            {selectedCoinType}
+          </span>
+          <span>
+            <svg
+              width="14"
+              height="8"
+              viewBox="0 0 14 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M0.770394 0.830941C1.04498 0.556353 1.49018 0.556353 1.76476 0.830941L6.89258 5.95876L12.0204 0.830941C12.295 0.556353 12.7402 0.556353 13.0148 0.830941C13.2893 1.10553 13.2893 1.55072 13.0148 1.82531L7.38976 7.45031C7.11518 7.7249 6.66998 7.7249 6.39539 7.45031L0.770394 1.82531C0.495806 1.55072 0.495806 1.10553 0.770394 0.830941Z"
+                fill="#222222"
+              />
+            </svg>
+          </span>
+        </div>
         <ul
           css={css`
             display: flex;
-            gap: 20px;
+            gap: 2rem;
             padding: 0;
             margin: 0;
             list-style: none;
+
+            ${BREAK_POINTS.MOBILE} {
+              position: absolute;
+              flex-direction: column;
+              gap: 0;
+
+              display: ${isTabOpen ? "block" : "none"};
+            }
 
             & label {
               cursor: pointer;
@@ -61,12 +124,16 @@ export default function CommunityTab() {
               content: " ";
               display: block;
               width: 100%;
-              height: 2px;
+              height: 0.2rem;
               background-color: #0056ca;
 
               position: absolute;
               bottom: -100%;
-              transform: translateY(-4px);
+              transform: translateY(-0.3rem);
+
+              ${BREAK_POINTS.MOBILE} {
+                display: none;
+              }
             }
           `}
         >
@@ -82,13 +149,30 @@ export default function CommunityTab() {
                   onChange={() => handleTabChange(type)}
                 />
                 <label htmlFor={`community-tab-${type}`}>
-                  <S3
+                  <span
                     css={css`
-                      color: #bdbdbd;
+                      ${DESIGN_SYSTEM_TEXT.S3};
+                      color: ${DESIGN_SYSTEM_COLOR.GRAY_400};
+
+                      ${BREAK_POINTS.MOBILE} {
+                        ${DESIGN_SYSTEM_TEXT.B2};
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: white;
+                        border: 1px solid ${DESIGN_SYSTEM_COLOR.GRAY_200};
+
+                        width: 9.5rem;
+                        height: 4.2rem;
+
+                        &:hover {
+                          background-color: #e8f2ff;
+                        }
+                      }
                     `}
                   >
-                    {eng2Kor[type]}
-                  </S3>
+                    {type}
+                  </span>
                 </label>
               </li>
             );
@@ -100,16 +184,16 @@ export default function CommunityTab() {
         <ul
           css={css`
             display: flex;
-            gap: 10px;
+            gap: 1rem;
             padding: 0;
-            padding-bottom: 12px;
-            padding-right: 10px;
+            padding-bottom: 1.2rem;
+            padding-right: 1rem;
             margin: 0;
             list-style: none;
 
             & label {
-              padding: 5px 15px;
-              border-radius: 100px;
+              padding: 0.5rem 1.5rem;
+              border-radius: 10rem;
               cursor: pointer;
             }
 
@@ -134,13 +218,18 @@ export default function CommunityTab() {
                   onChange={() => handleOrderChange(type)}
                 />
                 <label htmlFor={`community-order-${type}`}>
-                  <B2
+                  <span
                     css={css`
-                      color: #757575;
+                      ${DESIGN_SYSTEM_TEXT.B2};
+                      color: ${DESIGN_SYSTEM_COLOR.GRAY_600};
+
+                      ${BREAK_POINTS.MOBILE} {
+                        ${DESIGN_SYSTEM_TEXT.CAPTION};
+                      }
                     `}
                   >
-                    {eng2Kor[type]}
-                  </B2>
+                    {type}
+                  </span>
                 </label>
               </li>
             );

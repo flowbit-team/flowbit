@@ -2,26 +2,32 @@ import { css } from "@emotion/react";
 import Profile from "@/assets/Profile.png";
 import PencileIcon from "@/assets/PencileIcon.svg";
 import B2 from "@/components/common/text/B2";
+import { BREAK_POINTS } from "@/style/variable";
 
-export default function CommunityCreateBtn() {
+export default function CommunityCreateBtn({ ...props }) {
   return (
     <div
       css={css`
         display: flex;
         align-items: center;
-        gap: 24px;
+        gap: 2.4rem;
 
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+
+        ${BREAK_POINTS.MOBILE} {
+          display: none;
+        }
       `}
+      {...props}
     >
       {/* Profile */}
       <img
         css={css`
-          width: 55px;
-          height: 55px;
+          width: 5.5rem;
+          height: 5.5rem;
         `}
         src={Profile}
       />
@@ -29,28 +35,28 @@ export default function CommunityCreateBtn() {
       <div
         css={css`
           width: 100%;
-          height: 42px;
+          height: 4.2rem;
 
           display: flex;
-          gap: 10px;
+          gap: 1rem;
           align-items: center;
-          padding: 0 26px;
+          padding: 0 2.6rem;
 
           background-color: #fafafa;
-          border: 1px solid #f5f5f5;
-          border-radius: 100px;
+          border: 0.1rem solid #f5f5f5;
+          border-radius: 10rem;
 
           cursor: pointer;
           &:hover {
-            border: 1px solid #0056ca;
+            border: 0.1rem solid #0056ca;
             background-color: white;
           }
         `}
       >
         <img
           css={css`
-            width: 24px;
-            height: 24px;
+            width: 2.4rem;
+            height: 2.4rem;
           `}
           src={PencileIcon}
           alt=""
