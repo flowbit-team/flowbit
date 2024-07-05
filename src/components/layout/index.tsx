@@ -2,7 +2,7 @@ import "@/style/global.css";
 import { Fragment, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./header";
-import Footer from "../common/footer";
+import Footer from "./footer";
 
 export default function GlobalLayout() {
   const location = useLocation();

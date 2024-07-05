@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import Logo from "./logo";
+import Logo from "../common/logo";
 import { BREAK_POINTS, DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable";
 
 export default function Footer() {

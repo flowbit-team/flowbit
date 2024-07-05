@@ -22,6 +22,7 @@ import { useState } from "react";
 
 export default function Header({ isScroll }: { isScroll: boolean }) {
   const navigation = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLogin, _] = useState(() => localStorage.getItem("FLOWBIT_ACT"));
   console.log(isLogin);
 
