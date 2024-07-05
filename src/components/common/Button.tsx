@@ -15,7 +15,6 @@ export default function Button({
     <div
       css={css`
         position: relative;
-        width: 100%;
         height: auto;
         display: flex;
         align-items: center;
