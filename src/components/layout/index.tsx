@@ -30,7 +30,8 @@ export default function GlobalLayout() {
     <Fragment>
       <Header
         isScroll={
-          location.pathname === "/" || location.pathname === "/predict"
+          location.pathname === "/" || location.pathname === "/predict" ||
+            location.pathname === "/signup" || location.pathname === "/signin"
             ? true
             : isScroll
         }

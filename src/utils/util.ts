@@ -7,4 +7,4 @@ export const PREDICT_URL = "/predict";
 export const NEWS_LETTER_URL = "/news";
 export const COMMUNITY_URL = "/community";
 export const LOGIN_URL = "/signin";
-export const REGISTER_URL = "/register";
+export const REGISTER_URL = "/signup";
