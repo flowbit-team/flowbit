@@ -7,7 +7,7 @@ import { COMMUNITY_URL, HOME_URL, NEWS_LETTER_URL, PREDICT_URL } from "@/utils/u
 export default function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: () => void }) {
 
   return (
-    <div css={css`
+    <aside css={css`
         position: absolute;
         top: 0;
         left: 0;
@@ -106,6 +106,6 @@ export default function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
           cursor: pointer;
         `}>마이페이지</span>
       </div >
-    </div>
+    </aside>
   )
 }
