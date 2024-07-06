@@ -8,7 +8,7 @@ jobs:
   assign:
     runs-on: ubuntu-latest
     steps:
-      - uses: layer/review-assign-action@v1
+      - uses: TEAM-FLOWBIT/flowbit@v1
         with:
           assignees: ${{ github.actor }}
           reviewers: klmhyeonwoo, ehdrbdndns
