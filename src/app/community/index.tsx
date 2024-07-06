@@ -23,6 +23,7 @@ import {
 import { CommunityBoardType } from "@/components/app/community/type";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
+import { useApiMemberInfo } from "@/hooks/api/member/useApiMemberInfo";
 
 export default function CommunityPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -31,6 +32,8 @@ export default function CommunityPage() {
   const [communitySort, setCommunitySort] = useState("&sort=createdAt,desc");
 
   const [communitySearchWord, setCommunitySearchWord] = useState("");
+
+  const { data } = useApiMemberInfo();
 
   const [modal, setModal] = useState(false);
 
@@ -200,7 +203,7 @@ export default function CommunityPage() {
             }
           `}
         >
-          <CommunityCreateBtn onClick={createBoardModal}></CommunityCreateBtn>
+          <CommunityCreateBtn onClick={createBoardModal} profile={data?.data.data.profile || ''}></CommunityCreateBtn>
           <div
             css={css`
               gap: 1.4rem;
@@ -288,7 +291,7 @@ export default function CommunityPage() {
               return (
                 <Fragment>
                   {(content as CommunityBoardType[]).map((item) => {
-                    return <CommunityBoard key={item.boardId} {...item} />;
+                    return <CommunityBoard key={item.boardId} {...item} myInfo={data?.data.data || { name: '', email: '', id: 0, nickname: '', profile: '' }} />;
                   })}
                 </Fragment>
               );

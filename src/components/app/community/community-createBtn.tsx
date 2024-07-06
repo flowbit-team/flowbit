@@ -1,10 +1,11 @@
 import { css } from "@emotion/react";
-import Profile from "@/assets/Profile.png";
 import PencileIcon from "@/assets/PencileIcon.svg";
 import B2 from "@/components/common/text/B2";
 import { BREAK_POINTS } from "@/style/variable";
 
-export default function CommunityCreateBtn({ ...props }) {
+const IMG_URL = import.meta.env.VITE_IMG_URL as string;
+
+export default function CommunityCreateBtn({ profile, onClick }: { profile: string, onClick: () => void }) {
   return (
     <div
       css={css`
@@ -21,15 +22,16 @@ export default function CommunityCreateBtn({ ...props }) {
           display: none;
         }
       `}
-      {...props}
+      onClick={onClick}
     >
       {/* Profile */}
       <img
         css={css`
           width: 5.5rem;
           height: 5.5rem;
+          border-radius: 100%;
         `}
-        src={Profile}
+        src={`${IMG_URL}/${profile}`}
       />
       {/* Btn */}
       <div

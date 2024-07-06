@@ -16,13 +16,20 @@ import Share from "@/assets/share.svg";
 import SendBtn from "@/assets/sendBtn.svg";
 import { useApiPostComment } from "@/hooks/api/community/useApiPostComment";
 import { useEffect, useState } from "react";
-import { useApiMemberInfo } from "@/hooks/api/member/useApiMemberInfo";
 import { useApiPostLike } from "@/hooks/api/community/useApiPostLike";
 import { useApiDeleteLike } from "@/hooks/api/community/useApiDeleteLike";
 
 const IMG_URL = import.meta.env.VITE_IMG_URL as string;
 
-export default function CommunityBoard(props: CommunityBoardType) {
+export default function CommunityBoard(props: CommunityBoardType & {
+  myInfo: {
+    email: string;
+    id: number;
+    name: string;
+    nickname: string;
+    profile: string;
+  }
+}) {
   const {
     title,
     content,
@@ -33,7 +40,8 @@ export default function CommunityBoard(props: CommunityBoardType) {
     boardCommentCount,
     createTime,
     boardId,
-    isBoardLike
+    isBoardLike,
+    myInfo
   } = props;
 
   const getTimeOffsetFromNow = (postedAt: string) => {
@@ -57,13 +65,12 @@ export default function CommunityBoard(props: CommunityBoardType) {
   const { mutate: postComment, isSuccess: isSuccessOfPost } = useApiPostComment();
   const { mutate: updateLike, isSuccess: isSuccessOfUpdateLike } = useApiPostLike();
   const { mutate: deleteLike, isSuccess: isSuccessOfDeleteLike } = useApiDeleteLike();
-  const { data, isSuccess: isSuccessOfInfo } = useApiMemberInfo();
 
   useEffect(() => {
-    if (isSuccessOfPost && isSuccessOfInfo) {
-      const { email, id, nickname, profile } = data.data.data;
-      setCommentList([
-        ...commentList,
+    if (isSuccessOfPost) {
+      const { email, id, nickname, profile } = myInfo;
+      setCommentList((props) => [
+        ...props,
         {
           memberEmail: email,
           profile: profile,
@@ -76,7 +83,7 @@ export default function CommunityBoard(props: CommunityBoardType) {
       ]);
       setComment('');
     }
-  }, [isSuccessOfPost, isSuccessOfInfo])
+  }, [isSuccessOfPost, myInfo])
 
   useEffect(() => {
     if (isSuccessOfUpdateLike) {
@@ -293,6 +300,7 @@ export default function CommunityBoard(props: CommunityBoardType) {
                       css={css`
                         width: 4.5rem;
                         height: 4.5rem;
+                        border-radius: 100%;
                       `}
                       src={`${IMG_URL}/${row.profile}`}
                       alt=""

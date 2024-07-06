@@ -8,7 +8,7 @@ export default function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
 
   return (
     <aside css={css`
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         z-index: 999;
