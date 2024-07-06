@@ -14,6 +14,7 @@ export interface CommunityBoardType {
   boardCategory: string;
   boardTags: string[];
   comments: CommunityCommentType[];
+  isBoardLike: boolean;
 }
 
 export interface CommunityCommentType {

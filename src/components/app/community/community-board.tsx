@@ -18,6 +18,7 @@ import { useApiPostComment } from "@/hooks/api/community/useApiPostComment";
 import { useEffect, useState } from "react";
 import { useApiMemberInfo } from "@/hooks/api/member/useApiMemberInfo";
 import { useApiPostLike } from "@/hooks/api/community/useApiPostLike";
+import { useApiDeleteLike } from "@/hooks/api/community/useApiDeleteLike";
 
 const IMG_URL = import.meta.env.VITE_IMG_URL as string;
 
@@ -31,7 +32,8 @@ export default function CommunityBoard(props: CommunityBoardType) {
     boardLikeCount,
     boardCommentCount,
     createTime,
-    boardId
+    boardId,
+    isBoardLike
   } = props;
 
   const getTimeOffsetFromNow = (postedAt: string) => {
@@ -49,11 +51,12 @@ export default function CommunityBoard(props: CommunityBoardType) {
 
   const [commentList, setCommentList] = useState(comments);
   const [likeCount, setLikeCount] = useState(boardLikeCount);
+  const [isLike, setIsLike] = useState(isBoardLike);
 
   const [comment, setComment] = useState('');
   const { mutate: postComment, isSuccess: isSuccessOfPost } = useApiPostComment();
-  const { mutate: updateLike, isSuccess: isSuccessOfLike } = useApiPostLike();
-  // const { mutate: deleteLike, isSuccess: isSuccessOfDeleteLike } = useApiDeleteLike();
+  const { mutate: updateLike, isSuccess: isSuccessOfUpdateLike } = useApiPostLike();
+  const { mutate: deleteLike, isSuccess: isSuccessOfDeleteLike } = useApiDeleteLike();
   const { data, isSuccess: isSuccessOfInfo } = useApiMemberInfo();
 
   useEffect(() => {
@@ -76,10 +79,18 @@ export default function CommunityBoard(props: CommunityBoardType) {
   }, [isSuccessOfPost, isSuccessOfInfo])
 
   useEffect(() => {
-    if (isSuccessOfLike) {
+    if (isSuccessOfUpdateLike) {
+      setIsLike(true);
       setLikeCount((props) => props + 1);
     }
-  }, [isSuccessOfLike])
+  }, [isSuccessOfUpdateLike])
+
+  useEffect(() => {
+    if (isSuccessOfDeleteLike) {
+      setIsLike(false);
+      setLikeCount((props) => props - 1);
+    }
+  }, [isSuccessOfDeleteLike])
 
   return (
     <div>
@@ -230,7 +241,13 @@ export default function CommunityBoard(props: CommunityBoardType) {
               `}
             >
               {/* Button */}
-              <IconButton onClick={(() => updateLike(boardId))} src={likeCount ? Heart : DefaultHeart}>
+              <IconButton onClick={(() => {
+                if (isLike) {
+                  deleteLike(boardId)
+                } else {
+                  updateLike(boardId)
+                }
+              })} src={isLike ? Heart : DefaultHeart}>
                 {likeCount}
               </IconButton>
               <IconButton src={boardCommentCount ? Comment : DefaultComment}>
