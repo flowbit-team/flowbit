@@ -17,6 +17,7 @@ import SendBtn from "@/assets/sendBtn.svg";
 import { useApiPostComment } from "@/hooks/api/community/useApiPostComment";
 import { useEffect, useState } from "react";
 import { useApiMemberInfo } from "@/hooks/api/member/useApiMemberInfo";
+import { useApiLike } from "@/hooks/api/community/useApiLike";
 
 const IMG_URL = import.meta.env.VITE_IMG_URL as string;
 
@@ -30,6 +31,7 @@ export default function CommunityBoard(props: CommunityBoardType) {
     boardLikeCount,
     boardCommentCount,
     createTime,
+    boardId
   } = props;
 
   const getTimeOffsetFromNow = (postedAt: string) => {
@@ -46,8 +48,11 @@ export default function CommunityBoard(props: CommunityBoardType) {
   };
 
   const [commentList, setCommentList] = useState(comments);
+  const [likeCount, setLikeCount] = useState(boardLikeCount);
+
   const [comment, setComment] = useState('');
-  const { mutate, isSuccess: isSuccessOfPost } = useApiPostComment();
+  const { mutate: postComment, isSuccess: isSuccessOfPost } = useApiPostComment();
+  const { mutate: updateLike, isSuccess: isSuccessOfLike } = useApiLike();
   const { data, isSuccess: isSuccessOfInfo } = useApiMemberInfo();
 
   useEffect(() => {
@@ -68,6 +73,12 @@ export default function CommunityBoard(props: CommunityBoardType) {
       setComment('');
     }
   }, [isSuccessOfPost, isSuccessOfInfo])
+
+  useEffect(() => {
+    if (isSuccessOfLike) {
+      setLikeCount((props) => props + 1);
+    }
+  }, [isSuccessOfLike])
 
   return (
     <div>
@@ -218,8 +229,8 @@ export default function CommunityBoard(props: CommunityBoardType) {
               `}
             >
               {/* Button */}
-              <IconButton src={boardLikeCount ? Heart : DefaultHeart}>
-                {boardLikeCount}
+              <IconButton onClick={(() => updateLike(boardId))} src={likeCount ? Heart : DefaultHeart}>
+                {likeCount}
               </IconButton>
               <IconButton src={boardCommentCount ? Comment : DefaultComment}>
                 {boardCommentCount}
@@ -343,7 +354,7 @@ export default function CommunityBoard(props: CommunityBoardType) {
             />
             <img src={SendBtn} alt="" onClick={() => {
               if (comment.length > 0) {
-                mutate({
+                postComment({
                   boardId: props.boardId,
                   content: comment
                 })
