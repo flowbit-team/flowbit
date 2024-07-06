@@ -236,6 +236,11 @@ export default function CommunityBoard(props: CommunityBoardType) {
 
               max-height: 50rem;
               overflow-y: scroll;
+
+              &::-webkit-scrollbar-track,
+              &::-webkit-scrollbar-button {
+                display: none;
+              }
             `}
           >
             {commentList.map((row) => {
