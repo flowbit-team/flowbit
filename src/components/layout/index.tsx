@@ -3,10 +3,12 @@ import { Fragment, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./header";
 import Footer from "./footer";
+import Sidebar from "./sidebar";
 
 export default function GlobalLayout() {
   const location = useLocation();
   const [isScroll, setIsScroll] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // 사용자의 scroll 동작 여부에 따라 상태 값 변경
   const handleScroll = () => {
@@ -36,7 +38,9 @@ export default function GlobalLayout() {
             ? true
             : isScroll
         }
+        openSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
       />
+      <Sidebar isOpen={isSidebarOpen} setIsOpen={() => setIsSidebarOpen(!isSidebarOpen)} />
       <Outlet />
       <Footer />
     </Fragment>

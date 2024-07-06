@@ -20,7 +20,7 @@ import {
 import Logo from "../common/logo";
 import { useState } from "react";
 
-export default function Header({ isScroll }: { isScroll: boolean }) {
+export default function Header({ isScroll, openSidebar }: { isScroll: boolean, openSidebar: () => void }) {
   const navigation = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLogin, _] = useState(() => localStorage.getItem("FLOWBIT_ACT"));
@@ -103,12 +103,16 @@ export default function Header({ isScroll }: { isScroll: boolean }) {
             display: flex;
             align-items: center;
             gap: 1rem;
+
+            & img {
+              cursor: pointer;
+            }
           `}
         >
-          <div className="tablet">
+          <div className="tablet" onClick={() => openSidebar()}>
             <img src={Hamburger} alt="" />
           </div>
-          <div className="mobile">
+          <div className="mobile" onClick={() => openSidebar()}>
             <img src={Hamburger} alt="" />
           </div>
           <Logo isWhite={!isScroll} onClick={() => navigation(HOME_URL)}></Logo>
