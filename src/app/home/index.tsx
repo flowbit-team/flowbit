@@ -156,7 +156,7 @@ export default function HomePage() {
             >
               <Button
                 css={css`
-                  width: 11.4rem;
+                  width: 11.4rem !important;
                   height: 4.3rem;
 
                   ${DESIGN_SYSTEM_COLOR.GRAY_50}
@@ -168,7 +168,7 @@ export default function HomePage() {
               </Button>
               <Button
                 css={css`
-                  width: 8rem;
+                  width: 8rem !important;
                   height: 4.3rem;
 
                   font-size: 1.6rem;

@@ -14,6 +14,11 @@ import Comment from "@/assets/comment.svg";
 import DefaultComment from "@/assets/comment-default.svg";
 import Share from "@/assets/share.svg";
 import SendBtn from "@/assets/sendBtn.svg";
+import { useApiPostComment } from "@/hooks/api/community/useApiPostComment";
+import { useEffect, useState } from "react";
+import { useApiMemberInfo } from "@/hooks/api/member/useApiMemberInfo";
+import { useApiPostLike } from "@/hooks/api/community/useApiPostLike";
+import { useApiDeleteLike } from "@/hooks/api/community/useApiDeleteLike";
 
 const IMG_URL = import.meta.env.VITE_IMG_URL as string;
 
@@ -27,6 +32,8 @@ export default function CommunityBoard(props: CommunityBoardType) {
     boardLikeCount,
     boardCommentCount,
     createTime,
+    boardId,
+    isBoardLike
   } = props;
 
   const getTimeOffsetFromNow = (postedAt: string) => {
@@ -41,6 +48,49 @@ export default function CommunityBoard(props: CommunityBoardType) {
       return "최근 등록";
     }
   };
+
+  const [commentList, setCommentList] = useState(comments);
+  const [likeCount, setLikeCount] = useState(boardLikeCount);
+  const [isLike, setIsLike] = useState(isBoardLike);
+
+  const [comment, setComment] = useState('');
+  const { mutate: postComment, isSuccess: isSuccessOfPost } = useApiPostComment();
+  const { mutate: updateLike, isSuccess: isSuccessOfUpdateLike } = useApiPostLike();
+  const { mutate: deleteLike, isSuccess: isSuccessOfDeleteLike } = useApiDeleteLike();
+  const { data, isSuccess: isSuccessOfInfo } = useApiMemberInfo();
+
+  useEffect(() => {
+    if (isSuccessOfPost && isSuccessOfInfo) {
+      const { email, id, nickname, profile } = data.data.data;
+      setCommentList([
+        ...commentList,
+        {
+          memberEmail: email,
+          profile: profile,
+          createTime: '최근등록',
+          content: comment,
+          commentId: 0,
+          memberId: id,
+          name: nickname
+        }
+      ]);
+      setComment('');
+    }
+  }, [isSuccessOfPost, isSuccessOfInfo])
+
+  useEffect(() => {
+    if (isSuccessOfUpdateLike) {
+      setIsLike(true);
+      setLikeCount((props) => props + 1);
+    }
+  }, [isSuccessOfUpdateLike])
+
+  useEffect(() => {
+    if (isSuccessOfDeleteLike) {
+      setIsLike(false);
+      setLikeCount((props) => props - 1);
+    }
+  }, [isSuccessOfDeleteLike])
 
   return (
     <div>
@@ -191,8 +241,14 @@ export default function CommunityBoard(props: CommunityBoardType) {
               `}
             >
               {/* Button */}
-              <IconButton src={boardLikeCount ? Heart : DefaultHeart}>
-                {boardLikeCount}
+              <IconButton onClick={(() => {
+                if (isLike) {
+                  deleteLike(boardId)
+                } else {
+                  updateLike(boardId)
+                }
+              })} src={isLike ? Heart : DefaultHeart}>
+                {likeCount}
               </IconButton>
               <IconButton src={boardCommentCount ? Comment : DefaultComment}>
                 {boardCommentCount}
@@ -206,9 +262,17 @@ export default function CommunityBoard(props: CommunityBoardType) {
               margin: 0;
               padding: 0;
               list-style: none;
+
+              max-height: 50rem;
+              overflow-y: scroll;
+
+              &::-webkit-scrollbar-track,
+              &::-webkit-scrollbar-button {
+                display: none;
+              }
             `}
           >
-            {comments.map((row) => {
+            {commentList.map((row) => {
               return (
                 <li
                   key={row.commentId}
@@ -303,8 +367,17 @@ export default function CommunityBoard(props: CommunityBoardType) {
               `}
               type="text"
               placeholder="댓글을 입력해 주세요."
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
             />
-            <img src={SendBtn} alt="" />
+            <img src={SendBtn} alt="" onClick={() => {
+              if (comment.length > 0) {
+                postComment({
+                  boardId: props.boardId,
+                  content: comment
+                })
+              }
+            }} />
           </div>
         </div>
       </div>

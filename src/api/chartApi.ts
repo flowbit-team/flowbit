@@ -24,7 +24,7 @@ export type IPredictPriceResponse = {
       timestamp: string;
       volume: number;
     };
-    predicted_data: {
+    predicted_data?: {
       predicted_krw: number;
       timestamp: string;
     };

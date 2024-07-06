@@ -147,8 +147,8 @@ export default function Chart() {
           >
             {getPredictPriceResponse.isSuccess
               ? getPredictPriceResponse.data?.data[
-                  coinType
-                ].predicted_data.predicted_krw.toLocaleString("ko-KR")
+                coinType
+              ].predicted_data?.predicted_krw.toLocaleString("ko-KR")
               : ""}{" "}
             KWR
           </span>
@@ -234,7 +234,7 @@ export default function Chart() {
                 >
                   {getPredictPriceResponse.data?.data[
                     row
-                  ].predicted_data.predicted_krw.toLocaleString("ko-KR")}{" "}
+                  ].predicted_data?.predicted_krw.toLocaleString("ko-KR")}{" "}
                   KRW
                 </span>
               </li>
