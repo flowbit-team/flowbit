@@ -82,16 +82,16 @@ export default function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
             }
           `}>
             <NavLink to={HOME_URL}>
-              <li>소개</li>
+              <li onClick={setIsOpen}>소개</li>
             </NavLink>
             <NavLink to={PREDICT_URL}>
-              <li>가상화폐 예측</li>
+              <li onClick={setIsOpen}>가상화폐 예측</li>
             </NavLink>
             <NavLink to={NEWS_LETTER_URL}>
-              <li>뉴스레터</li>
+              <li onClick={setIsOpen}>뉴스레터</li>
             </NavLink>
             <NavLink to={COMMUNITY_URL}>
-              <li>커뮤니티</li>
+              <li onClick={setIsOpen}>커뮤니티</li>
             </NavLink>
           </ul>
         </div>
