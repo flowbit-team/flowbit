@@ -17,7 +17,7 @@ import SendBtn from "@/assets/sendBtn.svg";
 import { useApiPostComment } from "@/hooks/api/community/useApiPostComment";
 import { useEffect, useState } from "react";
 import { useApiMemberInfo } from "@/hooks/api/member/useApiMemberInfo";
-import { useApiLike } from "@/hooks/api/community/useApiLike";
+import { useApiPostLike } from "@/hooks/api/community/useApiPostLike";
 
 const IMG_URL = import.meta.env.VITE_IMG_URL as string;
 
@@ -52,7 +52,8 @@ export default function CommunityBoard(props: CommunityBoardType) {
 
   const [comment, setComment] = useState('');
   const { mutate: postComment, isSuccess: isSuccessOfPost } = useApiPostComment();
-  const { mutate: updateLike, isSuccess: isSuccessOfLike } = useApiLike();
+  const { mutate: updateLike, isSuccess: isSuccessOfLike } = useApiPostLike();
+  // const { mutate: deleteLike, isSuccess: isSuccessOfDeleteLike } = useApiDeleteLike();
   const { data, isSuccess: isSuccessOfInfo } = useApiMemberInfo();
 
   useEffect(() => {

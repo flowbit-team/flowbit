@@ -1,7 +1,7 @@
 import { api } from "@/api";
 import { useMutation } from "@tanstack/react-query";
 
-export const useApiLike = () => {
+export const useApiPostLike = () => {
   const updateLike = async (boardId: number) => {
     const res = await api.get(`/board-service/api/v1/board/like?boardId=${boardId}`);
 
