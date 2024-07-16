@@ -4,12 +4,20 @@ import Button from "@/components/common/Button.tsx";
 import ContainerToCenter from "@/components/common/ContainerToCenter.tsx";
 import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable.ts";
 import FireCracker from "@/assets/firecracker.svg?react";
-import { useNavigate } from "react-router-dom";
-import { Fragment } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Fragment, useEffect } from "react";
 import Confetti from "@/components/common/confetti/Confetti.tsx";
 
 export default function Complete() {
   const navigate = useNavigate();
+  const { state } = useLocation();
+
+  useEffect(() => {
+    if (!state.nickname) {
+      alert("정상적인 경로가 아닙니다, 로그인 화면으로 이동합니다.");
+      navigate("/signin");
+    }
+  }, []);
 
   return (
     <Fragment>
@@ -53,7 +61,7 @@ export default function Complete() {
               text-align: center;
             `}
           >
-            <span>홍길동님의 회원가입이</span>
+            <span>{state.nickname}님의 회원가입이</span>
             <span>성공적으로 완료되었습니다.</span>
           </div>
           <div

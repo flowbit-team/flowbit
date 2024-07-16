@@ -99,7 +99,11 @@ export default function Consent() {
               nickname: state.nickname,
             })
               .then(() => {
-                navigate("/complete");
+                navigate("/complete", {
+                  state: {
+                    nickname: state.nickname,
+                  },
+                });
               })
               .catch(() => {
                 alert("회원가입 중 오류가 발생했어요, 관리자에게 문의해주세요");

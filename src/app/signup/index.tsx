@@ -29,7 +29,7 @@ export default function SignUp() {
   const EMAIL_REGEX =
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
-  const naviagate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <ContainerToCenter>
@@ -171,7 +171,7 @@ export default function SignUp() {
             nickname,
         )}
         onClick={() => {
-          naviagate("/consent", {
+          navigate("/consent", {
             state: {
               userId: email,
               password: password,
