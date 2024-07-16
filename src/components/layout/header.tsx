@@ -18,13 +18,21 @@ import {
   DESIGN_SYSTEM_TEXT,
 } from "@/style/variable";
 import Logo from "../common/logo";
-import { useState } from "react";
+import { useAtom } from "jotai";
+import { loginState } from "@/store/user";
 
-export default function Header({ isScroll, openSidebar }: { isScroll: boolean, openSidebar: () => void }) {
+export default function Header({
+  isScroll,
+  openSidebar,
+}: {
+  isScroll: boolean;
+  openSidebar: () => void;
+}) {
   const navigation = useNavigate();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isLogin, _] = useState(() => localStorage.getItem("FLOWBIT_ACT"));
-  console.log(isLogin);
+  // const [isLogin, setLogin] = useState(
+  //   () => !!localStorage.getItem("FLOWBIT_ACT"),
+  // );
+  const [isLogin, setLogin] = useAtom(loginState);
 
   return (
     <header
@@ -203,15 +211,26 @@ export default function Header({ isScroll, openSidebar }: { isScroll: boolean, o
           `}
         >
           <NavLink className="desktop" to={LOGIN_URL}>
-            <span
+            <div
               css={css`
                 ${DESIGN_SYSTEM_TEXT.CAPTION}
                 color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};
                 font-weight: 300;
               `}
             >
-              {isLogin ? "로그아웃" : "로그인"}
-            </span>
+              {isLogin ? (
+                <span
+                  onClick={() => {
+                    localStorage.removeItem("FLOWBIT_ACT");
+                    setLogin(false);
+                  }}
+                >
+                  로그아웃
+                </span>
+              ) : (
+                <span>로그인</span>
+              )}
+            </div>
           </NavLink>
           <div
             className="desktop"
