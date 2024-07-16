@@ -11,9 +11,11 @@ import UseApiNewLetter from "@/hooks/api/newsletter/useApiNewLetter.ts";
 import NewsCard, {
   newsLetterProps,
 } from "@/components/app/predict/newsletter/news-card";
+import { useNavigate } from "react-router-dom";
 
 export default function PredictPage() {
   const { data } = UseApiNewLetter();
+  const navigate = useNavigate();
 
   return (
     <Fragment>
@@ -181,7 +183,9 @@ export default function PredictPage() {
                   css={css`
                     display: flex;
                     gap: 0.4rem;
+                    cursor: pointer;
                   `}
+                  onClick={() => navigate("/news")}
                 >
                   <span
                     css={css`

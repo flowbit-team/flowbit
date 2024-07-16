@@ -33,7 +33,6 @@ export default function NewImage({ src, date }: imageProps) {
         background-image: url(${parsedSrc});
         background-size: cover;
         background-repeat: no-repeat;
-        box-shadow: inset 0 0 0 0.1rem ${DESIGN_SYSTEM_COLOR.GRAY_200};
       `}
     >
       <div
