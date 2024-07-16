@@ -157,19 +157,22 @@ export default function HomePage() {
               <Button
                 css={css`
                   width: 11.4rem !important;
-                  height: 4.3rem;
+                  height: 4.5rem;
 
                   ${DESIGN_SYSTEM_COLOR.GRAY_50}
                   font-size: 1.6rem;
                   font-weight: normal;
                 `}
+                onClick={() => {
+                  navigation("/predict");
+                }}
               >
-                Get Started
+                시작하기
               </Button>
               <Button
                 css={css`
-                  width: 8rem !important;
-                  height: 4.3rem;
+                  width: 11.4rem !important;
+                  height: 4.5rem;
 
                   font-size: 1.6rem;
                   font-weight: normal;
@@ -178,8 +181,11 @@ export default function HomePage() {
                   background-color: white;
                   border: 1px solid ${DESIGN_SYSTEM_COLOR.BRAND_BLUE};
                 `}
+                onClick={() => {
+                  navigation("/signup");
+                }}
               >
-                Sign in
+                회원가입
               </Button>
             </div>
           </div>

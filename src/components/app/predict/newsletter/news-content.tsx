@@ -6,6 +6,7 @@ type contentsProps = {
 };
 
 export default function NewContents({ title, content }: contentsProps) {
+  console.log(title);
   return (
     <div
       css={css`
@@ -28,7 +29,7 @@ export default function NewContents({ title, content }: contentsProps) {
           -webkit-box-orient: vertical;
         `}
       >
-        {title.replace(/<[^>]*>?/g, "")}
+        {title.replace(/<[^>]*>?/g, "").replace(/&quot;/g, '"')}
       </div>
       <div
         css={css`
