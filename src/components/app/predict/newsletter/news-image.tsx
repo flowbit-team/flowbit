@@ -1,5 +1,4 @@
 import { css } from "@emotion/react";
-import { DESIGN_SYSTEM_COLOR } from "@/style/variable.ts";
 
 type imageProps = {
   src?: string;
