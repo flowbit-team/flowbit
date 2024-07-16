@@ -8,6 +8,7 @@ import NewsCard, {
 } from "@/components/app/predict/newsletter/news-card.tsx";
 import { useInView } from "react-intersection-observer";
 import Carousel from "@/components/common/carousel";
+import NotData from "@/components/common/NotData.tsx";
 
 export default function News() {
   const CATEGORY = ["전체", "리플", "비트코인", "이더리움"];
@@ -66,21 +67,28 @@ export default function News() {
         />
         <div
           css={css`
+            position: relative;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             column-gap: 7.2rem;
             row-gap: 2.6rem;
             margin-top: 3.7rem;
+            min-height: 50vh;
+            height: 100%;
           `}
         >
           {dataSet?.pages.map(({ content }) => {
-            return (
-              <Fragment>
-                {(content as newsLetterProps["article"][]).map((item) => {
-                  return <NewsCard article={item} />;
-                })}
-              </Fragment>
-            );
+            if (content.length) {
+              return (
+                <Fragment>
+                  {(content as newsLetterProps["article"][]).map((item) => {
+                    return <NewsCard article={item} />;
+                  })}
+                </Fragment>
+              );
+            } else {
+              return <NotData />;
+            }
           })}
           <span
             ref={ref}
