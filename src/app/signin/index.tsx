@@ -11,6 +11,8 @@ import Logo from "@/assets/logo.png";
 import SplitLine from "@/components/common/SplitLine.tsx";
 import { useState } from "react";
 import { signIn } from "@/hooks/api/member/useApiSignIn.ts";
+import { loginState } from "@/store/user";
+import { useAtom } from "jotai";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -19,6 +21,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   const EMAIL_REGEX =
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+  const [_, setLogin] = useAtom(loginState);
   return (
     <ContainerToCenter>
       {/*  입력 창 섹션 */}
@@ -67,6 +70,7 @@ export default function SignIn() {
           signIn({ email: email, password: password })
             .then((res) => {
               localStorage.setItem("FLOWBIT_ACT", res.data.accessToken);
+              setLogin(true);
               navigate("/community");
             })
             .catch(() => {
