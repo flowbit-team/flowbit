@@ -11,15 +11,42 @@ import { signUp } from "@/hooks/api/member/useApiSignUp.ts";
 export default function Consent() {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
   const [privacy, setCheckPrivacy] = useState(false);
   const [useService, setUseService] = useState(false);
+  const params = new URLSearchParams(location.search);
+  const bypass = params.get("bypass");
+  const type = params.get("type");
 
   useEffect(() => {
-    if (!state.userId || !state.password || !state.nickname) {
+    if (!bypass && (!state?.userId || !state?.password || !state?.nickname)) {
       alert("정상적인 경로가 아닙니다, 로그인 화면으로 이동합니다.");
       navigate("/signin");
     }
   }, []);
+
+  const handleNextClick = () => {
+    const url = `https://api.flowbit.co.kr/user-service/oauth2/authorization/${type}`;
+    if (bypass) {
+      window.location.href = url;
+    } else {
+      signUp({
+        userId: state.userId,
+        password: state.password,
+        nickname: state.nickname,
+      })
+        .then(() => {
+          navigate("/complete", {
+            state: {
+              nickname: state.nickname,
+            },
+          });
+        })
+        .catch(() => {
+          alert("회원가입 중 오류가 발생했어요, 관리자에게 문의해주세요");
+        });
+    }
+  };
 
   return (
     <ContainerToCenter>
@@ -92,23 +119,7 @@ export default function Consent() {
             margin-top: 1.6rem;
           `}
           state={privacy && useService}
-          onClick={() =>
-            signUp({
-              userId: state.userId,
-              password: state.password,
-              nickname: state.nickname,
-            })
-              .then(() => {
-                navigate("/complete", {
-                  state: {
-                    nickname: state.nickname,
-                  },
-                });
-              })
-              .catch(() => {
-                alert("회원가입 중 오류가 발생했어요, 관리자에게 문의해주세요");
-              })
-          }
+          onClick={() => handleNextClick()}
         >
           다음
         </Button>
