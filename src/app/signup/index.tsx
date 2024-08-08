@@ -211,7 +211,7 @@ export default function SignUp() {
               background: #fede35;
               color: #3c1e1e;
             `}
-            onClick={() => alert("카카오 로그인은 곧 구현 예정이에요!")}
+            onClick={() => navigate("/consent?bypass=true&type=kakao")}
           >
             카카오로 빠른 회원가입
           </Button>
@@ -221,7 +221,7 @@ export default function SignUp() {
               background: #eeeeee;
               color: #3c1e1e;
             `}
-            onClick={() => alert("구글 로그인은 곧 구현 예정이에요!")}
+            onClick={() => navigate("/consent?bypass=true&type=google")}
           >
             구글로 빠른 회원가입
           </Button>

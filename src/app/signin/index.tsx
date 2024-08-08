@@ -22,6 +22,11 @@ export default function SignIn() {
   const EMAIL_REGEX =
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const [_, setLogin] = useAtom(loginState);
+  const googleURL =
+    "https://api.flowbit.co.kr/user-service/oauth2/authorization/google";
+  const kakaoURL =
+    "https://api.flowbit.co.kr/user-service/oauth2/authorization/kakao";
+
   return (
     <ContainerToCenter>
       {/*  입력 창 섹션 */}
@@ -120,7 +125,7 @@ export default function SignIn() {
               background: #fede35;
               color: #3c1e1e;
             `}
-            onClick={() => alert("카카오 로그인은 곧 구현 예정이에요!")}
+            onClick={() => (window.location.href = kakaoURL)}
           >
             카카오 로그인
           </Button>
@@ -130,7 +135,7 @@ export default function SignIn() {
               background: #eeeeee;
               color: #3c1e1e;
             `}
-            onClick={() => alert("구글 로그인은 곧 구현 예정이에요!")}
+            onClick={() => (window.location.href = googleURL)}
           >
             구글 로그인
           </Button>
