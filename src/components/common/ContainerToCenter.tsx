@@ -20,7 +20,6 @@ export default function ContainerToCenter({
         justify-content: center;
         align-items: center;
       `}
-      {...props}
     >
       <article
         css={css`
@@ -34,6 +33,7 @@ export default function ContainerToCenter({
             color: #bdbdbd;
           }
         `}
+        {...props}
       >
         {children}
       </article>

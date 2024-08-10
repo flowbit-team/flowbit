@@ -19,7 +19,6 @@ export default function TextWithCheckBox({
         align-items: center;
         column-gap: 1.6rem;
       `}
-      {...props}
     >
       <CheckBox checked={checked} />
       <div
@@ -32,6 +31,7 @@ export default function TextWithCheckBox({
             ${DESIGN_SYSTEM_TEXT.E_S2}
           }
         `}
+        {...props}
       >
         <span
           css={css`

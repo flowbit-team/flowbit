@@ -15,6 +15,7 @@ import HomePage from "@/app/home";
 import Carousel from "@/components/common/carousel";
 import News from "@/app/news";
 import Oauth2Redirect from "@/app/oauth2/redierct";
+import { MyPage } from "@/app/mypage";
 
 const routerChildren: RouteObject[] = [
   {
@@ -38,6 +39,10 @@ const routerChildren: RouteObject[] = [
     element: <SignUp />,
   },
   {
+    path: "/mypage",
+    element: <MyPage />,
+  },
+  {
     path: "/consent",
     element: <Consent />,
   },
@@ -56,7 +61,7 @@ const routerChildren: RouteObject[] = [
   {
     path: "/oauth2/redirect",
     element: <Oauth2Redirect />,
-  }
+  },
 ];
 
 const router = createBrowserRouter([

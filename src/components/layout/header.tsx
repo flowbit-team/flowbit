@@ -261,17 +261,19 @@ export default function Header({
               color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};
             `}
           ></div>
-          <NavLink className="desktop" to={REGISTER_URL}>
-            <span
-              css={css`
-                ${DESIGN_SYSTEM_TEXT.CAPTION}
-                color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};
-                font-weight: 300;
-              `}
-            >
-              {isLogin ? "마이페이지" : "회원가입"}
-            </span>
-          </NavLink>
+          <span
+            css={css`
+              ${DESIGN_SYSTEM_TEXT.CAPTION}
+              color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};
+              font-weight: 300;
+            `}
+          >
+            {isLogin ? (
+              <span onClick={() => navigate("/mypage")}>마이페이지</span>
+            ) : (
+              <span onClick={() => navigate(REGISTER_URL)}>회원가입</span>
+            )}
+          </span>
           <div className="desktop">
             <img src={isScroll ? Alarm : WhiteAlarm} alt="" />
           </div>
