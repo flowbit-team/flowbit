@@ -1,9 +1,10 @@
 import "@/style/global.css";
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./header";
 import Footer from "./footer";
 import Sidebar from "./sidebar";
+import { UseScrollToTop } from "@/components/common/util/ScrollToTop.tsx";
 
 export default function GlobalLayout() {
   const location = useLocation();
@@ -31,16 +32,22 @@ export default function GlobalLayout() {
 
   return (
     <Fragment>
+      <UseScrollToTop />
       <Header
         isScroll={
-          location.pathname === "/" || location.pathname === "/predict" ||
-            location.pathname === "/signup" || location.pathname === "/signin"
+          location.pathname === "/" ||
+          location.pathname === "/predict" ||
+          location.pathname === "/signup" ||
+          location.pathname === "/signin"
             ? true
             : isScroll
         }
         openSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
       />
-      <Sidebar isOpen={isSidebarOpen} setIsOpen={() => setIsSidebarOpen(!isSidebarOpen)} />
+      <Sidebar
+        isOpen={isSidebarOpen}
+        setIsOpen={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
       <Outlet />
       <Footer />
     </Fragment>

@@ -20,6 +20,7 @@ import {
 import Logo from "../common/logo";
 import { useAtom } from "jotai";
 import { loginState } from "@/store/user";
+import { useModal } from "@/hooks/useModal.ts";
 
 export default function Header({
   isScroll,
@@ -33,6 +34,8 @@ export default function Header({
   //   () => !!localStorage.getItem("FLOWBIT_ACT"),
   // );
   const [isLogin, setLogin] = useAtom(loginState);
+  const { open, close } = useModal();
+  const navigate = useNavigate();
 
   return (
     <header
@@ -182,15 +185,28 @@ export default function Header({
               </NavLink>
             </li>
             <li>
-              <NavLink to={COMMUNITY_URL}>
-                <span
-                  css={css`
-                    ${DESIGN_SYSTEM_TEXT.B2_BOLD}
-                  `}
-                >
-                  커뮤니티
-                </span>
-              </NavLink>
+              <span
+                css={css`
+                  ${DESIGN_SYSTEM_TEXT.B2_BOLD}
+                `}
+                onClick={() => {
+                  if (!localStorage.getItem("FLOWBIT_ACT")) {
+                    open({
+                      title: "로그인을 먼저 진행해주세요",
+                      content:
+                        "플로우빗 커뮤니티 기능은 회원을 위한 기능입니다.\n원활한 서비스 이용을 위해 로그인을 먼저 진행해주세요",
+                      callBack: () => {
+                        close();
+                        navigate("/signin");
+                      },
+                    });
+                  } else {
+                    navigate(COMMUNITY_URL);
+                  }
+                }}
+              >
+                커뮤니티
+              </span>
             </li>
           </ol>
         </nav>
@@ -210,36 +226,41 @@ export default function Header({
             }
           `}
         >
-          <NavLink className="desktop" to={LOGIN_URL}>
-            <div
-              css={css`
-                ${DESIGN_SYSTEM_TEXT.CAPTION}
-                color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};
-                font-weight: 300;
-              `}
-            >
-              {isLogin ? (
-                <span
-                  onClick={() => {
-                    localStorage.removeItem("FLOWBIT_ACT");
-                    setLogin(false);
-                  }}
-                >
-                  로그아웃
-                </span>
-              ) : (
-                <span>로그인</span>
-              )}
-            </div>
-          </NavLink>
+          <div
+            css={css`
+              ${DESIGN_SYSTEM_TEXT.CAPTION}
+              color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};
+              font-weight: 300;
+            `}
+          >
+            {isLogin ? (
+              <span
+                onClick={() => {
+                  open({
+                    title: "정말 로그아웃을 하시겠어요?",
+                    content:
+                      "오늘도 플로우빗 서비스를 이용해주셔서 감사합니다.\n확인 버튼을 통해 서비스 로그아웃이 가능해요",
+                    callBack: () => {
+                      localStorage.removeItem("FLOWBIT_ACT");
+                      setLogin(false);
+                      close();
+                      navigation(HOME_URL);
+                    },
+                  });
+                }}
+              >
+                로그아웃
+              </span>
+            ) : (
+              <span onClick={() => navigation(LOGIN_URL)}>로그인</span>
+            )}
+          </div>
           <div
             className="desktop"
             css={css`
               color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};
             `}
-          >
-            l
-          </div>
+          ></div>
           <NavLink className="desktop" to={REGISTER_URL}>
             <span
               css={css`

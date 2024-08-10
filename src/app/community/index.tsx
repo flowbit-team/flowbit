@@ -22,7 +22,6 @@ import {
 } from "@/style/variable";
 import { CommunityBoardType } from "@/components/app/community/type";
 import { useInView } from "react-intersection-observer";
-import { useNavigate } from "react-router-dom";
 import { useApiMemberInfo } from "@/hooks/api/member/useApiMemberInfo";
 
 export default function CommunityPage() {
@@ -38,7 +37,6 @@ export default function CommunityPage() {
   const [modal, setModal] = useState(false);
 
   const [ref, inView] = useInView();
-  const navigate = useNavigate();
 
   const {
     data: dataSet,
@@ -49,13 +47,6 @@ export default function CommunityPage() {
     category: communityCategory,
     searchWord: communitySearchWord,
   });
-
-  useEffect(() => {
-    if (!localStorage.getItem("FLOWBIT_ACT")) {
-      alert("이용 전 로그인을 먼저 진행해주세요!");
-      navigate("/signin");
-    }
-  }, []);
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -203,7 +194,10 @@ export default function CommunityPage() {
             }
           `}
         >
-          <CommunityCreateBtn onClick={createBoardModal} profile={data?.data.data.profile || ''}></CommunityCreateBtn>
+          <CommunityCreateBtn
+            onClick={createBoardModal}
+            profile={data?.data.data.profile || ""}
+          ></CommunityCreateBtn>
           <div
             css={css`
               gap: 1.4rem;
@@ -288,10 +282,25 @@ export default function CommunityPage() {
             `}
           >
             {dataSet?.pages.map(({ content }) => {
+              console.log(dataSet);
               return (
                 <Fragment>
                   {(content as CommunityBoardType[]).map((item) => {
-                    return <CommunityBoard key={item.boardId} {...item} myInfo={data?.data.data || { name: '', email: '', id: 0, nickname: '', profile: '' }} />;
+                    return (
+                      <CommunityBoard
+                        key={item.boardId}
+                        {...item}
+                        myInfo={
+                          data?.data.data || {
+                            name: "",
+                            email: "",
+                            id: 0,
+                            nickname: "",
+                            profile: "",
+                          }
+                        }
+                      />
+                    );
                   })}
                 </Fragment>
               );
