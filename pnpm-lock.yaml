@@ -17,6 +17,9 @@ dependencies:
   axios:
     specifier: ^1.6.7
     version: 1.6.7
+  dotenv:
+    specifier: ^16.4.5
+    version: 16.4.5
   es-toolkit:
     specifier: ^1.4.0
     version: 1.4.0
@@ -91,6 +94,9 @@ devDependencies:
   vite:
     specifier: ^5.0.8
     version: 5.0.12(@types/node@20.12.12)
+  vite-plugin-radar:
+    specifier: ^0.9.6
+    version: 0.9.6(vite@5.0.12)
   vite-plugin-svgr:
     specifier: ^4.2.0
     version: 4.2.0(typescript@5.3.3)(vite@5.0.12)
@@ -1493,6 +1499,11 @@ packages:
       tslib: 2.6.2
     dev: true
 
+  /dotenv@16.4.5:
+    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
+    engines: {node: '>=12'}
+    dev: false
+
   /electron-to-chromium@1.4.650:
     resolution: {integrity: sha512-sYSQhJCJa4aGA1wYol5cMQgekDBlbVfTRavlGZVr3WZpDdOPcp6a6xUnFfrt8TqZhsBYYbDxJZCjGfHuGupCRQ==}
     dev: true
@@ -2515,6 +2526,14 @@ packages:
     dependencies:
       react: 18.2.0
     dev: false
+
+  /vite-plugin-radar@0.9.6(vite@5.0.12):
+    resolution: {integrity: sha512-tLvUt7+iZznxYa8GmCrZBV3Q0fLQApsyg9EIJgaen8DjGky3vFIq9KoDWAoVMs9FZ5qbsSBb3YfSvoqwVV+5xw==}
+    peerDependencies:
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
+    dependencies:
+      vite: 5.0.12(@types/node@20.12.12)
+    dev: true
 
   /vite-plugin-svgr@4.2.0(typescript@5.3.3)(vite@5.0.12):
     resolution: {integrity: sha512-SC7+FfVtNQk7So0XMjrrtLAbEC8qjFPifyD7+fs/E6aaNdVde6umlVVh0QuwDLdOMu7vp5RiGFsB70nj5yo0XA==}

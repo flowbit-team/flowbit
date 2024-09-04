@@ -16,6 +16,7 @@
     "@emotion/react": "^11.11.4",
     "@tanstack/react-query": "^5.24.1",
     "axios": "^1.6.7",
+    "dotenv": "^16.4.5",
     "es-toolkit": "^1.4.0",
     "jotai": "^2.9.0",
     "lodash": "^4.17.21",
@@ -42,6 +43,7 @@
     "prettier": "^3.2.5",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
+    "vite-plugin-radar": "^0.9.6",
     "vite-plugin-svgr": "^4.2.0"
   }
 }
