@@ -147,7 +147,7 @@ export default function Header({
               }
 
               & span:hover {
-                color: #0056ca;
+                color: ${DESIGN_SYSTEM_COLOR.ACTIVE_LINK};
               }
             `}
           >
@@ -156,7 +156,8 @@ export default function Header({
                 <span
                   css={css`
                     ${DESIGN_SYSTEM_TEXT.B2_BOLD}
-                    color: ${pathname === HOME_URL && "#0056ca"};
+                    color: ${pathname === HOME_URL &&
+                    DESIGN_SYSTEM_COLOR.ACTIVE_LINK};
                   `}
                 >
                   소개
@@ -168,7 +169,8 @@ export default function Header({
                 <span
                   css={css`
                     ${DESIGN_SYSTEM_TEXT.B2_BOLD}
-                    color: ${pathname === PREDICT_URL && "#0056ca"};
+                    color: ${pathname === PREDICT_URL &&
+                    DESIGN_SYSTEM_COLOR.ACTIVE_LINK};
                   `}
                 >
                   비트코인 예측
@@ -180,7 +182,8 @@ export default function Header({
                 <span
                   css={css`
                     ${DESIGN_SYSTEM_TEXT.B2_BOLD}
-                    color: ${pathname === NEWS_LETTER_URL && "#0056ca"};
+                    color: ${pathname === NEWS_LETTER_URL &&
+                    DESIGN_SYSTEM_COLOR.ACTIVE_LINK};
                   `}
                 >
                   뉴스레터
@@ -191,7 +194,8 @@ export default function Header({
               <span
                 css={css`
                   ${DESIGN_SYSTEM_TEXT.B2_BOLD}
-                  color: ${pathname === COMMUNITY_URL && "#0056ca"};
+                  color: ${pathname === COMMUNITY_URL &&
+                  DESIGN_SYSTEM_COLOR.ACTIVE_LINK};
                 `}
                 onClick={() => {
                   if (!localStorage.getItem("FLOWBIT_ACT")) {

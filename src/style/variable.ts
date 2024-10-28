@@ -156,6 +156,7 @@ export const DESIGN_SYSTEM_COLOR = {
   BRAND_OCEAN: "#00BECA",
   BRAND_PURPLE: "#0056CA",
   KREAM: "#222222",
+  ACTIVE_LINK: "#0056ca",
 };
 
 export const BREAK_POINTS = {
