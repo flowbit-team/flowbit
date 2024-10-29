@@ -1,9 +1,6 @@
 import { css } from "@emotion/react";
-import { NavLink, useNavigate } from "react-router-dom";
-import GrayAlarm from "@/assets/gray_bell.svg";
-import WhiteAlarm from "@/assets/alarm-white.svg";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Hamburger from "@/assets/hamburger.svg";
-import Alarm from "@/assets/alarm.svg";
 import {
   COMMUNITY_URL,
   HOME_URL,
@@ -36,6 +33,7 @@ export default function Header({
   const [isLogin, setLogin] = useAtom(loginState);
   const { open, close } = useModal();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   return (
     <header
@@ -43,11 +41,14 @@ export default function Header({
         display: flex;
         align-items: center;
         width: 100%;
-        height: 5.6rem;
-        background-color: ${isScroll ? "white" : "none"};
+        height: 6rem;
+        background-color: ${isScroll ? "rgba(255, 255, 255)" : "none"};
+        backdrop-filter: ${isScroll && "blur(0.05rem)"};
         color: ${isScroll ? "black" : "white"};
         position: ${isScroll ? "fixed" : "fixed"};
-        border-bottom: ${isScroll ? "1px solid #f5f5f5" : "none"};
+        border-bottom: ${isScroll ? "1px solid rgba(0, 0, 0, 0.11);" : "none"};
+        will-change: background, border-bottom;
+        transition: 0.4s all;
 
         z-index: 99;
       `}
@@ -64,7 +65,6 @@ export default function Header({
 
           & a {
             text-decoration: none;
-            text-decoration-color: none;
             color: inherit;
           }
 
@@ -147,7 +147,7 @@ export default function Header({
               }
 
               & span:hover {
-                color: #0056ca;
+                color: ${DESIGN_SYSTEM_COLOR.ACTIVE_LINK};
               }
             `}
           >
@@ -156,6 +156,8 @@ export default function Header({
                 <span
                   css={css`
                     ${DESIGN_SYSTEM_TEXT.B2_BOLD}
+                    color: ${pathname === HOME_URL &&
+                    DESIGN_SYSTEM_COLOR.ACTIVE_LINK};
                   `}
                 >
                   소개
@@ -167,6 +169,8 @@ export default function Header({
                 <span
                   css={css`
                     ${DESIGN_SYSTEM_TEXT.B2_BOLD}
+                    color: ${pathname === PREDICT_URL &&
+                    DESIGN_SYSTEM_COLOR.ACTIVE_LINK};
                   `}
                 >
                   비트코인 예측
@@ -178,6 +182,8 @@ export default function Header({
                 <span
                   css={css`
                     ${DESIGN_SYSTEM_TEXT.B2_BOLD}
+                    color: ${pathname === NEWS_LETTER_URL &&
+                    DESIGN_SYSTEM_COLOR.ACTIVE_LINK};
                   `}
                 >
                   뉴스레터
@@ -188,6 +194,8 @@ export default function Header({
               <span
                 css={css`
                   ${DESIGN_SYSTEM_TEXT.B2_BOLD}
+                  color: ${pathname === COMMUNITY_URL &&
+                  DESIGN_SYSTEM_COLOR.ACTIVE_LINK};
                 `}
                 onClick={() => {
                   if (!localStorage.getItem("FLOWBIT_ACT")) {
@@ -218,11 +226,12 @@ export default function Header({
             align-items: center;
             padding: 0;
             margin: 0;
-            gap: 20px;
+            gap: 1.5rem;
 
             & span,
             & img {
               cursor: pointer;
+              font-size: 1.3rem;
             }
           `}
         >
@@ -274,15 +283,16 @@ export default function Header({
               <span onClick={() => navigate(REGISTER_URL)}>회원가입</span>
             )}
           </span>
-          <div className="desktop">
-            <img src={isScroll ? Alarm : WhiteAlarm} alt="" />
-          </div>
-          <div className="tablet">
-            <img src={isScroll ? GrayAlarm : WhiteAlarm} alt="" />
-          </div>
-          <div className="mobile">
-            <img src={isScroll ? GrayAlarm : WhiteAlarm} alt="" />
-          </div>
+          {/* NOTE: 추후 알림창 관련 레이아웃 개발 시, 진행 */}
+          {/*<div className="desktop">*/}
+          {/*  <img src={isScroll ? Alarm : WhiteAlarm} alt="" />*/}
+          {/*</div>*/}
+          {/*<div className="tablet">*/}
+          {/*  <img src={isScroll ? GrayAlarm : WhiteAlarm} alt="" />*/}
+          {/*</div>*/}
+          {/*<div className="mobile">*/}
+          {/*  <img src={isScroll ? GrayAlarm : WhiteAlarm} alt="" />*/}
+          {/*</div>*/}
         </div>
       </div>
     </header>
