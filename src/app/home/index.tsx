@@ -464,7 +464,7 @@ export default function HomePage() {
                 <Lottie animationData={NewletterAni} loop={false} />
               </div>
               {/* 코멘트 로티 */}
-              <div className="card" onClick={() => navigation(COMMUNITY_URL)}>
+              <div className="card">
                 <div className="badge">커뮤니티</div>
                 <Lottie animationData={CommunityAni} loop={false} />
               </div>
