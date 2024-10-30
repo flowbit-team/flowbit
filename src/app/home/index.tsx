@@ -23,6 +23,7 @@ import CommunityAni from "@/assets/community.json";
 import { useGetChartDataQuery } from "@/api/chartApi";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useModal } from "@/hooks/useModal.ts";
 
 type CoinInfoType = {
   [coin in "BTC" | "ETH" | "XRP"]: {
@@ -39,6 +40,7 @@ export default function HomePage() {
   const getXRPData = useGetChartDataQuery("XRP");
 
   const [coinInfo, setCoinInfo] = useState<CoinInfoType>();
+  const { open, close } = useModal();
 
   const navigation = useNavigate();
 
@@ -182,7 +184,14 @@ export default function HomePage() {
                   border: 1px solid ${DESIGN_SYSTEM_COLOR.BRAND_BLUE};
                 `}
                 onClick={() => {
-                  navigation("/signup");
+                  open({
+                    title: "현재 해당 기능은 준비 중입니다.",
+                    content:
+                      "비트코인에 대한 정보를 나눌 수 있는 회원 서비스는\n현재 빠르게 개발을 진행하고 있습니다, 잠시만 기다려주세요!",
+                    callBack: () => {
+                      close();
+                    },
+                  });
                 }}
               >
                 회원가입
