@@ -104,16 +104,17 @@ export function Modal() {
               }
             `}
           >
-            <Button
-              css={css`
-                background-color: ${DESIGN_SYSTEM_COLOR.BLUE_GRAY_50};
-                color: ${DESIGN_SYSTEM_COLOR.GRAY_400};
-              `}
-              onClick={close}
-            >
-              취소
-            </Button>
-            <Button onClick={modalDataState.callBack}>확인</Button>
+            {/*<Button*/}
+            {/*  css={css`*/}
+            {/*    background-color: ${DESIGN_SYSTEM_COLOR.BLUE_GRAY_50};*/}
+            {/*    color: ${DESIGN_SYSTEM_COLOR.GRAY_400};*/}
+            {/*  `}*/}
+            {/*  onClick={close}*/}
+            {/*>*/}
+            {/*  취소*/}
+            {/*</Button>*/}
+            {/*<Button onClick={modalDataState.callBack}>확인</Button>*/}
+            <Button onClick={close}>확인</Button>
           </div>
         </div>
       </div>

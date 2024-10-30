@@ -4,10 +4,8 @@ import Hamburger from "@/assets/hamburger.svg";
 import {
   COMMUNITY_URL,
   HOME_URL,
-  LOGIN_URL,
   NEWS_LETTER_URL,
   PREDICT_URL,
-  REGISTER_URL,
 } from "@/utils/util";
 import {
   BREAK_POINTS,
@@ -15,8 +13,6 @@ import {
   DESIGN_SYSTEM_TEXT,
 } from "@/style/variable";
 import Logo from "../common/logo";
-import { useAtom } from "jotai";
-import { loginState } from "@/store/user";
 import { useModal } from "@/hooks/useModal.ts";
 
 export default function Header({
@@ -27,10 +23,7 @@ export default function Header({
   openSidebar: () => void;
 }) {
   const navigation = useNavigate();
-  // const [isLogin, setLogin] = useState(
-  //   () => !!localStorage.getItem("FLOWBIT_ACT"),
-  // );
-  const [isLogin, setLogin] = useAtom(loginState);
+  // const [isLogin, setLogin] = useAtom(loginState);
   const { open, close } = useModal();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -200,12 +193,11 @@ export default function Header({
                 onClick={() => {
                   if (!localStorage.getItem("FLOWBIT_ACT")) {
                     open({
-                      title: "로그인을 먼저 진행해주세요",
+                      title: "현재 해당 기능은 준비 중입니다.",
                       content:
-                        "플로우빗 커뮤니티 기능은 회원을 위한 기능입니다.\n원활한 서비스 이용을 위해 로그인을 먼저 진행해주세요",
+                        "비트코인에 대한 정보를 나눌 수 있는 커뮤니티 기능은\n현재 빠르게 개발을 진행하고 있습니다, 잠시만 기다려주세요!",
                       callBack: () => {
                         close();
-                        navigate("/signin");
                       },
                     });
                   } else {
@@ -218,82 +210,82 @@ export default function Header({
             </li>
           </ol>
         </nav>
-        <div
-          css={css`
-            height: 44px;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            padding: 0;
-            margin: 0;
-            gap: 1.5rem;
+        {/*<div*/}
+        {/*  css={css`*/}
+        {/*    height: 44px;*/}
+        {/*    list-style: none;*/}
+        {/*    display: flex;*/}
+        {/*    align-items: center;*/}
+        {/*    padding: 0;*/}
+        {/*    margin: 0;*/}
+        {/*    gap: 1.5rem;*/}
 
-            & span,
-            & img {
-              cursor: pointer;
-              font-size: 1.3rem;
-            }
-          `}
-        >
-          <div
-            css={css`
-              ${DESIGN_SYSTEM_TEXT.CAPTION}
-              color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};
-              font-weight: 300;
-            `}
-          >
-            {isLogin ? (
-              <span
-                onClick={() => {
-                  open({
-                    title: "정말 로그아웃을 하시겠어요?",
-                    content:
-                      "오늘도 플로우빗 서비스를 이용해주셔서 감사합니다.\n확인 버튼을 통해 서비스 로그아웃이 가능해요",
-                    callBack: () => {
-                      localStorage.removeItem("FLOWBIT_ACT");
-                      setLogin(false);
-                      close();
-                      navigation(HOME_URL);
-                    },
-                  });
-                }}
-              >
-                로그아웃
-              </span>
-            ) : (
-              <span onClick={() => navigation(LOGIN_URL)}>로그인</span>
-            )}
-          </div>
-          <div
-            className="desktop"
-            css={css`
-              color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};
-            `}
-          ></div>
-          <span
-            css={css`
-              ${DESIGN_SYSTEM_TEXT.CAPTION}
-              color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};
-              font-weight: 300;
-            `}
-          >
-            {isLogin ? (
-              <span onClick={() => navigate("/mypage")}>마이페이지</span>
-            ) : (
-              <span onClick={() => navigate(REGISTER_URL)}>회원가입</span>
-            )}
-          </span>
-          {/* NOTE: 추후 알림창 관련 레이아웃 개발 시, 진행 */}
-          {/*<div className="desktop">*/}
-          {/*  <img src={isScroll ? Alarm : WhiteAlarm} alt="" />*/}
-          {/*</div>*/}
-          {/*<div className="tablet">*/}
-          {/*  <img src={isScroll ? GrayAlarm : WhiteAlarm} alt="" />*/}
-          {/*</div>*/}
-          {/*<div className="mobile">*/}
-          {/*  <img src={isScroll ? GrayAlarm : WhiteAlarm} alt="" />*/}
-          {/*</div>*/}
-        </div>
+        {/*    & span,*/}
+        {/*    & img {*/}
+        {/*      cursor: pointer;*/}
+        {/*      font-size: 1.3rem;*/}
+        {/*    }*/}
+        {/*  `}*/}
+        {/*>*/}
+        {/*  <div*/}
+        {/*    css={css`*/}
+        {/*      ${DESIGN_SYSTEM_TEXT.CAPTION}*/}
+        {/*      color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};*/}
+        {/*      font-weight: 300;*/}
+        {/*    `}*/}
+        {/*  >*/}
+        {/*    {isLogin ? (*/}
+        {/*      <span*/}
+        {/*        onClick={() => {*/}
+        {/*          open({*/}
+        {/*            title: "정말 로그아웃을 하시겠어요?",*/}
+        {/*            content:*/}
+        {/*              "오늘도 플로우빗 서비스를 이용해주셔서 감사합니다.\n확인 버튼을 통해 서비스 로그아웃이 가능해요",*/}
+        {/*            callBack: () => {*/}
+        {/*              localStorage.removeItem("FLOWBIT_ACT");*/}
+        {/*              setLogin(false);*/}
+        {/*              close();*/}
+        {/*              navigation(HOME_URL);*/}
+        {/*            },*/}
+        {/*          });*/}
+        {/*        }}*/}
+        {/*      >*/}
+        {/*        로그아웃*/}
+        {/*      </span>*/}
+        {/*    ) : (*/}
+        {/*      <span onClick={() => navigation(LOGIN_URL)}>로그인</span>*/}
+        {/*    )}*/}
+        {/*  </div>*/}
+        {/*  <div*/}
+        {/*    className="desktop"*/}
+        {/*    css={css`*/}
+        {/*      color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};*/}
+        {/*    `}*/}
+        {/*  ></div>*/}
+        {/*  <span*/}
+        {/*    css={css`*/}
+        {/*      ${DESIGN_SYSTEM_TEXT.CAPTION}*/}
+        {/*      color: ${isScroll ? DESIGN_SYSTEM_COLOR.GRAY_800 : "white"};*/}
+        {/*      font-weight: 300;*/}
+        {/*    `}*/}
+        {/*  >*/}
+        {/*    {isLogin ? (*/}
+        {/*      <span onClick={() => navigate("/mypage")}>마이페이지</span>*/}
+        {/*    ) : (*/}
+        {/*      <span onClick={() => navigate(REGISTER_URL)}>회원가입</span>*/}
+        {/*    )}*/}
+        {/*  </span>*/}
+        {/*  /!* NOTE: 추후 알림창 관련 레이아웃 개발 시, 진행 *!/*/}
+        {/*  /!*<div className="desktop">*!/*/}
+        {/*  /!*  <img src={isScroll ? Alarm : WhiteAlarm} alt="" />*!/*/}
+        {/*  /!*</div>*!/*/}
+        {/*  /!*<div className="tablet">*!/*/}
+        {/*  /!*  <img src={isScroll ? GrayAlarm : WhiteAlarm} alt="" />*!/*/}
+        {/*  /!*</div>*!/*/}
+        {/*  /!*<div className="mobile">*!/*/}
+        {/*  /!*  <img src={isScroll ? GrayAlarm : WhiteAlarm} alt="" />*!/*/}
+        {/*  /!*</div>*!/*/}
+        {/*</div>*/}
       </div>
     </header>
   );
