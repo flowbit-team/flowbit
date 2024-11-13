@@ -2,12 +2,7 @@ import Button from "@/components/common/Button";
 import Lottie from "lottie-react";
 import { BREAK_POINTS, DESIGN_SYSTEM_COLOR } from "@/style/variable";
 import { css } from "@emotion/react";
-import {
-  COMMUNITY_URL,
-  NEWS_LETTER_URL,
-  PREDICT_URL,
-  numberWithCommas,
-} from "@/utils/util";
+import { NEWS_LETTER_URL, PREDICT_URL, numberWithCommas } from "@/utils/util";
 import BitImg from "@/assets/blue_bit.svg";
 import EtherImg from "@/assets/blue_ether.svg";
 import RippleImg from "@/assets/blue_rip.svg";
