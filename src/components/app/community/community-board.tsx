@@ -21,15 +21,17 @@ import { useApiDeleteLike } from "@/hooks/api/community/useApiDeleteLike";
 
 const IMG_URL = import.meta.env.VITE_IMG_URL as string;
 
-export default function CommunityBoard(props: CommunityBoardType & {
-  myInfo: {
-    email: string;
-    id: number;
-    name: string;
-    nickname: string;
-    profile: string;
-  }
-}) {
+export default function CommunityBoard(
+  props: CommunityBoardType & {
+    myInfo: {
+      email: string;
+      id: number;
+      name: string;
+      nickname: string;
+      profile: string;
+    };
+  },
+) {
   const {
     title,
     content,
@@ -41,7 +43,7 @@ export default function CommunityBoard(props: CommunityBoardType & {
     createTime,
     boardId,
     isBoardLike,
-    myInfo
+    myInfo,
   } = props;
 
   const getTimeOffsetFromNow = (postedAt: string) => {
@@ -61,10 +63,13 @@ export default function CommunityBoard(props: CommunityBoardType & {
   const [likeCount, setLikeCount] = useState(boardLikeCount);
   const [isLike, setIsLike] = useState(isBoardLike);
 
-  const [comment, setComment] = useState('');
-  const { mutate: postComment, isSuccess: isSuccessOfPost } = useApiPostComment();
-  const { mutate: updateLike, isSuccess: isSuccessOfUpdateLike } = useApiPostLike();
-  const { mutate: deleteLike, isSuccess: isSuccessOfDeleteLike } = useApiDeleteLike();
+  const [comment, setComment] = useState("");
+  const { mutate: postComment, isSuccess: isSuccessOfPost } =
+    useApiPostComment();
+  const { mutate: updateLike, isSuccess: isSuccessOfUpdateLike } =
+    useApiPostLike();
+  const { mutate: deleteLike, isSuccess: isSuccessOfDeleteLike } =
+    useApiDeleteLike();
 
   useEffect(() => {
     if (isSuccessOfPost) {
@@ -74,30 +79,30 @@ export default function CommunityBoard(props: CommunityBoardType & {
         {
           memberEmail: email,
           profile: profile,
-          createTime: '최근등록',
+          createTime: "최근등록",
           content: comment,
           commentId: 0,
           memberId: id,
-          name: nickname
-        }
+          name: nickname,
+        },
       ]);
-      setComment('');
+      setComment("");
     }
-  }, [isSuccessOfPost, myInfo])
+  }, [isSuccessOfPost, myInfo]);
 
   useEffect(() => {
     if (isSuccessOfUpdateLike) {
       setIsLike(true);
       setLikeCount((props) => props + 1);
     }
-  }, [isSuccessOfUpdateLike])
+  }, [isSuccessOfUpdateLike]);
 
   useEffect(() => {
     if (isSuccessOfDeleteLike) {
       setIsLike(false);
       setLikeCount((props) => props - 1);
     }
-  }, [isSuccessOfDeleteLike])
+  }, [isSuccessOfDeleteLike]);
 
   return (
     <div>
@@ -224,14 +229,15 @@ export default function CommunityBoard(props: CommunityBoardType & {
               margin-bottom: 2.3rem;
             `}
           >
-            <span
+            <div
+              id="content"
+              contentEditable={false}
+              dangerouslySetInnerHTML={{ __html: content }}
               css={css`
                 ${DESIGN_SYSTEM_TEXT.B1}
                 color: ${DESIGN_SYSTEM_COLOR.GRAY_700};
               `}
-            >
-              {content}
-            </span>
+            ></div>
           </div>
           {/* Bottom */}
           <div
@@ -248,13 +254,16 @@ export default function CommunityBoard(props: CommunityBoardType & {
               `}
             >
               {/* Button */}
-              <IconButton onClick={(() => {
-                if (isLike) {
-                  deleteLike(boardId)
-                } else {
-                  updateLike(boardId)
-                }
-              })} src={isLike ? Heart : DefaultHeart}>
+              <IconButton
+                onClick={() => {
+                  if (isLike) {
+                    deleteLike(boardId);
+                  } else {
+                    updateLike(boardId);
+                  }
+                }}
+                src={isLike ? Heart : DefaultHeart}
+              >
                 {likeCount}
               </IconButton>
               <IconButton src={boardCommentCount ? Comment : DefaultComment}>
@@ -334,14 +343,14 @@ export default function CommunityBoard(props: CommunityBoardType & {
                         </span>
                       </div>
                       {/* bottom */}
-                      <span
+                      <div
                         css={css`
                           ${DESIGN_SYSTEM_TEXT.B1}
                           color: ${DESIGN_SYSTEM_COLOR.GRAY_700};
                         `}
                       >
                         {row.content}
-                      </span>
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -378,14 +387,18 @@ export default function CommunityBoard(props: CommunityBoardType & {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
-            <img src={SendBtn} alt="" onClick={() => {
-              if (comment.length > 0) {
-                postComment({
-                  boardId: props.boardId,
-                  content: comment
-                })
-              }
-            }} />
+            <img
+              src={SendBtn}
+              alt=""
+              onClick={() => {
+                if (comment.length > 0) {
+                  postComment({
+                    boardId: props.boardId,
+                    content: comment,
+                  });
+                }
+              }}
+            />
           </div>
         </div>
       </div>

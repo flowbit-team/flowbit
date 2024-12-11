@@ -196,7 +196,7 @@ export default function CommunityPage() {
         >
           <CommunityCreateBtn
             onClick={createBoardModal}
-            profile={data?.data.data.profile || ""}
+            profile={data?.data?.data?.profile || ""}
           ></CommunityCreateBtn>
           <div
             css={css`

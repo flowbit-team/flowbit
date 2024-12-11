@@ -58,7 +58,6 @@ export function Modal() {
             border: 1px solid #cbcbcb;
             border-radius: 1rem;
             padding: 2.9rem 2.4rem;
-
             display: flex;
             flex-direction: column;
             text-align: center;
@@ -98,23 +97,21 @@ export function Modal() {
               width: 100%;
               position: relative;
               margin-top: auto;
-
               div {
                 width: 100%;
               }
             `}
           >
-            {/*<Button*/}
-            {/*  css={css`*/}
-            {/*    background-color: ${DESIGN_SYSTEM_COLOR.BLUE_GRAY_50};*/}
-            {/*    color: ${DESIGN_SYSTEM_COLOR.GRAY_400};*/}
-            {/*  `}*/}
-            {/*  onClick={close}*/}
-            {/*>*/}
-            {/*  취소*/}
-            {/*</Button>*/}
-            {/*<Button onClick={modalDataState.callBack}>확인</Button>*/}
-            <Button onClick={close}>확인</Button>
+            <Button
+              css={css`
+                background-color: ${DESIGN_SYSTEM_COLOR.BLUE_GRAY_50};
+                color: ${DESIGN_SYSTEM_COLOR.GRAY_400};
+              `}
+              onClick={close}
+            >
+              취소
+            </Button>
+            <Button onClick={modalDataState.callBack}>확인</Button>
           </div>
         </div>
       </div>

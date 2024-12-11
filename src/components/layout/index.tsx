@@ -1,15 +1,27 @@
 import "@/style/global.css";
 import { Fragment, useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "./header";
 import Footer from "./footer";
 import Sidebar from "./sidebar";
 import { UseScrollToTop } from "@/components/common/util/ScrollToTop.tsx";
+import { setGlobalNavigate } from "@/utils/globalNavigate";
 
 export default function GlobalLayout() {
   const location = useLocation();
   const [isScroll, setIsScroll] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setGlobalNavigate(navigate);
+  }, [navigate]);
 
   // 사용자의 scroll 동작 여부에 따라 상태 값 변경
   const handleScroll = () => {
@@ -19,16 +31,6 @@ export default function GlobalLayout() {
       setIsScroll(true);
     }
   };
-
-  useEffect(() => {
-    // scroll animation 추가
-    window.addEventListener("scroll", handleScroll);
-
-    // clean up
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <Fragment>

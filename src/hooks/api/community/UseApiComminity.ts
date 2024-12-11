@@ -18,7 +18,7 @@ export type ApiCommunityProps = {
   searchWord: string;
 };
 
-export function UseApiCommunity(props: ApiCommunityProps) {
+function UseApiCommunity(props: ApiCommunityProps) {
   const getCommunityBoard = async (props: ApiCommunityProps) => {
     const { page, size, sort, category, searchWord } = props;
 
@@ -40,7 +40,7 @@ export function UseApiCommunity(props: ApiCommunityProps) {
   });
 }
 
-export function UseInfiniteApiCommunity({
+function UseInfiniteApiCommunity({
   sort,
   searchWord,
   category,
@@ -67,3 +67,5 @@ export function UseInfiniteApiCommunity({
     },
   });
 }
+
+export { UseApiCommunity, UseInfiniteApiCommunity };

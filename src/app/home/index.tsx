@@ -2,7 +2,12 @@ import Button from "@/components/common/Button";
 import Lottie from "lottie-react";
 import { BREAK_POINTS, DESIGN_SYSTEM_COLOR } from "@/style/variable";
 import { css } from "@emotion/react";
-import { NEWS_LETTER_URL, PREDICT_URL, numberWithCommas } from "@/utils/util";
+import {
+  COMMUNITY_URL,
+  NEWS_LETTER_URL,
+  PREDICT_URL,
+  numberWithCommas,
+} from "@/utils/util";
 import BitImg from "@/assets/blue_bit.svg";
 import EtherImg from "@/assets/blue_ether.svg";
 import RippleImg from "@/assets/blue_rip.svg";
@@ -19,6 +24,8 @@ import { useGetChartDataQuery } from "@/api/chartApi";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "@/hooks/useModal.ts";
+import { useAtom } from "jotai";
+import { loginState } from "@/store/user";
 
 type CoinInfoType = {
   [coin in "BTC" | "ETH" | "XRP"]: {
@@ -35,9 +42,9 @@ export default function HomePage() {
   const getXRPData = useGetChartDataQuery("XRP");
 
   const [coinInfo, setCoinInfo] = useState<CoinInfoType>();
+  const [isLogin, _] = useAtom(loginState);
   const { open, close } = useModal();
-
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!getBTCData.isSuccess || !getETHData.isSuccess || !getXRPData.isSuccess)
@@ -83,6 +90,25 @@ export default function HomePage() {
     getXRPData.data?.datas,
     getXRPData.isSuccess,
   ]);
+
+  /**
+   * @description 로그인이 되어있는지 되어있지 않는지에 대한 판별 여부를 확인하는 함수입니다.
+   */
+  const validateLoginState = () => {
+    if (isLogin) {
+      navigate(COMMUNITY_URL);
+    } else {
+      open({
+        title: "로그인을 먼저 진행해주세요",
+        content:
+          "플로우빗 커뮤니티 기능은 회원을 위한 기능입니다.\n원활한 서비스 이용을 위해 로그인을 먼저 진행해주세요",
+        callBack: () => {
+          close();
+          navigate("/signin");
+        },
+      });
+    }
+  };
 
   return (
     <article
@@ -161,7 +187,7 @@ export default function HomePage() {
                   font-weight: normal;
                 `}
                 onClick={() => {
-                  navigation("/predict");
+                  navigate("/predict");
                 }}
               >
                 시작하기
@@ -179,14 +205,7 @@ export default function HomePage() {
                   border: 1px solid ${DESIGN_SYSTEM_COLOR.BRAND_BLUE};
                 `}
                 onClick={() => {
-                  open({
-                    title: "현재 해당 기능은 준비 중입니다.",
-                    content:
-                      "비트코인에 대한 정보를 나눌 수 있는 회원 서비스는\n현재 빠르게 개발을 진행하고 있습니다, 잠시만 기다려주세요!",
-                    callBack: () => {
-                      close();
-                    },
-                  });
+                  navigate("/signup");
                 }}
               >
                 회원가입
@@ -321,10 +340,7 @@ export default function HomePage() {
             {/* TOP */}
             <div className="card">
               {/* 비트코인 */}
-              <div
-                className="card-item"
-                onClick={() => navigation(PREDICT_URL)}
-              >
+              <div className="card-item" onClick={() => navigate(PREDICT_URL)}>
                 {/* 이미지 */}
                 <img className="char-logo" src={BitImg} alt="Logo Img" />
                 <div
@@ -361,10 +377,7 @@ export default function HomePage() {
                 </div>
               </div>
               {/* 이더리움 */}
-              <div
-                className="card-item"
-                onClick={() => navigation(PREDICT_URL)}
-              >
+              <div className="card-item" onClick={() => navigate(PREDICT_URL)}>
                 {/* 이미지 */}
                 <img className="char-logo" src={EtherImg} alt="Logo Img" />
                 <div
@@ -403,7 +416,7 @@ export default function HomePage() {
               {/* 리플 */}
               <div
                 className="card-item last"
-                onClick={() => navigation(PREDICT_URL)}
+                onClick={() => navigate(PREDICT_URL)}
               >
                 {/* 이미지 */}
                 <img className="char-logo" src={RippleImg} alt="Logo Img" />
@@ -454,12 +467,12 @@ export default function HomePage() {
               `}
             >
               {/* 뉴스레타 로티 */}
-              <div className="card" onClick={() => navigation(NEWS_LETTER_URL)}>
+              <div className="card" onClick={() => navigate(NEWS_LETTER_URL)}>
                 <div className="badge">뉴스레터</div>
                 <Lottie animationData={NewletterAni} loop={false} />
               </div>
               {/* 코멘트 로티 */}
-              <div className="card">
+              <div className="card" onClick={validateLoginState}>
                 <div className="badge">커뮤니티</div>
                 <Lottie animationData={CommunityAni} loop={false} />
               </div>

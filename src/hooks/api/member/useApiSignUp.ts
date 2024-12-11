@@ -10,7 +10,6 @@ interface signUpProps {
 }
 
 const random = () => randomInt(0, 9);
-console.log(random);
 
 export const signUp = ({
   userId,
