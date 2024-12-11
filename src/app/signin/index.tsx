@@ -9,16 +9,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { css } from "@emotion/react";
 import Logo from "@/assets/logo.png";
 import SplitLine from "@/components/common/SplitLine.tsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signIn } from "@/hooks/api/member/useApiSignIn.ts";
 import { loginState } from "@/store/user";
 import { useAtom } from "jotai";
+import { ACT } from "@/utils/common";
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [emailCheck, setEmailCheck] = useState(false);
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   const EMAIL_REGEX =
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const [_, setLogin] = useAtom(loginState);
@@ -26,6 +27,29 @@ export default function SignIn() {
     "https://api.flowbit.co.kr/user-service/oauth2/authorization/google";
   const kakaoURL =
     "https://api.flowbit.co.kr/user-service/oauth2/authorization/kakao";
+
+  useEffect(() => {
+    if (localStorage.getItem(ACT)) {
+      localStorage.removeItem(ACT);
+      setLogin(false);
+    }
+  }, []);
+
+  const handleSignIn = async () => {
+    signIn({ email, password })
+      .then((res) => {
+        localStorage.setItem("FLOWBIT_ACT", res.data.accessToken);
+        setLogin(true);
+        navigate("/community");
+      })
+      .catch(({ status }) => {
+        if (status === 401) {
+          alert("잘못된 계정입니다, 다시 입력해주세요.");
+        } else {
+          alert("에러가 발생했습니다, 관리자에게 문의해주세요.");
+        }
+      });
+  };
 
   return (
     <ContainerToCenter>
@@ -71,17 +95,7 @@ export default function SignIn() {
           margin-top: 5.6rem;
         `}
         state={emailCheck && password.length > 5}
-        onClick={() => {
-          signIn({ email: email, password: password })
-            .then((res) => {
-              localStorage.setItem("FLOWBIT_ACT", res.data.accessToken);
-              setLogin(true);
-              navigate("/community");
-            })
-            .catch(() => {
-              alert("에러가 발생했습니다.");
-            });
-        }}
+        onClick={handleSignIn}
       >
         로그인
       </Button>
