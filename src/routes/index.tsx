@@ -5,7 +5,6 @@ import {
   RouterProvider,
   createBrowserRouter,
   RouteObject,
-  useNavigate,
 } from "react-router-dom";
 
 import SignIn from "@/app/signin";
