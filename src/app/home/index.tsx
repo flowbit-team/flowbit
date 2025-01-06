@@ -148,10 +148,56 @@ export default function HomePage() {
         >
           {/* LEFT SIDE */}
           <div>
+            <div
+              css={css`
+                position: relative;
+                width: 31.5rem;
+                height: 4rem;
+                padding: 0px;
+                background: #2f3b4b;
+                color: #ffffff;
+                border-radius: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &::after {
+                  content: "";
+                  position: absolute;
+                  border-style: solid;
+                  border-width: 1.5rem 1.2rem 0;
+                  border-color: #2f3b4b transparent;
+                  display: block;
+                  width: 0;
+                  z-index: 1;
+                  margin-left: -2.6rem;
+                  bottom: -1rem;
+                  left: 13%;
+                }
+
+                ${BREAK_POINTS.TABLET} {
+                }
+
+                ${BREAK_POINTS.MOBILE} {
+                }
+              `}
+            >
+              <p>
+                <span
+                  css={css`
+                    color: #33c2ff;
+                  `}
+                >
+                  {totalVisit}
+                </span>
+                명이 플로우빗과 함께하고 있어요
+              </p>
+            </div>
             <h1
               css={css`
                 font-size: 4.8rem;
                 line-height: 7.2rem;
+                margin-top: 20px;
 
                 ${BREAK_POINTS.TABLET} {
                 }
