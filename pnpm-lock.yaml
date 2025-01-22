@@ -26,6 +26,9 @@ dependencies:
   jotai:
     specifier: ^2.9.0
     version: 2.9.0(@types/react@18.2.61)(react@18.2.0)
+  jsdoc-builder:
+    specifier: ^0.0.2
+    version: 0.0.2
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -1406,6 +1409,11 @@ packages:
       delayed-stream: 1.0.0
     dev: false
 
+  /commander@10.0.1:
+    resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
+    engines: {node: '>=14'}
+    dev: false
+
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
@@ -1952,6 +1960,14 @@ packages:
       argparse: 2.0.1
     dev: true
 
+  /jsdoc-builder@0.0.2:
+    resolution: {integrity: sha512-eA0ZOmm/K/NtDSv8ATPeUyG4dMc46ATrR8VsYjWxYNJU8pSz4va3XnOaQH3/fvQ7ih0xP+xwMaFYMdCNblvUFg==}
+    hasBin: true
+    dependencies:
+      commander: 10.0.1
+      typescript: 5.3.3
+    dev: false
+
   /jsesc@2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
     engines: {node: '>=4'}
@@ -2496,7 +2512,6 @@ packages:
     resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
