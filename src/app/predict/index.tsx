@@ -146,9 +146,9 @@ export default function PredictPage() {
                 }
               `}
             >
-              모델에 대한 설명 및 적합도에 대한 내용 어쩌고모델에 대한 설명 및
-              적합도에 대한 내용 어쩌고모델에 대한 설명 및 적합도에 대한 내용
-              어쩌고
+              Flowbit 학습모델의 예측값이 실제 데이터 패턴을 얼마나 잘
+              설명하는지를 나타내는 지표입니다. 지표가 높을수록 예측 정확도가
+              높아집니다.
             </p>
             <FitNess fitnessScore={96}></FitNess>
           </div>
