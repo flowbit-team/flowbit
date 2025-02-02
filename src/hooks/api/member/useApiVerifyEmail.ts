@@ -3,7 +3,7 @@ import { api } from "@/api";
 interface verifyEmailProps {
   email: string;
   randomNumber: string;
-  emailPurpose: string;
+   emailPurpose: 'SIGNUP' | 'SUBSCRIBE'
 }
 export const verifyEmail = ({ email, randomNumber, emailPurpose }: verifyEmailProps) => {
   const res = api.post(`/user-service/api/v1/mail/verify`, {

@@ -8,6 +8,7 @@ import { sendSubscribeEmail } from "@/hooks/api/subscribe/useApiSendSubscribe";
 import { BREAK_POINTS, DESIGN_SYSTEM_COLOR } from "@/style/variable";
 import { EMAIL_PURPOSE } from "@/utils/common";
 import { useModal } from "@/hooks/useModal";
+import { EMAIL_REGEX } from "@/utils/regex";
 
 export const SubscriptionModalContent = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +22,6 @@ export const SubscriptionModalContent = () => {
   });
   const { close } = useModal();
 
-  const EMAIL_REGEX = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
