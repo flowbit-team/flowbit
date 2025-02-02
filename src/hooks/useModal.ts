@@ -12,9 +12,10 @@ export const useModal = () => {
   }, [modalDataState, setModalDataState]);
 
   const open = useCallback(
-    ({ content, title, callBack }: Omit<ModalType, "isOpen">) => {
+    ({ isVisibleBtn, content, title, callBack }: Omit<ModalType, "isOpen">) => {
       setModalDataState({
         isOpen: true,
+        isVisibleBtn: isVisibleBtn ?? true,
         title,
         content,
         callBack,

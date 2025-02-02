@@ -14,6 +14,7 @@ import { useState } from "react";
 import { sendVerifyEmail } from "@/hooks/api/member/useApiSendVerifyEmail.ts";
 import { verifyEmail } from "@/hooks/api/member/useApiVerifyEmail.ts";
 import { useNavigate } from "react-router-dom";
+import { EMAIL_PURPOSE } from "@/utils/common";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -82,7 +83,7 @@ export default function SignUp() {
           <CertificateBox
             check={emailCheck && !verifySendCheck}
             onClick={() => {
-              sendVerifyEmail({ email: email });
+              sendVerifyEmail({ email: email, emailPurpose: EMAIL_PURPOSE.SIGNUP});
               setVerifySendCheck(true);
             }}
           >
@@ -105,6 +106,7 @@ export default function SignUp() {
                 verifyEmail({
                   email: email,
                   randomNumber: verifyEmailNum,
+                  emailPurpose: EMAIL_PURPOSE.SIGNUP
                 })
                   .then(() => {
                     setVerifyEmailNumCheck(true);
