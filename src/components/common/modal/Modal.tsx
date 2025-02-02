@@ -53,7 +53,7 @@ export function Modal() {
             width: 100%;
             height: 100%;
             max-width: 51rem;
-            max-height: 26.3rem;
+            max-height: fit-content;
             background-color: #ffffff;
             border: 1px solid #cbcbcb;
             border-radius: 1rem;
@@ -61,6 +61,7 @@ export function Modal() {
             display: flex;
             flex-direction: column;
             text-align: center;
+            row-gap: 3rem;
           `}
         >
           <div
@@ -91,7 +92,7 @@ export function Modal() {
 
           <div
             css={css`
-              display: flex;
+              display:${modalDataState.isVisibleBtn ? 'flex' : 'none'};
               align-items: center;
               column-gap: 1.2rem;
               width: 100%;

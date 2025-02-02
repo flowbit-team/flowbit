@@ -3,4 +3,9 @@
  */
 const ACT = "FLOWBIT_ACT";
 
-export { ACT };
+const EMAIL_PURPOSE = {
+    SIGNUP: 'SIGNUP',
+    SUBSCRIBE: 'SUBSCRIBE',
+} as const
+
+export { ACT, EMAIL_PURPOSE };

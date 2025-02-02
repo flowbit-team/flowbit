@@ -14,7 +14,8 @@ import { useState } from "react";
 import { sendVerifyEmail } from "@/hooks/api/member/useApiSendVerifyEmail.ts";
 import { verifyEmail } from "@/hooks/api/member/useApiVerifyEmail.ts";
 import { useNavigate } from "react-router-dom";
-
+import { EMAIL_PURPOSE } from "@/utils/common";
+import { EMAIL_REGEX } from "@/utils/regex";
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [emailCheck, setEmailCheck] = useState(false);
@@ -26,8 +27,6 @@ export default function SignUp() {
   const [verifyPassWordNum, setVerifyPassWordNum] = useState("");
   const [viewVerifyPassword, setViewVerifyPassword] = useState(false);
   const [nickname, setNickName] = useState("");
-  const EMAIL_REGEX =
-    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
   const navigate = useNavigate();
 
@@ -82,7 +81,7 @@ export default function SignUp() {
           <CertificateBox
             check={emailCheck && !verifySendCheck}
             onClick={() => {
-              sendVerifyEmail({ email: email });
+              sendVerifyEmail({ email: email, emailPurpose: EMAIL_PURPOSE.SIGNUP});
               setVerifySendCheck(true);
             }}
           >
@@ -105,6 +104,7 @@ export default function SignUp() {
                 verifyEmail({
                   email: email,
                   randomNumber: verifyEmailNum,
+                  emailPurpose: EMAIL_PURPOSE.SIGNUP
                 })
                   .then(() => {
                     setVerifyEmailNumCheck(true);
