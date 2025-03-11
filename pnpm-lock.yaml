@@ -27,8 +27,8 @@ dependencies:
     specifier: ^2.9.0
     version: 2.9.0(@types/react@18.2.61)(react@18.2.0)
   jsdoc-builder:
-    specifier: ^0.0.2
-    version: 0.0.2
+    specifier: ^0.0.6
+    version: 0.0.6
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -1960,8 +1960,8 @@ packages:
       argparse: 2.0.1
     dev: true
 
-  /jsdoc-builder@0.0.2:
-    resolution: {integrity: sha512-eA0ZOmm/K/NtDSv8ATPeUyG4dMc46ATrR8VsYjWxYNJU8pSz4va3XnOaQH3/fvQ7ih0xP+xwMaFYMdCNblvUFg==}
+  /jsdoc-builder@0.0.6:
+    resolution: {integrity: sha512-zBjoNoaFmih+z4qorh8/TDT4BzPO+4nUfqmVTAs/i0GnObLvctROBOtpxHGCKFswzkzygsLkdFZznPtMmmQjXw==}
     hasBin: true
     dependencies:
       commander: 10.0.1

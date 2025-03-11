@@ -37,20 +37,20 @@ export function chartDataParser(
       data = {
         label: element.label,
         data: coinType === "BTC" ? element.datas.slice(7) : element.datas,
-        width: 2,
-        color: "#0056CA",
+        width: 1,
+        color: "rgba(48, 118, 212, 1)",
         min: chartDataResponse.min,
         max: chartDataResponse.max,
         drawMode: "area",
-        areaColor: "rgba(0, 86, 202, .7)",
+        areaColor: "rgba(96, 150, 222, 0.3)",
       };
     } else {
       // 예측 가격 차트
       data = {
         label: element.label,
         data: element.datas,
-        width: 2,
-        color: "#00285D",
+        width: 1,
+        color: "rgba(255, 91, 91, 1)",
         min: chartDataResponse.min,
         max: chartDataResponse.max,
         drawMode: "dotted",

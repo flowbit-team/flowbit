@@ -88,7 +88,7 @@ export class Chart {
 
   // layout
   private width: number;
-  private hegiht: number;
+  private height: number;
   private fontSize: number;
   private padding: ChartPaddingType = { bottom: 0, left: 0, top: 0, right: 0 };
 
@@ -132,7 +132,7 @@ export class Chart {
     } = data;
     this.targetId = targetId;
     this.width = size.width;
-    this.hegiht = size.height;
+    this.height = size.height;
     this.fontSize = size.font;
     this.backgrondColor = backgroundColor;
     this.datas = datas;
@@ -150,8 +150,9 @@ export class Chart {
     this.chart = this.createSvgElement("svg", [
       { property: "id", value: "flowbit_svg" },
       { property: "xmlns", value: "http://www.w3.org/2000/svg" },
-      { property: "viewBox", value: `0 0 ${this.width} ${this.hegiht}` },
-      { property: "style", value: "position: relative" },
+      { property: "viewBox", value: `0 0 ${this.width} ${this.height}` },
+      { property: "preserveAspectRatio", value: "xMidYMid meet" },
+      { property: "style", value: "position: relative;" },
     ]);
 
     if (this.backgrondColor)
@@ -367,7 +368,7 @@ export class Chart {
       // top: this.fontSize * 5 + this.datas.length * 25,
       top: this.fontSize * 7,
       left: 20,
-      right: textLength * 1.5,
+      right: textLength * 2,
     };
   };
 
@@ -414,6 +415,7 @@ export class Chart {
       { property: "id", value: "flowbit_hoverPoint" },
       { property: "visibility", value: "hidden" },
     ]);
+
     this.datas.forEach((_, i) => {
       const point = this.createSvgElement("circle", [
         { property: "id", value: `flowbit_hoverPoint${i}` },
@@ -438,7 +440,7 @@ export class Chart {
       },
       {
         property: "height",
-        value: `${this.hegiht - this.padding.bottom - this.padding.top}`,
+        value: `${this.height - this.padding.bottom - this.padding.top}`,
       },
       {
         property: "id",
@@ -649,8 +651,8 @@ export class Chart {
   //   const xAxis = this.createSvgElement("line", [
   //     { property: "x1", value: this.padding.left + "" },
   //     { property: "x2", value: this.width - this.padding.right + "" },
-  //     { property: "y1", value: this.hegiht - this.padding.bottom + "" },
-  //     { property: "y2", value: this.hegiht - this.padding.bottom + "" },
+  //     { property: "y1", value: this.height - this.padding.bottom + "" },
+  //     { property: "y2", value: this.height - this.padding.bottom + "" },
   //     { property: "class", value: "axis__x" },
   //   ]);
 
@@ -659,7 +661,7 @@ export class Chart {
   //     { property: "x1", value: this.padding.left + "" },
   //     { property: "x2", value: this.padding.left + "" },
   //     { property: "y1", value: this.padding.top + "" },
-  //     { property: "y2", value: this.hegiht - this.padding.bottom + "" },
+  //     { property: "y2", value: this.height - this.padding.bottom + "" },
   //     { property: "class", value: "axis__y" },
   //   ]);
 
@@ -699,7 +701,7 @@ export class Chart {
           (i / (this.showDataCount - 1)) *
             (this.width - this.padding.left - this.padding.right) +
           this.padding.left;
-        const y = this.hegiht - this.padding.bottom + gapFromAxiosAndLabel;
+        const y = this.height - this.padding.bottom + gapFromAxiosAndLabel;
         const text = this.createSvgElement("text", [
           { property: "x", value: x + "" },
           { property: "y", value: y + "" },
@@ -715,7 +717,7 @@ export class Chart {
           (i / (this.xAxisCount - 1)) *
             (this.width - this.padding.left - this.padding.right) +
           this.padding.left;
-        const y = this.hegiht - this.padding.bottom + gapFromAxiosAndLabel;
+        const y = this.height - this.padding.bottom + gapFromAxiosAndLabel;
 
         const text = this.createSvgElement("text", [
           { property: "x", value: x + "" },
@@ -735,7 +737,7 @@ export class Chart {
 
       // Y 좌표 생성
       const y =
-        (this.hegiht - this.padding.bottom - this.padding.top) *
+        (this.height - this.padding.bottom - this.padding.top) *
           (i / this.yAxisCount) +
         this.padding.top;
 
@@ -775,7 +777,7 @@ export class Chart {
       const x1 = this.padding.left;
       const x2 = this.width - this.padding.right;
       const y =
-        (this.hegiht - this.padding.bottom - this.padding.top) *
+        (this.height - this.padding.bottom - this.padding.top) *
           (i / this.yAxisCount) +
         this.padding.top;
 
@@ -798,22 +800,38 @@ export class Chart {
    * @param {Coordinate} coordinate 원이 그려질 좌표 값
    * @param {string} color          원의 색상 값
    */
-  private drawCircle = (
-    canvas: SVGSVGElement,
-    coordinate: Coordinate,
-    color: string,
-  ) => {
-    // 접점의 좌표 값(coordinates[0])
-    const contactPoint = this.createSvgElement("circle", [
-      { property: "cx", value: coordinate.x + "" },
-      { property: "cy", value: coordinate.y + "" },
-      { property: "r", value: "6" },
-      { property: "stroke", value: color },
-      { property: "stroke-width", value: "2" },
-      { property: "fill", value: "white" },
+  private drawCircle = (canvas: SVGSVGElement, coordinate: Coordinate) => {
+    // 이 circle이 올라온 높이까지 바닥부터 선을 그려주고싶어서 추가한 코드
+    const line = this.createSvgElement("line", [
+      { property: "x1", value: coordinate.x + "" },
+      { property: "y1", value: this.height - this.padding.bottom + "" },
+      { property: "x2", value: coordinate.x + "" },
+      { property: "y2", value: coordinate.y + "" },
+      { property: "stroke-linecap", value: "round" },
+      { property: "stroke", value: "rgba(45, 45, 45, 1)" },
+      { property: "stroke-dasharray", value: "3 3" },
+      { property: "stroke-width", value: "1" },
     ]);
 
-    this.appendChilds(canvas, [contactPoint]);
+    const outerCircle = this.createSvgElement("circle", [
+      { property: "cx", value: coordinate.x + "" },
+      { property: "cy", value: coordinate.y + "" },
+      { property: "r", value: "12" },
+      { property: "fill", value: "rgba(45, 45, 45, 0.3)" },
+      { property: "class", value: "shiny-circle" }, // 애니메이션을 적용할 클래스 추가
+    ]);
+
+    // 작은 원 (내부 원)
+    const innerCircle = this.createSvgElement("circle", [
+      { property: "cx", value: coordinate.x + "" },
+      { property: "cy", value: coordinate.y + "" },
+      { property: "r", value: "6" }, // 작은 원의 반지름
+      { property: "fill", value: "rgba(45, 45, 45, 1)" }, // 내부 원의 색은 파라미터로 받은 color 값
+      { property: "class", value: "shiny-circle" }, // 애니메이션을 적용할 클래스 추가
+    ]);
+
+    // 두 원을 canvas에 추가
+    this.appendChilds(canvas, [outerCircle, innerCircle, line]);
   };
 
   /**
@@ -834,10 +852,10 @@ export class Chart {
 
     // 배열 값을 가지고 y좌표 값을 구함
     const y =
-      this.hegiht -
+      this.height -
       this.padding.top -
       this.padding.bottom -
-      (this.hegiht - this.padding.bottom - this.padding.top) *
+      (this.height - this.padding.bottom - this.padding.top) *
         ((data - this.minData) / (this.maxData - this.minData)) +
       this.padding.top;
     return {
@@ -883,7 +901,7 @@ export class Chart {
   private createLinearGradient = (
     gradientColorList: GradientColor[],
   ): string => {
-    const gradientId = "flowbit-id-" + new Date().getTime();
+    const gradientId = "flowbit-id-" + Math.random().toString(36).substr(2, 9);
     const linearGradientTag = this.createSvgElement("linearGradient", [
       { property: "id", value: gradientId + "" },
       { property: "gradientTransform", value: "rotate(90)" },
@@ -963,7 +981,7 @@ export class Chart {
           // drawMode가 area일 경우 새로운 path 태그를 만들고 fill 옵션을 사용해 area 색상 부여
           // area 차트의 좌표 값 생성
           const areaPointList = [...svgPathFromCoordinates];
-          areaPointList.push(`V ${this.hegiht - this.padding.bottom}`);
+          areaPointList.push(`V ${this.height - this.padding.bottom}`);
           areaPointList.push(`H ${coordinates[0].x}`);
           const areaPath = this.createSvgElement("path", [
             { property: "d", value: areaPointList.join(" ") },
@@ -974,13 +992,34 @@ export class Chart {
 
           break;
         case "dotted":
+          /** 요구사항에 따른  */
+          const areaGradientColorForDotted = this.createLinearGradient([
+            { offset: "0", stopColor: areaColor },
+            { offset: "1", stopColor: "rgba(255, 255, 255, 0)" },
+          ]);
+
+          const areaPointListforDotted = [...svgPathFromCoordinates];
+          areaPointListforDotted.push(`V ${this.height - this.padding.bottom}`);
+          areaPointListforDotted.push(`H ${coordinates[0].x}`);
+          const areaPathforDotted = this.createSvgElement("path", [
+            { property: "d", value: areaPointListforDotted.join(" ") },
+            { property: "fill", value: `url(#${areaGradientColorForDotted})` },
+          ]);
+
           // 속성 값
-          // drawMode가 dotted일 경우 stroke-dasharray 옵션을 사용해 점선을 생성하고 stroke 옵션을 사용해 선 색상 부여
           defaultOptions.push({
             property: "stroke-dasharray",
-            value: "13",
+            value: "4 4",
           });
+          defaultOptions.push({
+            property: "stroke-linecap",
+            value: "round",
+          });
+
+          this.appendChilds(gTagOfPath, [areaPathforDotted]);
+
           break;
+
         default:
           throw new Error("can't find drawMode, your drawMode is " + drawMode);
       }
@@ -996,7 +1035,8 @@ export class Chart {
           data[data.length - this.showDataCount + showedDataCount],
           showedDataCount,
         );
-        this.drawCircle(gTagOfPath, contactCoordinate, color);
+        // 아래로 직선인 선을 만들고싶어서 y값을 더해줌
+        this.drawCircle(gTagOfPath, contactCoordinate);
       }
 
       // 현재까지 보여준 데이터 개수 갱신
@@ -1143,15 +1183,31 @@ export class Chart {
     }[] = [];
 
     // 2. Draw Hover line Like Y Axios Guidline
-    const pathOfGuidLine = `M ${
+    // X 좌표 계산
+    const xPosition =
       (index / (this.showDataCount - 1)) *
         (this.width - this.padding.left - this.padding.right) +
-      this.padding.left
-    },${this.padding.top} V${this.hegiht - this.padding.bottom}`;
-    this.hoverGuidLineContainer.setAttribute("d", pathOfGuidLine);
+      this.padding.left;
+
+    // Y 좌표 계산 (마우스 Y 좌표 반영)
+    const mouseY = e.clientY - rect.top;
+    const yPosition = Math.min(
+      Math.max(mouseY + 100, this.padding.top),
+      this.height - this.padding.bottom,
+    );
+
+    // X축 + Y축 가이드라인 경로
+    const pathOfGuidLines = `
+     M ${xPosition},${this.padding.top} V${this.height - this.padding.bottom} 
+     M ${this.padding.left},${yPosition} H${this.width - this.padding.right}
+     `;
+
+    // 기존 hoverGuidLineContainer에 X축 + Y축 경로 함께 추가
+    this.hoverGuidLineContainer.setAttribute("d", pathOfGuidLines);
     this.hoverGuidLineContainer.setAttribute("visibility", "visible");
 
     // 3. Set Pointer on the data line
+
     this.datas.forEach((_) => {
       const { data, label } = _;
       const diff = this.maxChartDataCount - data.length;

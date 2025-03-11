@@ -14,6 +14,8 @@ import XRPImg from "@/assets/xrp.png";
 
 import DownArrow from "@/assets/down-arrow.svg";
 
+export type CoinType = "BTC" | "ETH" | "XRP";
+
 const setChart = (chartData: ChartType) => {
   const chart = new ChartLib(chartData);
 
@@ -31,7 +33,6 @@ const COIN_DICT = {
   ETH: "이더리움",
   XRP: "리플",
 };
-export type CoinType = "BTC" | "ETH" | "XRP";
 
 // Chart 컴포넌트
 export default function Chart() {
@@ -147,8 +148,8 @@ export default function Chart() {
           >
             {getPredictPriceResponse.isSuccess
               ? getPredictPriceResponse.data?.data[
-                coinType
-              ].predicted_data?.predicted_krw.toLocaleString("ko-KR")
+                  coinType
+                ].predicted_data?.predicted_krw.toLocaleString("ko-KR")
               : ""}{" "}
             KWR
           </span>
