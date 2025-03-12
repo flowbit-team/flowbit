@@ -64,7 +64,5 @@ export function chartDataParser(
 
   chartData.labels = chartDataResponse.label;
 
-  console.log(chartData.labels);
-
   return chartData;
 }
