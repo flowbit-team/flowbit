@@ -1229,16 +1229,44 @@ export class Chart {
       hoverCardString = `
       <style>
         .flowbit-hover-card {
-          width: 256px;
+          width: 100%;
+          min-width: 153px;
+          max-width: fit-content;
+          height: 87px;
+          box-sizing: border-box;
           background-color: #fff;
           border-radius: 4px;
-          border: 2px solid #eee;
-          padding: 16px 20px;
+          border: 1px solid #eee;
+          padding: 12px;
           color: #9E9E9E;
           visibility: hidden;
           position: absolute;
           z-index: 2;
         }
+          
+        .flowbit-hover-container {
+          display: flex;
+          flex-direction: column;
+          row-gap: .4rem;
+        }
+
+        .flowbit-hover-card::after {
+              content: "";
+              display: block;
+              position: absolute;
+              bottom: -6px;
+              left: 50%;
+              width: 10px;
+              height: 10px;
+              margin-left: -5px;
+              border-left: 1px solid #eee;
+              border-top: 1px solid #eee;
+              background-color: #fff;
+              -webkit-transform: rotate(225deg);
+              -moz-transform: rotate(225deg);
+              transform: rotate(225deg);
+        }
+          
         .flowbit-hover-card__title {
           display: flex;
           justify-content: space-between;
@@ -1249,8 +1277,9 @@ export class Chart {
           letter-spacing: 2%;
         }
         .flowbit-hover-card__badge {
-          font-size: 16px;
-          font-weight: bold;
+          font-size: 1.4rem;
+          line-height: 1.5;
+          font-weight: 600;
           letter-spacing: 2%;
         }
         .flowbit-hover-card__badge.red {
@@ -1260,6 +1289,9 @@ export class Chart {
           color: #0056CA;
         }
         .flowbit-hover-card__contentList {
+          display: flex;
+          flex-direction: column;
+          row-gap: 0.2rem;
           list-style-type: none;
           padding: 0;
           margin: 0;
@@ -1267,8 +1299,22 @@ export class Chart {
         .flowbit-hover-card__content {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: left;
+          column-gap: .8rem;
+          
+          span {
+           line-height: 1.5;
+           letter-spacing: 0.02rem;
+           font-size: 12px;
+           font-weight: 400;
+          }
+
+          span:nth-of-type(2) {
+            color: rgba(85, 85, 85, 1);
+            font-weight: 600;
+          }
         }
+
         .flowbit-hover-card__content h2,
         .flowbit-hover-card__content h1 {
           font-size: 14px;
@@ -1285,21 +1331,19 @@ export class Chart {
           color: #0056CA;
         }
       </style>
-      <div>
+      <div class="flowbit-hover-container">
         <div class="flowbit-hover-card__title">
-          <h1 class="flowbit-hover-card__date">${
-            this.labels[this.labels.length - this.showDataCount + index]
-          }</h1>
-          <span class="flowbit-hover-card__badge green">매수하세요</span>
+          <span class="flowbit-hover-card__badge green"> 예측 진행 중 </span>
         </div>
         <ul class="flowbit-hover-card__contentList">
+        
           <li class="flowbit-hover-card__content">
-            <h2>${dataInfoList[0].legend}</h2>
-            <h2>-</h2>
+            <span> 날짜 </span>
+            <span>${this.labels[this.labels.length - this.showDataCount + index]}</span>
           </li>
           <li class="flowbit-hover-card__content">
-            <h2>${dataInfoList[1].legend}</h2>
-            <h1>${dataInfoList[1].cur.toLocaleString()}</h1>
+          <span> 예측 가격 </span>
+          <span>${dataInfoList[1].cur.toLocaleString()}</span>
           </li>
         </ul>
       </div>
@@ -1312,16 +1356,44 @@ export class Chart {
       hoverCardString = `
       <style>
         .flowbit-hover-card {
-          width: 256px;
+          width: 100%;
+          min-width: 153px;
+          max-width: fit-content;
+          height: 110px;
+          box-sizing: border-box;
           background-color: #fff;
           border-radius: 4px;
           border: 2px solid #eee;
-          padding: 16px 20px;
+          line-height: 1.5;
+
+          padding: 12px;
           color: #9E9E9E;
           visibility: hidden;
           position: absolute;
           z-index: 2;
         }
+        .flowbit-hover-container {
+          display: flex;
+          flex-direction: column;
+          row-gap: .4rem;
+        }
+        .flowbit-hover-card::after {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -6px;
+          left: 50%;
+          width: 10px;
+          height: 10px;
+          margin-left: -5px;
+          border-left: 1px solid #eee;
+          border-top: 1px solid #eee;
+          background-color: #fff;
+          -webkit-transform: rotate(225deg);
+          -moz-transform: rotate(225deg);
+          transform: rotate(225deg);
+        }
+
         .flowbit-hover-card__title {
           display: flex;
           justify-content: space-between;
@@ -1332,9 +1404,9 @@ export class Chart {
           letter-spacing: 2%;
         }
         .flowbit-hover-card__badge {
-          font-size: 16px;
-          font-weight: bold;
+          font-size: 1.4rem;
           letter-spacing: 2%;
+          font-weight: 600;
         }
         .flowbit-hover-card__badge.red {
           color: #E74C4C;
@@ -1350,8 +1422,22 @@ export class Chart {
         .flowbit-hover-card__content {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: left;
+          column-gap: .8rem;
+
+          span {
+            line-height: 1.5;
+            letter-spacing: 0.02rem;
+            font-size: 12px;
+            font-weight: 400;
+          }
+
+          span:nth-of-type(2) {
+            color: rgba(85, 85, 85, 1);
+            font-weight: 600;
+          }
         }
+
         .flowbit-hover-card__content h2,
         .flowbit-hover-card__content h1 {
           font-size: 14px;
@@ -1368,23 +1454,24 @@ export class Chart {
           color: #0056CA;
         }
       </style>
-      <div>
+      <div class="flowbit-hover-container">
         <div class="flowbit-hover-card__title">
-          <h1 class="flowbit-hover-card__date">${
-            this.labels[this.labels.length - this.showDataCount + index]
-          }</h1>
           <span class="flowbit-hover-card__badge ${
             isCorrect ? "green" : "red"
           }">${isCorrect ? "예측 성공" : "예측 실패"}</span>
         </div>
         <ul class="flowbit-hover-card__contentList">
           <li class="flowbit-hover-card__content">
-            <h2>${dataInfoList[0].legend}</h2>
-            <h1>${dataInfoList[0].cur.toLocaleString()}</h1>
+            <span> 날짜 </span>
+            <span>${this.labels[this.labels.length - this.showDataCount + index]}</span>
           </li>
           <li class="flowbit-hover-card__content">
-            <h2>${dataInfoList[1].legend}</h2>
-            <h1>${dataInfoList[1].cur.toLocaleString()}</h1>
+            <span> 실제 가격 </span>
+            <span> ${dataInfoList[0].cur.toLocaleString()} </span>
+          </li>
+          <li class="flowbit-hover-card__content">
+            <span> 예측 가격 </span>
+            <span>${dataInfoList[1].cur.toLocaleString()}</span>
           </li>
         </ul>
       </div>
@@ -1403,13 +1490,13 @@ export class Chart {
     // console.log(this.predict.getBoundingClientRect().y);
 
     this.hoverCardContainer.style.visibility = "visible";
-    this.hoverCardContainer.style.top = `${e.offsetY + 20}px`;
+    this.hoverCardContainer.style.top = `${e.offsetY - 150}px`;
     if (persent > 0.5) {
       this.hoverCardContainer.style.left = `${e.clientX - 10}px`;
       this.hoverCardContainer.style.translate = "-100%";
     } else {
-      this.hoverCardContainer.style.left = `${e.clientX + 10}px`;
-      this.hoverCardContainer.style.translate = "0";
+      this.hoverCardContainer.style.left = `${e.clientX - 10}px`;
+      this.hoverCardContainer.style.translate = "-100%";
     }
   };
 

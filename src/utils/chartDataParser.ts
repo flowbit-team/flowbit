@@ -61,9 +61,10 @@ export function chartDataParser(
   });
 
   chartData.datas = datas;
-  chartData.labels = chartDataResponse.label.map((row) =>
-    row.split("-").join(""),
-  );
+
+  chartData.labels = chartDataResponse.label;
+
+  console.log(chartData.labels);
 
   return chartData;
 }
