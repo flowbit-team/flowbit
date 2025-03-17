@@ -1,5 +1,7 @@
 import Button from "@/components/common/Button";
 import Lottie from "lottie-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BREAK_POINTS, DESIGN_SYSTEM_COLOR } from "@/style/variable";
 import { css } from "@emotion/react";
 import {
@@ -26,12 +28,13 @@ import GreenBitImg from "@/assets/green_bit.svg";
 import YellowBitImg from "@/assets/yellow_bit.svg";
 import OrangeBitImg from "@/assets/orange_bit.svg";
 import { useGetChartDataQuery } from "@/api/chartApi";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "@/hooks/useModal.ts";
 import { SubscriptionModalContent } from "@/components/common/modal/SubscriptionModalContent";
 import { useAtom } from "jotai";
 import { loginState } from "@/store/user";
+import { useApiTotalView } from "@/hooks/api/visitor/useApiTotalView";
 
 type CoinInfoType = {
   [coin in "BTC" | "ETH" | "XRP"]: {
@@ -40,6 +43,8 @@ type CoinInfoType = {
     datas: unknown[]; // 그래프 데이터
   };
 };
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HomePage() {
   // 차트 데이터 가지고 오기
@@ -51,6 +56,85 @@ export default function HomePage() {
   const [isLogin, _] = useAtom(loginState);
   const { open, close } = useModal();
   const navigate = useNavigate();
+
+  const { data: totalView, refetch } = useApiTotalView();
+  const topNumberRef = useRef<HTMLSpanElement>(null);
+  const bottomNumberRef = useRef<HTMLSpanElement>(null);
+  const topSectionRef = useRef<HTMLDivElement>(null);
+  const bottomSectionRef = useRef<HTMLDivElement>(null);
+  const [currentNum, setCurrentNum] = useState<number|string>(0);
+  const [animationTotal, setAnimationTotal] = useState(0);
+
+  const slotAnimation = () => { // 애니메이션 테스트용
+  // const slotAnimation = async () => { // API 호출 테스트용
+    if (!topNumberRef.current || !bottomNumberRef.current) return;
+
+    // await refetch(); // API 호출 테스트용
+
+    setCurrentNum(0);
+    
+    let current = 0;
+    const step = Math.ceil(animationTotal / 60); 
+    
+    const animate = () => {
+        current += step;
+        if (current >= animationTotal) {
+            setCurrentNum(animationTotal);
+            setCurrentNum(animationTotal.toLocaleString());
+            return;
+        }
+        
+        setCurrentNum(current.toLocaleString());
+        requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+  };
+  
+  useEffect(() => {
+    // setAnimationTotal(totalView.data); // API 호출 테스트용
+    setAnimationTotal(10404174); // 애니매이션 테스트용
+    
+  }, [totalView]);
+
+  useEffect(() => {
+    if (!topSectionRef.current || !bottomSectionRef.current) {
+        return;
+    }
+
+    const topTrigger = ScrollTrigger.create({
+        trigger: topSectionRef.current,
+        start: "top 5%",
+        end: "top 5%",
+        toggleActions: "restart complete restart reset",
+        onEnter: () => {
+            slotAnimation();
+        },
+        onEnterBack: () => {
+            slotAnimation();
+        },
+        markers: true,
+    });
+
+    const bottomTrigger = ScrollTrigger.create({
+      trigger: bottomSectionRef.current,
+      start: "bottom 80%",
+      toggleActions: "restart complete restart reset",
+      onEnter: () => {
+        slotAnimation();
+      },
+      onEnterBack: () => { 
+        slotAnimation();
+      },
+      markers: true, 
+    });
+    slotAnimation();
+
+    return () => {
+      topTrigger.kill();
+      bottomTrigger.kill();
+    };
+  }, [animationTotal]);
 
   useEffect(() => {
     if (!getBTCData.isSuccess || !getETHData.isSuccess || !getXRPData.isSuccess)
@@ -150,6 +234,7 @@ export default function HomePage() {
       {/* 메인 화면 */}
       <section>
         <div
+          ref={topSectionRef}
           css={css`
             display: flex;
             justify-content: space-between;
@@ -201,12 +286,12 @@ export default function HomePage() {
             >
               <p>
                 <span
+                ref={topNumberRef}
                   css={css`
                     color: #33c2ff;
                   `}
                 >
-                  {/* {totalVisit} */}
-                  10,404,174
+                  {currentNum.toLocaleString()}
                 </span>
                 명이 플로우빗과 함께하고 있어요
               </p>
@@ -594,6 +679,7 @@ export default function HomePage() {
           `}
         >
           <div
+          ref={bottomSectionRef}
             css={css`
               position: relative;
               width: 100%;
@@ -626,12 +712,12 @@ export default function HomePage() {
           >
             <p>
               <span
+                ref={bottomNumberRef}
                 css={css`
                   color: #79deff;
                 `}
               >
-                10,404,174
-                {/* {totalVisit} */}
+                {currentNum.toLocaleString()}
               </span>
               명의 회원이 플로우빗과 함께하고 있습니다.
               <br />

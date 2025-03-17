@@ -28,4 +28,13 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      '/user-service': {
+        target: 'https://api.flowbit.co.kr',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
+  }
 });
