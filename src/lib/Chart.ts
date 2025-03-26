@@ -40,6 +40,8 @@ export interface ChartDataType {
   width: number;
   // 차트를 어떻게 그릴지에 대한 상태 값
   drawMode: DrawMode;
+  // 상단 선 설명을 의미하는 색상
+  legendColor: string;
 }
 
 export interface ChartPaddingType {
@@ -1050,10 +1052,9 @@ export class Chart {
    * Chart의 Legend를 설정하는 함수
    */
   private setLegend = () => {
-    const legendHeight = 50;
+    const legendHeight = 55;
     const lineWidth = 50;
-    const gap = 24;
-    const fontSize = 12;
+    const gap = 10;
 
     // legend 사이의 갭들을 나타내는 변수
     let accGap = 0;
@@ -1067,23 +1068,23 @@ export class Chart {
       const { label, drawMode } = data;
 
       // Get text position
-      const x = this.padding.left;
-      const y = this.padding.top - legendHeight;
+      const x = this.padding.left - 30;
+      const y = this.padding.top - legendHeight - 30;
 
       const line = this.createSvgElement("line", [
-        { property: "x1", value: `${x + accGap}` },
+        { property: "x1", value: `${x + accGap + 30}` },
         { property: "y1", value: `${y}` },
         { property: "x2", value: `${x + lineWidth + accGap}` },
         { property: "y2", value: `${y}` },
         {
           property: "stroke",
-          value: `${this.datas[i].color}`,
+          value: `${this.datas[i].legendColor}`,
         },
-        { property: "stroke-width", value: `2px` },
+        { property: "stroke-width", value: `5px` }, // 줄인 선의 너비
         drawMode === "dotted"
           ? {
               property: "stroke-dasharray",
-              value: "7",
+              value: "4",
             }
           : { property: "stroke-dasharray", value: "0" },
       ]);
@@ -1091,7 +1092,7 @@ export class Chart {
       accGap += gap;
 
       const text = this.createSvgElement("text", [
-        { property: "font-size", value: `${fontSize}` },
+        { property: "font-size", value: 16 + "px" },
         { property: "fill", value: `#616161` },
         { property: "x", value: `${x + lineWidth + accGap}` },
         { property: "y", value: `${y}` },
@@ -1105,7 +1106,37 @@ export class Chart {
 
       this.appendChilds(gTagOfLegend, [text, line]);
     }
-    this.appendChilds(this.legendContainer, [gTagOfLegend]);
+
+    const descriptionContainer = this.createSvgElement("g", [
+      { property: "class", value: "description" },
+    ]);
+
+    // Add gray circle
+    const grayCircle = this.createSvgElement("circle", [
+      { property: "cx", value: `${this.padding.left}` },
+      { property: "cy", value: `${this.padding.top - legendHeight}` },
+      { property: "r", value: "3" },
+      { property: "fill", value: `#BDBDBD` },
+    ]);
+
+    const description = this.createSvgElement("text", [
+      { property: "font-size", value: 16 + "px" },
+      { property: "color", value: `rgba(85, 85, 85, 1)` },
+      { property: "fill", value: `#616161` },
+      { property: "x", value: `${this.padding.left + 10}` },
+      { property: "y", value: `${this.padding.top - legendHeight + 5}` },
+    ]);
+    description.append(
+      "예측 성공 기준 : 당일 기준, 다음날 오전 12시 가격이 올랐을 시",
+    );
+
+    this.appendChilds(descriptionContainer, [grayCircle, description]);
+    descriptionContainer.appendChild(description);
+
+    this.appendChilds(this.legendContainer, [
+      gTagOfLegend,
+      descriptionContainer,
+    ]);
   };
 
   /**
@@ -1190,17 +1221,39 @@ export class Chart {
       this.padding.left;
 
     // Y 좌표 계산 (마우스 Y 좌표 반영)
-    const mouseY = e.clientY - rect.top;
-    const yPosition = Math.min(
-      Math.max(mouseY + 100, this.padding.top),
-      this.height - this.padding.bottom,
-    );
+    const yPosition = this.datas.reduce((closestY, data) => {
+      const diff = this.maxChartDataCount - data.data.length;
+      const indexOfData = data.data.length - this.showDataCount + index + diff;
+      const chartValue = data.data[indexOfData];
+
+      if (chartValue !== undefined) {
+        const calculatedY =
+          this.height -
+          this.padding.top -
+          this.padding.bottom -
+          (this.height - this.padding.bottom - this.padding.top) *
+            ((chartValue - this.minData) / (this.maxData - this.minData)) +
+          this.padding.top;
+
+        return Math.min(closestY, calculatedY);
+      }
+
+      return closestY;
+    }, this.height - this.padding.bottom);
 
     // X축 + Y축 가이드라인 경로
     const pathOfGuidLines = `
      M ${xPosition},${this.padding.top} V${this.height - this.padding.bottom} 
      M ${this.padding.left},${yPosition} H${this.width - this.padding.right}
      `;
+
+    // y축과 x축이 교차되는 지점에 원을 찍어주고싶어
+    // 1. Draw Hover Circle
+    // 기존 hoverPointsContainer에 X축 + Y축 경로 함께 추가
+    this.hoverPointsContainer.innerHTML = `
+      <circle cx="${xPosition}" cy="${yPosition}" r="6" fill="rgba(45, 45, 45, 1)" />
+    `;
+    this.hoverPointsContainer.setAttribute("visibility", "visible");
 
     // 기존 hoverGuidLineContainer에 X축 + Y축 경로 함께 추가
     this.hoverGuidLineContainer.setAttribute("d", pathOfGuidLines);
@@ -1490,13 +1543,24 @@ export class Chart {
     // console.log(this.predict.getBoundingClientRect().y);
 
     this.hoverCardContainer.style.visibility = "visible";
-    this.hoverCardContainer.style.top = `${e.offsetY - 150}px`;
-    if (persent > 0.5) {
-      this.hoverCardContainer.style.left = `${e.clientX - 10}px`;
-      this.hoverCardContainer.style.translate = "-100%";
-    } else {
-      this.hoverCardContainer.style.left = `${e.clientX - 10}px`;
-      this.hoverCardContainer.style.translate = "-100%";
+
+    // Position the hover card above the graph point
+    const hoverCardHeight = this.hoverCardContainer.offsetHeight || 150; // Default height if not rendered yet
+    const hoverCardWidth = this.hoverCardContainer.offsetWidth || 100; // Default width if not rendered yet
+
+    this.hoverCardContainer.style.top = `${yPosition - hoverCardHeight - 30}px`; // 10px padding above the point
+    this.hoverCardContainer.style.left = `${xPosition - hoverCardWidth / 2}px`; // Center the card horizontally
+
+    // Ensure the hover card doesn't go out of bounds
+    const chartRect = this.chart.getBoundingClientRect();
+    const hoverCardRect = this.hoverCardContainer.getBoundingClientRect();
+
+    if (hoverCardRect.left < chartRect.left) {
+      // If the hover card goes out of bounds on the left, shift it to the right
+      this.hoverCardContainer.style.left = `${chartRect.left + 10}px`; // Add some padding to the right
+    } else if (hoverCardRect.right > chartRect.right - 100) {
+      // If the hover card goes out of bounds on the right, keep it above the point
+      this.hoverCardContainer.style.right = `${chartRect.right + 10}px`; // Add some padding to the right
     }
   };
 

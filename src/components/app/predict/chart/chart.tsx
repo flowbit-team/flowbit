@@ -89,6 +89,7 @@ export default function Chart() {
             align-items: center;
             gap: 1.6rem;
             padding-left: 2rem;
+            margin-bottom: 4.8rem;
             position: relative;
 
             ${BREAK_POINTS.TABLET} {
