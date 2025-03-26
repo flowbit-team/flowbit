@@ -118,9 +118,6 @@ export class Chart {
   private guidLineColor: string = "#797979"; // chart의 가이드 라인의 색상
   private guidLineWidth: string = ".5px"; // chart의 가이드 라인의 두께
 
-  // interaction toggle
-  private isMouseHover: boolean = false;
-
   constructor(data: ChartType) {
     const {
       datas,
@@ -926,7 +923,10 @@ export class Chart {
    * Chart의 데이터 라인을 그리는 함수
    */
   private drawGraphLine = () => {
-    // make g container`
+    // 기존 SVG 요소들 초기화
+    this.datasContainer.innerHTML = "";
+
+    // 새로운 g 태그 생성
     const gTagOfPath = this.createSvgElement("g", [
       { property: "id", value: "flowbit_datas" },
     ]);
@@ -946,98 +946,111 @@ export class Chart {
       } = this.datas[i];
 
       // 데이터를 통해 차트 좌표 값 구하기
-      let coordinates: Coordinate[];
-      if (this.isMouseHover) {
-        coordinates = this.mapDatasToCoordinates(data, 0);
-      } else {
-        coordinates = this.mapDatasToCoordinates(data, showedDataCount);
+      let coordinates: Coordinate[] = this.mapDatasToCoordinates(data, 0);
+
+      // datas[0]의 마지막 좌표만 datas[1]의 y좌표로 이동 (가격은 유지)
+      if (i === 0 && this.datas.length > 1) {
+        const lastIndex = coordinates.length - 1;
+        const referenceCoordinates = this.mapDatasToCoordinates(
+          this.datas[1].data,
+          0,
+        );
+
+        // 마지막 좌표의 y값만 변경 (x값은 유지)
+        coordinates[lastIndex] = {
+          x: coordinates[lastIndex].x,
+          y: referenceCoordinates[lastIndex].y,
+        };
       }
 
-      // 좌표 값을 SVG 경로로 변경한 데이터를 담는 변수
-      const svgPathFromCoordinates: string[] = [];
+      // SVG 경로 생성
+      const pathData = coordinates.reduce((acc, coord, idx) => {
+        const command = idx === 0 ? "M" : "L";
+        return `${acc} ${command} ${coord.x} ${coord.y}`;
+      }, "");
 
-      coordinates.forEach((v, i) => {
-        if (i == 0) svgPathFromCoordinates.push(`M ${v.x} ${v.y} `);
-        else svgPathFromCoordinates.push(`L ${v.x} ${v.y}`);
-      });
-
+      // 기본 옵션 설정
       const defaultOptions = [
         { property: "stroke", value: color },
-        { property: "d", value: svgPathFromCoordinates.join(" ") },
+        { property: "d", value: pathData },
         { property: "fill", value: "none" },
-        { property: "stroke-width", value: width + "" },
+        { property: "stroke-width", value: width.toString() },
         { property: "stroke-linecap", value: "round" },
         { property: "stroke-linejoin", value: "round" },
       ];
 
+      // drawMode에 따른 처리
       switch (drawMode) {
         case "line":
-          // drawMode가 Line일 경우 stroke 옵션을 사용해 선 색상 부여
           break;
-        case "area":
+
+        case "area": {
           const areaGradientColor = this.createLinearGradient([
             { offset: "0", stopColor: areaColor },
             { offset: "1", stopColor: "rgba(255, 255, 255, 0)" },
           ]);
 
-          // drawMode가 area일 경우 새로운 path 태그를 만들고 fill 옵션을 사용해 area 색상 부여
-          // area 차트의 좌표 값 생성
-          const areaPointList = [...svgPathFromCoordinates];
-          areaPointList.push(`V ${this.height - this.padding.bottom}`);
-          areaPointList.push(`H ${coordinates[0].x}`);
-          const areaPath = this.createSvgElement("path", [
-            { property: "d", value: areaPointList.join(" ") },
+          const areaPath = `${pathData} V ${this.height - this.padding.bottom} H ${coordinates[0].x}`;
+          const areaElement = this.createSvgElement("path", [
+            { property: "d", value: areaPath },
             { property: "fill", value: `url(#${areaGradientColor})` },
           ]);
 
-          this.appendChilds(gTagOfPath, [areaPath]);
-
+          this.appendChilds(gTagOfPath, [areaElement]);
           break;
-        case "dotted":
-          /** 요구사항에 따른  */
-          const areaGradientColorForDotted = this.createLinearGradient([
+        }
+
+        case "dotted": {
+          const areaGradientColor = this.createLinearGradient([
             { offset: "0", stopColor: areaColor },
             { offset: "1", stopColor: "rgba(255, 255, 255, 0)" },
           ]);
 
-          const areaPointListforDotted = [...svgPathFromCoordinates];
-          areaPointListforDotted.push(`V ${this.height - this.padding.bottom}`);
-          areaPointListforDotted.push(`H ${coordinates[0].x}`);
-          const areaPathforDotted = this.createSvgElement("path", [
-            { property: "d", value: areaPointListforDotted.join(" ") },
-            { property: "fill", value: `url(#${areaGradientColorForDotted})` },
+          const areaPath = `${pathData} V ${this.height - this.padding.bottom} H ${coordinates[0].x}`;
+          const areaElement = this.createSvgElement("path", [
+            { property: "d", value: areaPath },
+            { property: "fill", value: `url(#${areaGradientColor})` },
           ]);
 
-          // 속성 값
-          defaultOptions.push({
-            property: "stroke-dasharray",
-            value: "4 4",
-          });
-          defaultOptions.push({
-            property: "stroke-linecap",
-            value: "round",
-          });
+          defaultOptions.push(
+            { property: "stroke-dasharray", value: "4 4" },
+            { property: "stroke-linecap", value: "round" },
+          );
 
-          this.appendChilds(gTagOfPath, [areaPathforDotted]);
-
+          this.appendChilds(gTagOfPath, [areaElement]);
           break;
+        }
 
         default:
-          throw new Error("can't find drawMode, your drawMode is " + drawMode);
+          throw new Error(`Unknown drawMode: ${drawMode}`);
       }
 
-      // draw polylines
-      const path = this.createSvgElement("path", defaultOptions);
+      // 선 그리기
+      const pathElement = this.createSvgElement("path", defaultOptions);
+      this.appendChilds(gTagOfPath, [pathElement]);
 
-      this.appendChilds(gTagOfPath, [path]);
-
-      // 서로 다른 데이터의 접점을 그림
+      // 데이터 접점 그리기
       if (i > 0) {
         const contactCoordinate = this.calculateLineChartCoordinateFromData(
           data[data.length - this.showDataCount + showedDataCount],
           showedDataCount,
         );
-        // 아래로 직선인 선을 만들고싶어서 y값을 더해줌
+
+        // 수직선과 원 그리기
+        const verticalLine = this.createSvgElement("line", [
+          { property: "x1", value: contactCoordinate.x.toString() },
+          {
+            property: "y1",
+            value: (this.height - this.padding.bottom).toString(),
+          },
+          { property: "x2", value: contactCoordinate.x.toString() },
+          { property: "y2", value: contactCoordinate.y.toString() },
+          { property: "stroke", value: "rgba(45, 45, 45, 1)" },
+          { property: "stroke-dasharray", value: "3 3" },
+          { property: "stroke-width", value: "1" },
+        ]);
+
+        this.appendChilds(gTagOfPath, [verticalLine]);
         this.drawCircle(gTagOfPath, contactCoordinate);
       }
 
@@ -1045,6 +1058,8 @@ export class Chart {
       showedDataCount +=
         this.showDataCount - (this.maxChartDataCount - data.length) - 1;
     }
+
+    // 최종적으로 생성된 그래프를 컨테이너에 추가
     this.appendChilds(this.datasContainer, [gTagOfPath]);
   };
 
@@ -1588,7 +1603,6 @@ export class Chart {
     // Set Mouse Hover Event
     this.mouseEventAreaContainer.addEventListener("mousemove", (e) => {
       this.setMouseHoverAction(e);
-      this.isMouseHover = true;
 
       // 재조정 된 데이터 다시 셋팅
       document.getElementById("flowbit_datas")?.remove();
@@ -1599,7 +1613,6 @@ export class Chart {
       this.hoverGuidLineContainer.setAttribute("visibility", "hidden");
       this.hoverPointsContainer.setAttribute("visibility", "hidden");
       this.hoverCardContainer.style.visibility = "hidden";
-      this.isMouseHover = false;
 
       // 재조정 된 데이터 다시 셋팅
       document.getElementById("flowbit_datas")?.remove();
