@@ -57,7 +57,7 @@ export default function HomePage() {
   const { open, close } = useModal();
   const navigate = useNavigate();
 
-  const { data: totalView, refetch } = useApiTotalView();
+  const { data: totalView, refetch, sendTotalView } = useApiTotalView();
   const topNumberRef = useRef<HTMLSpanElement>(null);
   const bottomNumberRef = useRef<HTMLSpanElement>(null);
   const topSectionRef = useRef<HTMLDivElement>(null);
@@ -65,16 +65,16 @@ export default function HomePage() {
   const [currentNum, setCurrentNum] = useState<number|string>(0);
   const [animationTotal, setAnimationTotal] = useState(0);
 
-  const slotAnimation = () => { // 애니메이션 테스트용
-  // const slotAnimation = async () => { // API 호출 테스트용
+  // const slotAnimation = () => { // 애니메이션 테스트용
+  const slotAnimation = async () => { // API 호출 테스트용
     if (!topNumberRef.current || !bottomNumberRef.current) return;
 
-    // await refetch(); // API 호출 테스트용
+    await refetch(); // API 호출 테스트용
 
     setCurrentNum(0);
     
     let current = 0;
-    const step = Math.ceil(animationTotal / 60); 
+    const step = Math.ceil(animationTotal / 9000000000); 
     
     const animate = () => {
         current += step;
@@ -92,8 +92,14 @@ export default function HomePage() {
   };
   
   useEffect(() => {
-    // setAnimationTotal(totalView.data); // API 호출 테스트용
-    setAnimationTotal(10404174); // 애니매이션 테스트용
+    sendTotalView();
+  }, []); 
+
+  useEffect(() => {
+    if (!totalView) return;
+setAnimationTotal(totalView.data); // API 호출 테스트용
+console.log("totalView", totalView.data); // API 호출 테스트용
+    // setAnimationTotal(10404174); // 애니매이션 테스트용
     
   }, [totalView]);
 
@@ -113,8 +119,7 @@ export default function HomePage() {
         onEnterBack: () => {
             slotAnimation();
         },
-        markers: true,
-    });
+});        
 
     const bottomTrigger = ScrollTrigger.create({
       trigger: bottomSectionRef.current,
@@ -126,7 +131,6 @@ export default function HomePage() {
       onEnterBack: () => { 
         slotAnimation();
       },
-      markers: true, 
     });
     slotAnimation();
 
