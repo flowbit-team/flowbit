@@ -74,7 +74,7 @@ export default function HomePage() {
     setCurrentNum(0);
     
     let current = 0;
-    const step = Math.ceil(animationTotal / 9000000000); 
+    const step = Math.ceil(animationTotal / 180); 
     
     const animate = () => {
         current += step;
@@ -97,8 +97,8 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!totalView) return;
-setAnimationTotal(totalView.data); // API 호출 테스트용
-console.log("totalView", totalView.data); // API 호출 테스트용
+    setAnimationTotal(totalView.data); // API 호출 테스트용
+    console.log("totalView", totalView.data); // API 호출 테스트용
     // setAnimationTotal(10404174); // 애니매이션 테스트용
     
   }, [totalView]);
@@ -257,7 +257,7 @@ console.log("totalView", totalView.data); // API 호출 테스트용
             <div
               css={css`
                 position: relative;
-                width: 31.5rem;
+                width: 36.5rem;
                 height: 4rem;
                 padding: 0px;
                 background: #2f3b4b;
@@ -289,6 +289,7 @@ console.log("totalView", totalView.data); // API 호출 테스트용
               `}
             >
               <p>
+                지금까지 플로우빗의 예측가격이{' '}
                 <span
                 ref={topNumberRef}
                   css={css`
@@ -297,7 +298,7 @@ console.log("totalView", totalView.data); // API 호출 테스트용
                 >
                   {currentNum.toLocaleString()}
                 </span>
-                명이 플로우빗과 함께하고 있어요
+                번 조회됐어요
               </p>
             </div>
             <h1
@@ -715,6 +716,7 @@ console.log("totalView", totalView.data); // API 호출 테스트용
             `}
           >
             <p>
+              지금까지 플로우빗의 예측가격이{' '}
               <span
                 ref={bottomNumberRef}
                 css={css`
@@ -723,7 +725,7 @@ console.log("totalView", totalView.data); // API 호출 테스트용
               >
                 {currentNum.toLocaleString()}
               </span>
-              명의 회원이 플로우빗과 함께하고 있습니다.
+              번 조회됐어요
               <br />
               지금 바로 시작하세요!
             </p>

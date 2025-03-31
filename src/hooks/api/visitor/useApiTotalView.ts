@@ -8,7 +8,7 @@ export const useApiTotalView = () => {
   };
 
   const sendTotalView = async () => {
-    const response = await api.post("/user-service/api/v1/visitor/total-view");
+    const response = await api.post("/user-service/api/v1/visitor");
     return response.data;
   };
 
