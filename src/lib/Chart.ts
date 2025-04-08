@@ -512,8 +512,9 @@ export class Chart {
         z-index: 1;
         top: 0;
         right: 0;
-        border-radius: 30px;
-        background-color: #E8E9EC;
+        border-radius: 8px;
+        background-color: #fff;
+        border: 1px solid rgba(228, 228, 228, 1);
 
         @media screen and (max-width: 1119px) {
           display: none;
@@ -533,9 +534,10 @@ export class Chart {
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 4px;
       }
       .flowbit-date-pick-bar__btn {
-        padding: 9px 24px;
+        padding: 9px 15px;
         background: none;
         border: none;
         cursor: pointer;
@@ -547,10 +549,11 @@ export class Chart {
         box-sizing: border-box;
       }
       .flowbit-date-pick-bar__radio:checked + .flowbit-date-pick-bar__btn {
-        border-radius: 30px;
-        background-color: white;
-        border: 1px solid #0056CA;
-        color: #0056CA;
+        border-radius: 8px;
+        background-color: rgba(0, 86, 202, 1);
+        border: none;
+        color: #fff;
+        transition: 0.4s all;
       }
     </style>
     <div id="flowbit-date-pick-bar" class="flowbit-date-pick-bar">
