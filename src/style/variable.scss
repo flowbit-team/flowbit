@@ -1,0 +1,60 @@
+:root {
+  // gray color token
+  --gray-90: #1d1d1d;
+  --gray-90: #2d2d2d;
+  --gray-70: #555555;
+  --gray-60: #717171;
+  --gray-50: #8e8e8e;
+  --gray-40: #c6c6c6;
+  --gray-30: #d8d8d8;
+  --gray-20: #e4e4e4;
+  --gray-10: #f0f0f0;
+  --gray-5: #f8f8f8;
+
+  // text color token
+  --text-heading: #000000;
+  --text-title: #1d1d1d;
+  --text-body1: #2d2d2d;
+  --text-body2: #555555;
+  --text-caption: #8e8e8e;
+  --text-disabled: #8e8e8e;
+
+  // line color token
+  --border-black: #1d1d1d;
+  --border-default: #c6c6c6;
+  --border-light: #d8d8d8;
+
+  // brand color token
+  --brand-primary: #0056ca;
+  --brand-secondary: #006ad0;
+  --brand-tertiary: #00b2fe;
+
+  // blue color token
+  --blue-5: #f2f6fc;
+  --blue-10: #c1d6f2;
+  --blue-20: #91b6e8;
+  --blue-30: #6096de;
+  --blue-40: #3076d4;
+  --blue-50: #0056ca;
+  --blue-60: #0044a1;
+  --blue-70: #003379;
+  --blue-80: #002250;
+  --blue-90: #001128;
+
+  // red color token
+  --red-5: #fff5f5;
+  --red-10: #ffd1d1;
+  --red-20: #ffadad;
+  --red-30: #ff8989;
+  --red-40: #ff6565;
+  --red-50: #ff4242;
+  --red-60: #cc3434;
+  --red-70: #992727;
+  --red-80: #661a1a;
+  --red-90: #320d0d;
+
+  // system color token
+  --system-error: #ff5b5b;
+  --system-confirm: #0056ca;
+  --system-dim: #000;
+}
