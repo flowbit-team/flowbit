@@ -6,7 +6,6 @@ type contentsProps = {
 };
 
 export default function NewContents({ title, content }: contentsProps) {
-  console.log(title);
   return (
     <div
       css={css`

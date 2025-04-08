@@ -58,3 +58,19 @@ button {
 [contenteditable="true"]:focus {
   outline: none;
 }
+
+.shiny-circle {
+  animation: shine 2s ease-in-out infinite; /* 애니메이션 적용 */
+}
+
+@keyframes shine {
+  0% {
+    opacity: 0.5; /* 처음엔 반투명 */
+  }
+  50% {
+    opacity: 1; /* 반짝일 때 완전 불투명 */
+  }
+  100% {
+    opacity: 0.5; /* 다시 반투명 */
+  }
+}

@@ -282,7 +282,6 @@ export default function CommunityPage() {
             `}
           >
             {dataSet?.pages.map(({ content }) => {
-              console.log(dataSet);
               return (
                 <Fragment>
                   {(content as CommunityBoardType[]).map((item) => {
