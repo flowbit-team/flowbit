@@ -1,23 +1,17 @@
-/** @jsxImportSource @emotion/react */
 import { ReactElement, ReactNode, useState } from "react";
 import { css } from "@emotion/react";
 
 interface TabsProps {
-  direction: "row" | "column";
   children: ReactNode;
-  className?: string;
 }
 
 interface TabsListProps {
-  direction: "row" | "column";
   children: ReactNode;
-  className?: string;
 }
 
 interface TabsTriggerProps<T> {
   value: T;
   children: ReactNode;
-  className?: string;
   activeIcon?: ReactElement;
   inactiveIcon?: ReactElement;
 }
@@ -34,14 +28,13 @@ interface TabsContentProps<T> {
 export function useTab<T>(initialTab: T) {
   const [activeTab, setActiveTab] = useState<T>(initialTab);
 
-  function Tabs({ direction, children, className }: TabsProps) {
+  function Tabs({ children }: TabsProps) {
     return (
       <div
-        className={className}
         css={css`
           display: flex;
           height: 100%;
-          flex-direction: ${direction === "row" ? "row" : "column"};
+          flex-direction: column;
         `}
       >
         {children}
@@ -49,18 +42,15 @@ export function useTab<T>(initialTab: T) {
     );
   }
 
-  function List({ direction, children, className }: TabsListProps) {
+  function List({ children }: TabsListProps) {
     return (
       <div
-        className={className}
         css={css`
           display: flex;
-          flex-direction: ${direction === "row" ? "row" : "column"};
-          ${direction === "row" &&
-          `
-            justify-content: space-between;
-            border-bottom: 1px solid #e5e7eb;
-          `}
+          flex-direction: row;
+          justify-content: space-around;
+          border-bottom: 1px solid #e4e4e4;
+          padding-bottom: 12px;
         `}
       >
         {children}
@@ -71,7 +61,6 @@ export function useTab<T>(initialTab: T) {
   function Trigger({
     value,
     children,
-    className,
     activeIcon,
     inactiveIcon,
   }: TabsTriggerProps<T>) {
@@ -79,24 +68,24 @@ export function useTab<T>(initialTab: T) {
 
     return (
       <button
-        type="button"
         onClick={() => setActiveTab(value)}
-        className={className}
         css={css`
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 0.5rem;
-          padding: 0.5rem 1rem;
-          background: none;
-          border: none;
-          cursor: pointer;
-          font: inherit;
-          transition: all 0.2s;
-
-          color: ${isActive ? "#3b82f6" : "#6b7280"};
-          border-bottom: ${isActive ? "2px solid #3b82f6" : "none"};
-          margin-bottom: ${isActive ? "-2px" : "0"};
+          gap: 8px;
+          flex: 1;
+          color: ${isActive ? "#3076d4" : "#8e8e8e"};
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -13px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: ${isActive ? "#3076d4" : "transparent"};
+          }
         `}
       >
         {isActive ? activeIcon : inactiveIcon}
