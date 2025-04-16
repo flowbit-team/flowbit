@@ -27,7 +27,7 @@ import { useModal } from "@/hooks/useModal.ts";
 import { useAtom } from "jotai";
 import { loginState } from "@/store/user";
 import { SubscriptionModalContent } from "@/components/common/modal/SubscriptionModalContent";
-
+import FloatingWidget from "@/components/app/home/floating/floatingWidget";
 
 type CoinInfoType = {
   [coin in "BTC" | "ETH" | "XRP"]: {
@@ -112,14 +112,14 @@ export default function HomePage() {
     }
   };
 
-   /**
+  /**
    * @description 구독버튼 클릭시 flowbit서비스에 대해 주기적으로 구독할 수 있는 함수입니다.
    */
-   const openSubscriptionModal = () => {
+  const openSubscriptionModal = () => {
     open({
       title: "구독 설정",
       content: <SubscriptionModalContent />,
-      isVisibleBtn: false
+      isVisibleBtn: false,
     });
   };
 
@@ -505,6 +505,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <FloatingWidget />
       </section>
 
       {/* 하단 이미지 */}
