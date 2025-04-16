@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { PropsWithChildren, forwardRef } from "react";
 import { css } from "@emotion/react";
 

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { PropsWithChildren } from "react";
 import { css } from "@emotion/react";
 
@@ -7,8 +6,8 @@ export default function FloatingPanelLayout({ children }: PropsWithChildren) {
     <div
       css={css`
         position: absolute;
-        bottom: 8rem;
-        right: 1.2rem;
+        bottom: 9rem;
+        right: 1rem;
       `}
     >
       <div
@@ -29,12 +28,11 @@ export default function FloatingPanelLayout({ children }: PropsWithChildren) {
             position: absolute;
             right: 2rem;
             bottom: -0.5rem;
-            width: 1rem;
-            height: 1rem;
+            width: 2rem;
+            height: 2rem;
             background-color: white;
             transform: rotate(45deg);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 2px;
           `}
         />
       </div>
