@@ -18,6 +18,7 @@ import Logo from "../common/logo";
 import { useModal } from "@/hooks/useModal.ts";
 import { loginState } from "@/store/user";
 import { useAtom } from "jotai";
+import { ACCESS_TOKEN } from "@/utils/constant";
 
 export default function Header({
   isScroll,
@@ -252,7 +253,7 @@ export default function Header({
                     content:
                       "오늘도 플로우빗 서비스를 이용해주셔서 감사합니다.\n확인 버튼을 통해 서비스 로그아웃이 가능해요",
                     callBack: () => {
-                      localStorage.removeItem("FLOWBIT_ACT");
+                      localStorage.removeItem(ACCESS_TOKEN);
                       setLogin(false);
                       close();
                       navigation(HOME_URL);

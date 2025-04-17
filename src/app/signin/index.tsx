@@ -12,33 +12,31 @@ import SplitLine from "@/components/common/SplitLine.tsx";
 import { useEffect, useState } from "react";
 import { signIn } from "@/hooks/api/member/useApiSignIn.ts";
 import { loginState } from "@/store/user";
-import { useAtom } from "jotai";
-import { ACT } from "@/utils/common";
+import { useSetAtom } from "jotai";
+import { ACCESS_TOKEN, OAUTH } from "@/utils/constant";
+import useCheckEmail from "@/hooks/useCheckEmail";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [emailCheck, setEmailCheck] = useState(false);
+  const setLogin = useSetAtom(loginState);
+  const { email, isValidEmail, handleEmailChange } = useCheckEmail();
   const [password, setPassword] = useState("");
-  const EMAIL_REGEX =
-    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-  const [_, setLogin] = useAtom(loginState);
-  const googleURL =
-    "https://api.flowbit.co.kr/user-service/oauth2/authorization/google";
-  const kakaoURL =
-    "https://api.flowbit.co.kr/user-service/oauth2/authorization/kakao";
 
   useEffect(() => {
-    if (localStorage.getItem(ACT)) {
-      localStorage.removeItem(ACT);
+    if (localStorage.getItem(ACCESS_TOKEN)) {
+      localStorage.removeItem(ACCESS_TOKEN);
       setLogin(false);
     }
   }, []);
 
+  const handleSignInSocialLogin = (url: string) => {
+    window.location.href = url;
+  };
+
   const handleSignIn = async () => {
     signIn({ email, password })
       .then((res) => {
-        localStorage.setItem("FLOWBIT_ACT", res.data.accessToken);
+        localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
         setLogin(true);
         navigate("/community");
       })
@@ -74,14 +72,7 @@ export default function SignIn() {
         <Input
           icon={mail}
           placeholder={`이메일을 입력해주세요`}
-          onChange={(e) => {
-            if (e.target.value.match(EMAIL_REGEX)) {
-              setEmailCheck(true);
-            } else {
-              setEmailCheck(false);
-            }
-            setEmail(e.target.value);
-          }}
+          onChange={handleEmailChange}
         />
         <Input
           type="password"
@@ -94,7 +85,7 @@ export default function SignIn() {
         css={css`
           margin-top: 5.6rem;
         `}
-        state={emailCheck && password.length > 5}
+        state={isValidEmail && password.length > 5}
         onClick={handleSignIn}
       >
         로그인
@@ -139,7 +130,7 @@ export default function SignIn() {
               background: #fede35;
               color: #3c1e1e;
             `}
-            onClick={() => (window.location.href = kakaoURL)}
+            onClick={() => handleSignInSocialLogin(OAUTH.KAKAO)}
           >
             카카오 로그인
           </Button>
@@ -149,7 +140,7 @@ export default function SignIn() {
               background: #eeeeee;
               color: #3c1e1e;
             `}
-            onClick={() => (window.location.href = googleURL)}
+            onClick={() => handleSignInSocialLogin(OAUTH.GOOGLE)}
           >
             구글 로그인
           </Button>
