@@ -12,3 +12,5 @@ jobs:
         with:
           assignees: ${{ github.actor }}
           reviewers: klmhyeonwoo, Cllaude99, joeunSong
+    env:
+      GITHUB_TOKEN: ${{ secrets.AUTO_REVIEWER_TOKEN }}
