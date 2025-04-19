@@ -223,7 +223,6 @@ export default function HomePage() {
       {/* 메인 화면 */}
       <section>
         <div
-          ref={topSectionRef}
           css={css`
             display: flex;
             justify-content: space-between;
@@ -242,6 +241,7 @@ export default function HomePage() {
             <VisitorCount 
               currentNum={currentNum}
               numberRef={topNumberRef}
+              sectionRef={topSectionRef}
             />
             <h1
               css={css`
@@ -612,59 +612,12 @@ export default function HomePage() {
       </section>
       {/* 하단 배너 */}
       <section>
-        <div
-          css={css`
-            padding: 12rem 0;
-
-            ${BREAK_POINTS.TABLET} {
-              padding: 8rem 0;
-            }
-
-            ${BREAK_POINTS.MOBILE} {
-              padding: 6rem 0;
-            }
-          `}
-        >
-          <div
-          ref={bottomSectionRef}
-            css={css`
-              position: relative;
-              width: 100%;
-              height: 16.4rem;
-              border-radius: 1.6rem;
-              background-color: #0044a1;
-              font-weight: 600;
-              font-size: 2.8rem;
-              line-height: 4.2rem;
-              color: #ffffff;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              text-align: center;
-              overflow: hidden;
-
-              ${BREAK_POINTS.TABLET} {
-                height: 14rem;
-                font-size: 2.4rem;
-                line-height: 3.6rem;
-              }
-
-              ${BREAK_POINTS.MOBILE} {
-                height: 7.2rem;
-                border-radius: 1rem;
-                font-size: 1.2rem;
-                line-height: 1.8rem;
-              }
-            `}
-          >
-            <VisitorCount 
-              currentNum={currentNum}
-              numberRef={bottomNumberRef}
-              sectionRef={bottomSectionRef}
-              isBottom
-            />
-          </div>
-        </div>
+        <VisitorCount 
+          currentNum={currentNum}
+          numberRef={bottomNumberRef}
+          sectionRef={bottomSectionRef}
+          isBottom
+        />
       </section>
     </article>
   );
