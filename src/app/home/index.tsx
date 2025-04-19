@@ -23,11 +23,6 @@ import Chart3 from "@/assets/chart3.svg";
 import MAINBOTTOMIMG from "@/assets/main-bottom.gif";
 import NewletterAni from "@/assets/newletter.json";
 import CommunityAni from "@/assets/community.json";
-import BlackEtherImg from "@/assets/black_ether.svg";
-import SkyblueLImg from "@/assets/skyblue_L.svg";
-import GreenBitImg from "@/assets/green_bit.svg";
-import YellowBitImg from "@/assets/yellow_bit.svg";
-import OrangeBitImg from "@/assets/orange_bit.svg";
 import { useGetChartDataQuery } from "@/api/chartApi";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -36,6 +31,7 @@ import { SubscriptionModalContent } from "@/components/common/modal/Subscription
 import { useAtom } from "jotai";
 import { loginState } from "@/store/user";
 import { useApiTotalView } from "@/hooks/api/visitor/useApiTotalView";
+import { VisitorCount } from "@/components/app/home/VisitorCount";
 
 type CoinInfoType = {
   [coin in "BTC" | "ETH" | "XRP"]: {
@@ -243,53 +239,10 @@ export default function HomePage() {
         >
           {/* LEFT SIDE */}
           <div>
-            <div
-              css={css`
-                position: relative;
-                width: 36.5rem;
-                height: 4rem;
-                padding: 0px;
-                background: #2f3b4b;
-                color: #ffffff;
-                border-radius: 1rem;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                &::after {
-                  content: "";
-                  position: absolute;
-                  width: 22px;
-                  height: 20px;
-                  background: #2f3b4b;
-                  clip-path: path("M0,0 L22,0 L13,16 Q11,20 9,16 L0,0");
-                  display: block;
-                  z-index: 1;
-                  margin-left: -2.6rem;
-                  bottom: -1rem;
-                  left: 13%;
-                }
-
-                ${BREAK_POINTS.TABLET} {
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                }
-              `}
-            >
-              <p>
-                지금까지 플로우빗의 예측가격이{' '}
-                <span
-                ref={topNumberRef}
-                  css={css`
-                    color: #33c2ff;
-                  `}
-                >
-                  {currentNum.toLocaleString()}
-                </span>
-                번 조회됐어요
-              </p>
-            </div>
+            <VisitorCount 
+              currentNum={currentNum}
+              numberRef={topNumberRef}
+            />
             <h1
               css={css`
                 font-size: 4.8rem;
@@ -704,102 +657,11 @@ export default function HomePage() {
               }
             `}
           >
-            <p>
-              지금까지 플로우빗의 예측가격이{' '}
-              <span
-                ref={bottomNumberRef}
-                css={css`
-                  color: #79deff;
-                `}
-              >
-                {currentNum.toLocaleString()}
-              </span>
-              번 조회됐어요
-              <br />
-              지금 바로 시작하세요!
-            </p>
-            <img
-              src={BlackEtherImg}
-              css={css`
-                position: absolute;
-                bottom: 2px;
-                left: 16%;
-                
-                ${BREAK_POINTS.TABLET} {
-                  width: 7rem;
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                  width: 3rem;
-                }
-              `}
-            />
-            <img
-              src={SkyblueLImg}
-              css={css`
-                position: absolute;
-                top: 20%;
-                left: 6%;
-
-                ${BREAK_POINTS.TABLET} {
-                  left: 3%;
-                  width: 6rem;
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                  left: 2px;
-                  top: 5%;
-                  width: 3rem;
-                }
-              `}
-            />
-            <img
-              src={GreenBitImg}
-              css={css`
-                position: absolute;
-                top: 0px;
-                left: 27%;
-
-                ${BREAK_POINTS.TABLET} {
-                  width: 4rem;
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                  width: 3rem;
-                }
-              `}
-            />
-            <img
-              src={YellowBitImg}
-              css={css`
-                position: absolute;
-                top: 0px;
-                left: 78%;
-
-                ${BREAK_POINTS.TABLET} {
-                  width: 8rem;
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                  width: 5rem;
-                }
-              `}
-            />
-            <img
-              src={OrangeBitImg}
-              css={css`
-                position: absolute;
-                bottom: 0px;
-                left: 82%;
-
-                ${BREAK_POINTS.TABLET} {
-                  width: 8rem;
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                  width: 5rem;
-                }
-              `}
+            <VisitorCount 
+              currentNum={currentNum}
+              numberRef={bottomNumberRef}
+              sectionRef={bottomSectionRef}
+              isBottom
             />
           </div>
         </div>
