@@ -27,7 +27,7 @@ import { useModal } from "@/hooks/useModal.ts";
 import { useAtom } from "jotai";
 import { loginState } from "@/store/user";
 import { SubscriptionModalContent } from "@/components/common/modal/SubscriptionModalContent";
-import FloatingWidget from "@/components/app/home/floating/floatingWidget";
+import FloatingWidget from "@/components/app/home/floating/FloatingWidget";
 
 type CoinInfoType = {
   [coin in "BTC" | "ETH" | "XRP"]: {
@@ -226,7 +226,8 @@ export default function HomePage() {
               <Button
                 css={css`
                   width: 11.4rem !important;
-                  height: 4.5rem;
+                  height: 4.5rem;import FloatingWidget from '../../components/app/home/floating/FloatingWidget';
+
 
                   ${DESIGN_SYSTEM_COLOR.GRAY_50}
                   font-size: 1.6rem;
