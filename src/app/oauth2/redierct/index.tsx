@@ -1,5 +1,6 @@
 import { loginState } from "@/store/user";
-import { useAtom } from "jotai";
+import { ACCESS_TOKEN } from "@/utils/constant";
+import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -8,17 +9,17 @@ export default function Oauth2Redirect() {
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const accessToken = params.get("accessToken");
-  const [_, setLogin] = useAtom(loginState);
+  const setLogin = useSetAtom(loginState);
 
   useEffect(() => {
     if (accessToken) {
-      localStorage.setItem("FLOWBIT_ACT", accessToken);
+      localStorage.setItem(ACCESS_TOKEN, accessToken);
       setLogin(true);
       navigate("/");
-    }else {
-      alert("오류가 발생했어요, 관리자에게 문의해주세요")
+    } else {
+      alert("오류가 발생했어요, 관리자에게 문의해주세요");
     }
-  }, [accessToken]);
+  }, []);
 
   return <>처리중입니다.</>;
 }
