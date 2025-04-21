@@ -27,7 +27,7 @@ import { useModal } from "@/hooks/useModal.ts";
 import { useAtom } from "jotai";
 import { loginState } from "@/store/user";
 import { SubscriptionModalContent } from "@/components/common/modal/SubscriptionModalContent";
-import FloatingWidget from "@/components/app/home/floating/FloatingWidget";
+import FloatingWidget from "@/components/app/home/floating/floatingWidget";
 
 type CoinInfoType = {
   [coin in "BTC" | "ETH" | "XRP"]: {
