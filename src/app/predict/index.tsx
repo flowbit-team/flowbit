@@ -1,4 +1,3 @@
-import Chart from "@/components/app/predict/chart/chart";
 import FitNess from "@/components/app/predict/fitness/fitness";
 import {
   BREAK_POINTS,
@@ -12,6 +11,7 @@ import NewsCard, {
   newsLetterProps,
 } from "@/components/app/predict/newsletter/news-card";
 import { useNavigate } from "react-router-dom";
+import Chart from "@/components/app/predict/chart/chart";
 
 export default function PredictPage() {
   const { data } = UseApiNewLetter();
@@ -33,8 +33,7 @@ export default function PredictPage() {
           }
         `}
       >
-        {/* 차트 */}
-        <Chart></Chart>
+        <Chart />
         <div
           css={css`
             display: flex;

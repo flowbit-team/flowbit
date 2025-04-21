@@ -40,6 +40,8 @@ export interface ChartDataType {
   width: number;
   // 차트를 어떻게 그릴지에 대한 상태 값
   drawMode: DrawMode;
+  // 상단 선 설명을 의미하는 색상
+  legendColor: string;
 }
 
 export interface ChartPaddingType {
@@ -88,7 +90,7 @@ export class Chart {
 
   // layout
   private width: number;
-  private hegiht: number;
+  private height: number;
   private fontSize: number;
   private padding: ChartPaddingType = { bottom: 0, left: 0, top: 0, right: 0 };
 
@@ -116,9 +118,6 @@ export class Chart {
   private guidLineColor: string = "#797979"; // chart의 가이드 라인의 색상
   private guidLineWidth: string = ".5px"; // chart의 가이드 라인의 두께
 
-  // interaction toggle
-  private isMouseHover: boolean = false;
-
   constructor(data: ChartType) {
     const {
       datas,
@@ -132,7 +131,7 @@ export class Chart {
     } = data;
     this.targetId = targetId;
     this.width = size.width;
-    this.hegiht = size.height;
+    this.height = size.height;
     this.fontSize = size.font;
     this.backgrondColor = backgroundColor;
     this.datas = datas;
@@ -150,8 +149,9 @@ export class Chart {
     this.chart = this.createSvgElement("svg", [
       { property: "id", value: "flowbit_svg" },
       { property: "xmlns", value: "http://www.w3.org/2000/svg" },
-      { property: "viewBox", value: `0 0 ${this.width} ${this.hegiht}` },
-      { property: "style", value: "position: relative" },
+      { property: "viewBox", value: `0 0 ${this.width} ${this.height}` },
+      { property: "preserveAspectRatio", value: "xMidYMid meet" },
+      { property: "style", value: "position: relative;" },
     ]);
 
     if (this.backgrondColor)
@@ -367,7 +367,7 @@ export class Chart {
       // top: this.fontSize * 5 + this.datas.length * 25,
       top: this.fontSize * 7,
       left: 20,
-      right: textLength * 1.5,
+      right: textLength * 2,
     };
   };
 
@@ -414,6 +414,7 @@ export class Chart {
       { property: "id", value: "flowbit_hoverPoint" },
       { property: "visibility", value: "hidden" },
     ]);
+
     this.datas.forEach((_, i) => {
       const point = this.createSvgElement("circle", [
         { property: "id", value: `flowbit_hoverPoint${i}` },
@@ -438,7 +439,7 @@ export class Chart {
       },
       {
         property: "height",
-        value: `${this.hegiht - this.padding.bottom - this.padding.top}`,
+        value: `${this.height - this.padding.bottom - this.padding.top}`,
       },
       {
         property: "id",
@@ -511,8 +512,9 @@ export class Chart {
         z-index: 1;
         top: 0;
         right: 0;
-        border-radius: 30px;
-        background-color: #E8E9EC;
+        border-radius: 8px;
+        background-color: #fff;
+        border: 1px solid rgba(228, 228, 228, 1);
 
         @media screen and (max-width: 1119px) {
           display: none;
@@ -532,9 +534,10 @@ export class Chart {
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 4px;
       }
       .flowbit-date-pick-bar__btn {
-        padding: 9px 24px;
+        padding: 9px 15px;
         background: none;
         border: none;
         cursor: pointer;
@@ -546,10 +549,11 @@ export class Chart {
         box-sizing: border-box;
       }
       .flowbit-date-pick-bar__radio:checked + .flowbit-date-pick-bar__btn {
-        border-radius: 30px;
-        background-color: white;
-        border: 1px solid #0056CA;
-        color: #0056CA;
+        border-radius: 8px;
+        background-color: rgba(0, 86, 202, 1);
+        border: none;
+        color: #fff;
+        transition: 0.4s all;
       }
     </style>
     <div id="flowbit-date-pick-bar" class="flowbit-date-pick-bar">
@@ -649,8 +653,8 @@ export class Chart {
   //   const xAxis = this.createSvgElement("line", [
   //     { property: "x1", value: this.padding.left + "" },
   //     { property: "x2", value: this.width - this.padding.right + "" },
-  //     { property: "y1", value: this.hegiht - this.padding.bottom + "" },
-  //     { property: "y2", value: this.hegiht - this.padding.bottom + "" },
+  //     { property: "y1", value: this.height - this.padding.bottom + "" },
+  //     { property: "y2", value: this.height - this.padding.bottom + "" },
   //     { property: "class", value: "axis__x" },
   //   ]);
 
@@ -659,7 +663,7 @@ export class Chart {
   //     { property: "x1", value: this.padding.left + "" },
   //     { property: "x2", value: this.padding.left + "" },
   //     { property: "y1", value: this.padding.top + "" },
-  //     { property: "y2", value: this.hegiht - this.padding.bottom + "" },
+  //     { property: "y2", value: this.height - this.padding.bottom + "" },
   //     { property: "class", value: "axis__y" },
   //   ]);
 
@@ -699,7 +703,7 @@ export class Chart {
           (i / (this.showDataCount - 1)) *
             (this.width - this.padding.left - this.padding.right) +
           this.padding.left;
-        const y = this.hegiht - this.padding.bottom + gapFromAxiosAndLabel;
+        const y = this.height - this.padding.bottom + gapFromAxiosAndLabel;
         const text = this.createSvgElement("text", [
           { property: "x", value: x + "" },
           { property: "y", value: y + "" },
@@ -715,7 +719,7 @@ export class Chart {
           (i / (this.xAxisCount - 1)) *
             (this.width - this.padding.left - this.padding.right) +
           this.padding.left;
-        const y = this.hegiht - this.padding.bottom + gapFromAxiosAndLabel;
+        const y = this.height - this.padding.bottom + gapFromAxiosAndLabel;
 
         const text = this.createSvgElement("text", [
           { property: "x", value: x + "" },
@@ -735,7 +739,7 @@ export class Chart {
 
       // Y 좌표 생성
       const y =
-        (this.hegiht - this.padding.bottom - this.padding.top) *
+        (this.height - this.padding.bottom - this.padding.top) *
           (i / this.yAxisCount) +
         this.padding.top;
 
@@ -775,7 +779,7 @@ export class Chart {
       const x1 = this.padding.left;
       const x2 = this.width - this.padding.right;
       const y =
-        (this.hegiht - this.padding.bottom - this.padding.top) *
+        (this.height - this.padding.bottom - this.padding.top) *
           (i / this.yAxisCount) +
         this.padding.top;
 
@@ -798,22 +802,38 @@ export class Chart {
    * @param {Coordinate} coordinate 원이 그려질 좌표 값
    * @param {string} color          원의 색상 값
    */
-  private drawCircle = (
-    canvas: SVGSVGElement,
-    coordinate: Coordinate,
-    color: string,
-  ) => {
-    // 접점의 좌표 값(coordinates[0])
-    const contactPoint = this.createSvgElement("circle", [
-      { property: "cx", value: coordinate.x + "" },
-      { property: "cy", value: coordinate.y + "" },
-      { property: "r", value: "6" },
-      { property: "stroke", value: color },
-      { property: "stroke-width", value: "2" },
-      { property: "fill", value: "white" },
+  private drawCircle = (canvas: SVGSVGElement, coordinate: Coordinate) => {
+    // 이 circle이 올라온 높이까지 바닥부터 선을 그려주고싶어서 추가한 코드
+    const line = this.createSvgElement("line", [
+      { property: "x1", value: coordinate.x + "" },
+      { property: "y1", value: this.height - this.padding.bottom + "" },
+      { property: "x2", value: coordinate.x + "" },
+      { property: "y2", value: coordinate.y + "" },
+      { property: "stroke-linecap", value: "round" },
+      { property: "stroke", value: "rgba(45, 45, 45, 1)" },
+      { property: "stroke-dasharray", value: "3 3" },
+      { property: "stroke-width", value: "1" },
     ]);
 
-    this.appendChilds(canvas, [contactPoint]);
+    const outerCircle = this.createSvgElement("circle", [
+      { property: "cx", value: coordinate.x + "" },
+      { property: "cy", value: coordinate.y + "" },
+      { property: "r", value: "12" },
+      { property: "fill", value: "rgba(45, 45, 45, 0.3)" },
+      { property: "class", value: "shiny-circle" }, // 애니메이션을 적용할 클래스 추가
+    ]);
+
+    // 작은 원 (내부 원)
+    const innerCircle = this.createSvgElement("circle", [
+      { property: "cx", value: coordinate.x + "" },
+      { property: "cy", value: coordinate.y + "" },
+      { property: "r", value: "6" }, // 작은 원의 반지름
+      { property: "fill", value: "rgba(45, 45, 45, 1)" }, // 내부 원의 색은 파라미터로 받은 color 값
+      { property: "class", value: "shiny-circle" }, // 애니메이션을 적용할 클래스 추가
+    ]);
+
+    // 두 원을 canvas에 추가
+    this.appendChilds(canvas, [outerCircle, innerCircle, line]);
   };
 
   /**
@@ -834,10 +854,10 @@ export class Chart {
 
     // 배열 값을 가지고 y좌표 값을 구함
     const y =
-      this.hegiht -
+      this.height -
       this.padding.top -
       this.padding.bottom -
-      (this.hegiht - this.padding.bottom - this.padding.top) *
+      (this.height - this.padding.bottom - this.padding.top) *
         ((data - this.minData) / (this.maxData - this.minData)) +
       this.padding.top;
     return {
@@ -883,7 +903,7 @@ export class Chart {
   private createLinearGradient = (
     gradientColorList: GradientColor[],
   ): string => {
-    const gradientId = "flowbit-id-" + new Date().getTime();
+    const gradientId = "flowbit-id-" + Math.random().toString(36).substr(2, 9);
     const linearGradientTag = this.createSvgElement("linearGradient", [
       { property: "id", value: gradientId + "" },
       { property: "gradientTransform", value: "rotate(90)" },
@@ -906,7 +926,10 @@ export class Chart {
    * Chart의 데이터 라인을 그리는 함수
    */
   private drawGraphLine = () => {
-    // make g container`
+    // 기존 SVG 요소들 초기화
+    this.datasContainer.innerHTML = "";
+
+    // 새로운 g 태그 생성
     const gTagOfPath = this.createSvgElement("g", [
       { property: "id", value: "flowbit_datas" },
     ]);
@@ -926,83 +949,120 @@ export class Chart {
       } = this.datas[i];
 
       // 데이터를 통해 차트 좌표 값 구하기
-      let coordinates: Coordinate[];
-      if (this.isMouseHover) {
-        coordinates = this.mapDatasToCoordinates(data, 0);
-      } else {
-        coordinates = this.mapDatasToCoordinates(data, showedDataCount);
+      let coordinates: Coordinate[] = this.mapDatasToCoordinates(data, 0);
+
+      // datas[0]의 마지막 좌표만 datas[1]의 y좌표로 이동 (가격은 유지)
+      if (i === 0 && this.datas.length > 1) {
+        const lastIndex = coordinates.length - 1;
+        const referenceCoordinates = this.mapDatasToCoordinates(
+          this.datas[1].data,
+          0,
+        );
+
+        // 마지막 좌표의 y값만 변경 (x값은 유지)
+        coordinates[lastIndex] = {
+          x: coordinates[lastIndex].x,
+          y: referenceCoordinates[lastIndex].y,
+        };
       }
 
-      // 좌표 값을 SVG 경로로 변경한 데이터를 담는 변수
-      const svgPathFromCoordinates: string[] = [];
+      // SVG 경로 생성
+      const pathData = coordinates.reduce((acc, coord, idx) => {
+        const command = idx === 0 ? "M" : "L";
+        return `${acc} ${command} ${coord.x} ${coord.y}`;
+      }, "");
 
-      coordinates.forEach((v, i) => {
-        if (i == 0) svgPathFromCoordinates.push(`M ${v.x} ${v.y} `);
-        else svgPathFromCoordinates.push(`L ${v.x} ${v.y}`);
-      });
-
+      // 기본 옵션 설정
       const defaultOptions = [
         { property: "stroke", value: color },
-        { property: "d", value: svgPathFromCoordinates.join(" ") },
+        { property: "d", value: pathData },
         { property: "fill", value: "none" },
-        { property: "stroke-width", value: width + "" },
+        { property: "stroke-width", value: width.toString() },
         { property: "stroke-linecap", value: "round" },
         { property: "stroke-linejoin", value: "round" },
       ];
 
+      // drawMode에 따른 처리
       switch (drawMode) {
         case "line":
-          // drawMode가 Line일 경우 stroke 옵션을 사용해 선 색상 부여
           break;
-        case "area":
+
+        case "area": {
           const areaGradientColor = this.createLinearGradient([
             { offset: "0", stopColor: areaColor },
             { offset: "1", stopColor: "rgba(255, 255, 255, 0)" },
           ]);
 
-          // drawMode가 area일 경우 새로운 path 태그를 만들고 fill 옵션을 사용해 area 색상 부여
-          // area 차트의 좌표 값 생성
-          const areaPointList = [...svgPathFromCoordinates];
-          areaPointList.push(`V ${this.hegiht - this.padding.bottom}`);
-          areaPointList.push(`H ${coordinates[0].x}`);
-          const areaPath = this.createSvgElement("path", [
-            { property: "d", value: areaPointList.join(" ") },
+          const areaPath = `${pathData} V ${this.height - this.padding.bottom} H ${coordinates[0].x}`;
+          const areaElement = this.createSvgElement("path", [
+            { property: "d", value: areaPath },
             { property: "fill", value: `url(#${areaGradientColor})` },
           ]);
 
-          this.appendChilds(gTagOfPath, [areaPath]);
+          this.appendChilds(gTagOfPath, [areaElement]);
+          break;
+        }
 
+        case "dotted": {
+          const areaGradientColor = this.createLinearGradient([
+            { offset: "0", stopColor: areaColor },
+            { offset: "1", stopColor: "rgba(255, 255, 255, 0)" },
+          ]);
+
+          const areaPath = `${pathData} V ${this.height - this.padding.bottom} H ${coordinates[0].x}`;
+          const areaElement = this.createSvgElement("path", [
+            { property: "d", value: areaPath },
+            { property: "fill", value: `url(#${areaGradientColor})` },
+          ]);
+
+          defaultOptions.push(
+            { property: "stroke-dasharray", value: "4 4" },
+            { property: "stroke-linecap", value: "round" },
+          );
+
+          this.appendChilds(gTagOfPath, [areaElement]);
           break;
-        case "dotted":
-          // 속성 값
-          // drawMode가 dotted일 경우 stroke-dasharray 옵션을 사용해 점선을 생성하고 stroke 옵션을 사용해 선 색상 부여
-          defaultOptions.push({
-            property: "stroke-dasharray",
-            value: "13",
-          });
-          break;
+        }
+
         default:
-          throw new Error("can't find drawMode, your drawMode is " + drawMode);
+          throw new Error(`Unknown drawMode: ${drawMode}`);
       }
 
-      // draw polylines
-      const path = this.createSvgElement("path", defaultOptions);
+      // 선 그리기
+      const pathElement = this.createSvgElement("path", defaultOptions);
+      this.appendChilds(gTagOfPath, [pathElement]);
 
-      this.appendChilds(gTagOfPath, [path]);
-
-      // 서로 다른 데이터의 접점을 그림
+      // 데이터 접점 그리기
       if (i > 0) {
         const contactCoordinate = this.calculateLineChartCoordinateFromData(
           data[data.length - this.showDataCount + showedDataCount],
           showedDataCount,
         );
-        this.drawCircle(gTagOfPath, contactCoordinate, color);
+
+        // 수직선과 원 그리기
+        const verticalLine = this.createSvgElement("line", [
+          { property: "x1", value: contactCoordinate.x.toString() },
+          {
+            property: "y1",
+            value: (this.height - this.padding.bottom).toString(),
+          },
+          { property: "x2", value: contactCoordinate.x.toString() },
+          { property: "y2", value: contactCoordinate.y.toString() },
+          { property: "stroke", value: "rgba(45, 45, 45, 1)" },
+          { property: "stroke-dasharray", value: "3 3" },
+          { property: "stroke-width", value: "1" },
+        ]);
+
+        this.appendChilds(gTagOfPath, [verticalLine]);
+        this.drawCircle(gTagOfPath, contactCoordinate);
       }
 
       // 현재까지 보여준 데이터 개수 갱신
       showedDataCount +=
         this.showDataCount - (this.maxChartDataCount - data.length) - 1;
     }
+
+    // 최종적으로 생성된 그래프를 컨테이너에 추가
     this.appendChilds(this.datasContainer, [gTagOfPath]);
   };
 
@@ -1010,10 +1070,9 @@ export class Chart {
    * Chart의 Legend를 설정하는 함수
    */
   private setLegend = () => {
-    const legendHeight = 50;
+    const legendHeight = 55;
     const lineWidth = 50;
-    const gap = 24;
-    const fontSize = 12;
+    const gap = 10;
 
     // legend 사이의 갭들을 나타내는 변수
     let accGap = 0;
@@ -1027,23 +1086,23 @@ export class Chart {
       const { label, drawMode } = data;
 
       // Get text position
-      const x = this.padding.left;
-      const y = this.padding.top - legendHeight;
+      const x = this.padding.left - 30;
+      const y = this.padding.top - legendHeight - 30;
 
       const line = this.createSvgElement("line", [
-        { property: "x1", value: `${x + accGap}` },
+        { property: "x1", value: `${x + accGap + 30}` },
         { property: "y1", value: `${y}` },
         { property: "x2", value: `${x + lineWidth + accGap}` },
         { property: "y2", value: `${y}` },
         {
           property: "stroke",
-          value: `${this.datas[i].color}`,
+          value: `${this.datas[i].legendColor}`,
         },
-        { property: "stroke-width", value: `2px` },
+        { property: "stroke-width", value: `5px` }, // 줄인 선의 너비
         drawMode === "dotted"
           ? {
               property: "stroke-dasharray",
-              value: "7",
+              value: "4",
             }
           : { property: "stroke-dasharray", value: "0" },
       ]);
@@ -1051,7 +1110,7 @@ export class Chart {
       accGap += gap;
 
       const text = this.createSvgElement("text", [
-        { property: "font-size", value: `${fontSize}` },
+        { property: "font-size", value: 16 + "px" },
         { property: "fill", value: `#616161` },
         { property: "x", value: `${x + lineWidth + accGap}` },
         { property: "y", value: `${y}` },
@@ -1065,7 +1124,37 @@ export class Chart {
 
       this.appendChilds(gTagOfLegend, [text, line]);
     }
-    this.appendChilds(this.legendContainer, [gTagOfLegend]);
+
+    const descriptionContainer = this.createSvgElement("g", [
+      { property: "class", value: "description" },
+    ]);
+
+    // Add gray circle
+    const grayCircle = this.createSvgElement("circle", [
+      { property: "cx", value: `${this.padding.left}` },
+      { property: "cy", value: `${this.padding.top - legendHeight}` },
+      { property: "r", value: "3" },
+      { property: "fill", value: `#BDBDBD` },
+    ]);
+
+    const description = this.createSvgElement("text", [
+      { property: "font-size", value: 16 + "px" },
+      { property: "color", value: `rgba(85, 85, 85, 1)` },
+      { property: "fill", value: `#616161` },
+      { property: "x", value: `${this.padding.left + 10}` },
+      { property: "y", value: `${this.padding.top - legendHeight + 5}` },
+    ]);
+    description.append(
+      "예측 성공 기준 : 당일 기준, 다음날 오전 12시 가격이 올랐을 시",
+    );
+
+    this.appendChilds(descriptionContainer, [grayCircle, description]);
+    descriptionContainer.appendChild(description);
+
+    this.appendChilds(this.legendContainer, [
+      gTagOfLegend,
+      descriptionContainer,
+    ]);
   };
 
   /**
@@ -1143,15 +1232,53 @@ export class Chart {
     }[] = [];
 
     // 2. Draw Hover line Like Y Axios Guidline
-    const pathOfGuidLine = `M ${
+    // X 좌표 계산
+    const xPosition =
       (index / (this.showDataCount - 1)) *
         (this.width - this.padding.left - this.padding.right) +
-      this.padding.left
-    },${this.padding.top} V${this.hegiht - this.padding.bottom}`;
-    this.hoverGuidLineContainer.setAttribute("d", pathOfGuidLine);
+      this.padding.left;
+
+    // Y 좌표 계산 (마우스 Y 좌표 반영)
+    const yPosition = this.datas.reduce((closestY, data) => {
+      const diff = this.maxChartDataCount - data.data.length;
+      const indexOfData = data.data.length - this.showDataCount + index + diff;
+      const chartValue = data.data[indexOfData];
+
+      if (chartValue !== undefined) {
+        const calculatedY =
+          this.height -
+          this.padding.top -
+          this.padding.bottom -
+          (this.height - this.padding.bottom - this.padding.top) *
+            ((chartValue - this.minData) / (this.maxData - this.minData)) +
+          this.padding.top;
+
+        return Math.min(closestY, calculatedY);
+      }
+
+      return closestY;
+    }, this.height - this.padding.bottom);
+
+    // X축 + Y축 가이드라인 경로
+    const pathOfGuidLines = `
+     M ${xPosition},${this.padding.top} V${this.height - this.padding.bottom} 
+     M ${this.padding.left},${yPosition} H${this.width - this.padding.right}
+     `;
+
+    // y축과 x축이 교차되는 지점에 원을 찍어주고싶어
+    // 1. Draw Hover Circle
+    // 기존 hoverPointsContainer에 X축 + Y축 경로 함께 추가
+    this.hoverPointsContainer.innerHTML = `
+      <circle cx="${xPosition}" cy="${yPosition}" r="6" fill="rgba(45, 45, 45, 1)" />
+    `;
+    this.hoverPointsContainer.setAttribute("visibility", "visible");
+
+    // 기존 hoverGuidLineContainer에 X축 + Y축 경로 함께 추가
+    this.hoverGuidLineContainer.setAttribute("d", pathOfGuidLines);
     this.hoverGuidLineContainer.setAttribute("visibility", "visible");
 
     // 3. Set Pointer on the data line
+
     this.datas.forEach((_) => {
       const { data, label } = _;
       const diff = this.maxChartDataCount - data.length;
@@ -1173,16 +1300,44 @@ export class Chart {
       hoverCardString = `
       <style>
         .flowbit-hover-card {
-          width: 256px;
+          width: 100%;
+          min-width: 153px;
+          max-width: fit-content;
+          height: 87px;
+          box-sizing: border-box;
           background-color: #fff;
           border-radius: 4px;
-          border: 2px solid #eee;
-          padding: 16px 20px;
+          border: 1px solid #eee;
+          padding: 12px;
           color: #9E9E9E;
           visibility: hidden;
           position: absolute;
           z-index: 2;
         }
+          
+        .flowbit-hover-container {
+          display: flex;
+          flex-direction: column;
+          row-gap: .4rem;
+        }
+
+        .flowbit-hover-card::after {
+              content: "";
+              display: block;
+              position: absolute;
+              bottom: -6px;
+              left: 50%;
+              width: 10px;
+              height: 10px;
+              margin-left: -5px;
+              border-left: 1px solid #eee;
+              border-top: 1px solid #eee;
+              background-color: #fff;
+              -webkit-transform: rotate(225deg);
+              -moz-transform: rotate(225deg);
+              transform: rotate(225deg);
+        }
+          
         .flowbit-hover-card__title {
           display: flex;
           justify-content: space-between;
@@ -1193,8 +1348,9 @@ export class Chart {
           letter-spacing: 2%;
         }
         .flowbit-hover-card__badge {
-          font-size: 16px;
-          font-weight: bold;
+          font-size: 1.4rem;
+          line-height: 1.5;
+          font-weight: 600;
           letter-spacing: 2%;
         }
         .flowbit-hover-card__badge.red {
@@ -1204,6 +1360,9 @@ export class Chart {
           color: #0056CA;
         }
         .flowbit-hover-card__contentList {
+          display: flex;
+          flex-direction: column;
+          row-gap: 0.2rem;
           list-style-type: none;
           padding: 0;
           margin: 0;
@@ -1211,8 +1370,22 @@ export class Chart {
         .flowbit-hover-card__content {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: left;
+          column-gap: .8rem;
+          
+          span {
+           line-height: 1.5;
+           letter-spacing: 0.02rem;
+           font-size: 12px;
+           font-weight: 400;
+          }
+
+          span:nth-of-type(2) {
+            color: rgba(85, 85, 85, 1);
+            font-weight: 600;
+          }
         }
+
         .flowbit-hover-card__content h2,
         .flowbit-hover-card__content h1 {
           font-size: 14px;
@@ -1229,21 +1402,19 @@ export class Chart {
           color: #0056CA;
         }
       </style>
-      <div>
+      <div class="flowbit-hover-container">
         <div class="flowbit-hover-card__title">
-          <h1 class="flowbit-hover-card__date">${
-            this.labels[this.labels.length - this.showDataCount + index]
-          }</h1>
-          <span class="flowbit-hover-card__badge green">매수하세요</span>
+          <span class="flowbit-hover-card__badge green"> 예측 진행 중 </span>
         </div>
         <ul class="flowbit-hover-card__contentList">
+        
           <li class="flowbit-hover-card__content">
-            <h2>${dataInfoList[0].legend}</h2>
-            <h2>-</h2>
+            <span> 날짜 </span>
+            <span>${this.labels[this.labels.length - this.showDataCount + index]}</span>
           </li>
           <li class="flowbit-hover-card__content">
-            <h2>${dataInfoList[1].legend}</h2>
-            <h1>${dataInfoList[1].cur.toLocaleString()}</h1>
+          <span> 예측 가격 </span>
+          <span>${dataInfoList[1].cur.toLocaleString()}</span>
           </li>
         </ul>
       </div>
@@ -1256,16 +1427,44 @@ export class Chart {
       hoverCardString = `
       <style>
         .flowbit-hover-card {
-          width: 256px;
+          width: 100%;
+          min-width: 153px;
+          max-width: fit-content;
+          height: 110px;
+          box-sizing: border-box;
           background-color: #fff;
           border-radius: 4px;
           border: 2px solid #eee;
-          padding: 16px 20px;
+          line-height: 1.5;
+
+          padding: 12px;
           color: #9E9E9E;
           visibility: hidden;
           position: absolute;
           z-index: 2;
         }
+        .flowbit-hover-container {
+          display: flex;
+          flex-direction: column;
+          row-gap: .4rem;
+        }
+        .flowbit-hover-card::after {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -6px;
+          left: 50%;
+          width: 10px;
+          height: 10px;
+          margin-left: -5px;
+          border-left: 1px solid #eee;
+          border-top: 1px solid #eee;
+          background-color: #fff;
+          -webkit-transform: rotate(225deg);
+          -moz-transform: rotate(225deg);
+          transform: rotate(225deg);
+        }
+
         .flowbit-hover-card__title {
           display: flex;
           justify-content: space-between;
@@ -1276,9 +1475,9 @@ export class Chart {
           letter-spacing: 2%;
         }
         .flowbit-hover-card__badge {
-          font-size: 16px;
-          font-weight: bold;
+          font-size: 1.4rem;
           letter-spacing: 2%;
+          font-weight: 600;
         }
         .flowbit-hover-card__badge.red {
           color: #E74C4C;
@@ -1294,8 +1493,22 @@ export class Chart {
         .flowbit-hover-card__content {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: left;
+          column-gap: .8rem;
+
+          span {
+            line-height: 1.5;
+            letter-spacing: 0.02rem;
+            font-size: 12px;
+            font-weight: 400;
+          }
+
+          span:nth-of-type(2) {
+            color: rgba(85, 85, 85, 1);
+            font-weight: 600;
+          }
         }
+
         .flowbit-hover-card__content h2,
         .flowbit-hover-card__content h1 {
           font-size: 14px;
@@ -1312,23 +1525,24 @@ export class Chart {
           color: #0056CA;
         }
       </style>
-      <div>
+      <div class="flowbit-hover-container">
         <div class="flowbit-hover-card__title">
-          <h1 class="flowbit-hover-card__date">${
-            this.labels[this.labels.length - this.showDataCount + index]
-          }</h1>
           <span class="flowbit-hover-card__badge ${
             isCorrect ? "green" : "red"
           }">${isCorrect ? "예측 성공" : "예측 실패"}</span>
         </div>
         <ul class="flowbit-hover-card__contentList">
           <li class="flowbit-hover-card__content">
-            <h2>${dataInfoList[0].legend}</h2>
-            <h1>${dataInfoList[0].cur.toLocaleString()}</h1>
+            <span> 날짜 </span>
+            <span>${this.labels[this.labels.length - this.showDataCount + index]}</span>
           </li>
           <li class="flowbit-hover-card__content">
-            <h2>${dataInfoList[1].legend}</h2>
-            <h1>${dataInfoList[1].cur.toLocaleString()}</h1>
+            <span> 실제 가격 </span>
+            <span> ${dataInfoList[0].cur.toLocaleString()} </span>
+          </li>
+          <li class="flowbit-hover-card__content">
+            <span> 예측 가격 </span>
+            <span>${dataInfoList[1].cur.toLocaleString()}</span>
           </li>
         </ul>
       </div>
@@ -1347,13 +1561,24 @@ export class Chart {
     // console.log(this.predict.getBoundingClientRect().y);
 
     this.hoverCardContainer.style.visibility = "visible";
-    this.hoverCardContainer.style.top = `${e.offsetY + 20}px`;
-    if (persent > 0.5) {
-      this.hoverCardContainer.style.left = `${e.clientX - 10}px`;
-      this.hoverCardContainer.style.translate = "-100%";
-    } else {
-      this.hoverCardContainer.style.left = `${e.clientX + 10}px`;
-      this.hoverCardContainer.style.translate = "0";
+
+    // Position the hover card above the graph point
+    const hoverCardHeight = this.hoverCardContainer.offsetHeight || 150; // Default height if not rendered yet
+    const hoverCardWidth = this.hoverCardContainer.offsetWidth || 100; // Default width if not rendered yet
+
+    this.hoverCardContainer.style.top = `${yPosition - hoverCardHeight - 30}px`; // 10px padding above the point
+    this.hoverCardContainer.style.left = `${xPosition - hoverCardWidth / 2}px`; // Center the card horizontally
+
+    // Ensure the hover card doesn't go out of bounds
+    const chartRect = this.chart.getBoundingClientRect();
+    const hoverCardRect = this.hoverCardContainer.getBoundingClientRect();
+
+    if (hoverCardRect.left < chartRect.left) {
+      // If the hover card goes out of bounds on the left, shift it to the right
+      this.hoverCardContainer.style.left = `${chartRect.left + 10}px`; // Add some padding to the right
+    } else if (hoverCardRect.right > chartRect.right - 100) {
+      // If the hover card goes out of bounds on the right, keep it above the point
+      this.hoverCardContainer.style.right = `${chartRect.right + 10}px`; // Add some padding to the right
     }
   };
 
@@ -1381,7 +1606,6 @@ export class Chart {
     // Set Mouse Hover Event
     this.mouseEventAreaContainer.addEventListener("mousemove", (e) => {
       this.setMouseHoverAction(e);
-      this.isMouseHover = true;
 
       // 재조정 된 데이터 다시 셋팅
       document.getElementById("flowbit_datas")?.remove();
@@ -1392,7 +1616,6 @@ export class Chart {
       this.hoverGuidLineContainer.setAttribute("visibility", "hidden");
       this.hoverPointsContainer.setAttribute("visibility", "hidden");
       this.hoverCardContainer.style.visibility = "hidden";
-      this.isMouseHover = false;
 
       // 재조정 된 데이터 다시 셋팅
       document.getElementById("flowbit_datas")?.remove();
