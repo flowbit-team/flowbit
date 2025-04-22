@@ -13,6 +13,7 @@ export default function Input({
   return (
     <div
       css={css`
+        width: 100%;
         position: relative;
         display: flex;
         align-items: center;
@@ -25,7 +26,7 @@ export default function Input({
           css={css`
             position: absolute;
             z-index: 1;
-            padding-left: 2rem;
+            padding-left: 16px;
           `}
         />
       )}
@@ -35,8 +36,10 @@ export default function Input({
           border: none;
           box-shadow: inset 0 0 0 1px #eeeeee;
           width: 100%;
-          height: 5.6rem;
-          border-radius: 0.5rem;
+          height: 45px;
+          border-radius: 8px;
+          font-size: 14px;
+          color: var(--text-body1);
           padding-left: ${icon ? `6rem` : `2rem`};
 
           &:focus {
@@ -45,6 +48,11 @@ export default function Input({
 
           &::placeholder {
             color: #bdbdbd;
+          }
+
+          &:disabled {
+            color: var(--text-disabled);
+            background: var(--gray-10);
           }
         `}
         placeholder={placeholder}
