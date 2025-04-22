@@ -10,31 +10,30 @@ const FloatingWidgetLayout = forwardRef<
   FloatingWidgetLayoutProps
 >(({ children, containerRef }) => {
   return (
-    <div
-      css={css`
-        position: fixed;
-        bottom: 5rem;
-        right: 8rem;
-        button {
-          background: transparent;
-          border: none;
-          padding: 0;
-          margin: 0;
-          outline: none;
-        }
-      `}
-    >
-      <div
-        ref={containerRef}
-        css={css`
-          position: relative;
-        `}
-      >
+    <div css={wrapperStyle}>
+      <div ref={containerRef} css={containerStyle}>
         {children}
       </div>
     </div>
   );
 });
+
+const wrapperStyle = css`
+  position: fixed;
+  bottom: 5rem;
+  right: 8rem;
+  button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+  }
+`;
+
+const containerStyle = css`
+  position: relative;
+`;
 
 FloatingWidgetLayout.displayName = "FloatingWidgetLayout";
 
