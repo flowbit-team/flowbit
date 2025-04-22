@@ -1,51 +1,47 @@
 import { useState } from "react";
 import { css } from "@emotion/react";
-import Button from "@/components/common/Button";
-import CertificateBox from "@/components/app/signup/certificate-box.tsx";
 import { sendVerifyEmail } from "@/hooks/api/member/useApiSendVerifyEmail.ts";
 import { verifyEmail } from "@/hooks/api/member/useApiVerifyEmail.ts";
 import { sendSubscribeEmail } from "@/hooks/api/subscribe/useApiSendSubscribe";
-import { BREAK_POINTS, DESIGN_SYSTEM_COLOR } from "@/style/variable";
 import { EMAIL_PURPOSE } from "@/utils/common";
 import { useModal } from "@/hooks/useModal";
-import { EMAIL_REGEX } from "@/utils/regex";
+import Input from "../Input";
+import CertificateBox from "@/components/app/signup/certificate-box";
+import useCheckEmail from "@/hooks/useCheckEmail";
+import Button from "../Button";
+import Chip from "../chip";
 
 export const SubscriptionModalContent = () => {
-  const [email, setEmail] = useState("");
-  const [emailValid, setEmailValid] = useState(false);
   const [verifySendCheck, setVerifySendCheck] = useState(false);
   const [verifyEmailNum, setVerifyEmailNum] = useState("");
   const [verifyEmailNumCheck, setVerifyEmailNumCheck] = useState(false);
-  const [categories, setCategories] = useState({
-    bitcoinPrediction: false,
-    latestNews: false,
-  });
+  const [keywordList, setKeywordList] = useState<string[]>([]);
   const { close } = useModal();
+  const { email, isValidEmail, handleEmailChange } = useCheckEmail();
 
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-    setEmailValid(EMAIL_REGEX.test(value));
-  };
-
-  const handleSendVerificationEmail = async () => {
-    if (!emailValid) return;
+  const handleSendVerificationEmail = () => {
+    if (!isValidEmail) return;
     try {
-      sendVerifyEmail({ email, emailPurpose: EMAIL_PURPOSE.SUBSCRIBE });
-      alert("인증번호가 전송되었습니다. 확인 후 입력해주세요.");
+      const res = sendVerifyEmail({
+        email,
+        emailPurpose: EMAIL_PURPOSE.SUBSCRIBE,
+      });
+      console.log(res);
       setVerifySendCheck(true);
     } catch (error) {
       alert("이메일 전송에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
-  const handleVerifyEmailCode = async () => {
+  const handleVerifyEmailCode = () => {
     if (!verifyEmailNum) return;
     try {
-      await verifyEmail({ email, randomNumber: verifyEmailNum, emailPurpose: EMAIL_PURPOSE.SUBSCRIBE });
+      const res = verifyEmail({
+        email,
+        randomNumber: verifyEmailNum,
+        emailPurpose: EMAIL_PURPOSE.SUBSCRIBE,
+      });
       setVerifyEmailNumCheck(true);
-      alert("이메일 인증이 완료되었습니다.");
     } catch (error) {
       alert("인증번호가 올바르지 않습니다. 다시 확인해주세요.");
     }
@@ -58,7 +54,7 @@ export const SubscriptionModalContent = () => {
     }
 
     const selectedCategories = Object.keys(categories).filter(
-      (key) => categories[key as keyof typeof categories]
+      (key) => categories[key as keyof typeof categories],
     );
 
     if (selectedCategories.length === 0) {
@@ -75,222 +71,155 @@ export const SubscriptionModalContent = () => {
     }
   };
 
-
   return (
     <div>
-      <h3
-        css={css`
-          font-size: 1.8rem;
-          font-weight: bold;
-          color: ${DESIGN_SYSTEM_COLOR.GRAY_900};
-          margin-bottom: 1.5rem;
-        `}
-      >
-        구독할 카테고리를 선택하세요
-      </h3>
-
-      {/* 구독 카테고리 토글 */}
-      <div
-        css={css`
-          display: flex;
-          flex-direction: column;
-          gap: 1.2rem;
-          margin-bottom: 1.8rem;
-        `}
-      >
-        <label
-          css={css`
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: ${DESIGN_SYSTEM_COLOR.GRAY_100};
-            padding: 1rem;
-            border-radius: 0.8rem;
-            cursor: pointer;
-          `}
-        >
-          <span>비트코인 예측 구독</span>
-          <div
-            css={css`
-              position: relative;
-              width: 3.6rem;
-              height: 2rem;
-              background-color: ${categories.bitcoinPrediction ? DESIGN_SYSTEM_COLOR.BRAND_BLUE : DESIGN_SYSTEM_COLOR.GRAY_400};
-              border-radius: 1rem;
-              transition: background-color 0.2s;
-              cursor: pointer;
-            `}
-            onClick={() => setCategories((prev) => ({ ...prev, bitcoinPrediction: !prev.bitcoinPrediction }))}
-          >
-            <div
-              css={css`
-                position: absolute;
-                width: 1.6rem;
-                height: 1.6rem;
-                background-color: white;
-                border-radius: 50%;
-                top: 50%;
-                left: ${categories.bitcoinPrediction ? "calc(100% - 1.8rem)" : "2px"};
-                transform: translateY(-50%);
-                transition: left 0.2s;
-              `}
-            />
-          </div>
-        </label>
-
-        <label
-          css={css`
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: ${DESIGN_SYSTEM_COLOR.GRAY_100};
-            padding: 1rem;
-            border-radius: 0.8rem;
-            cursor: pointer;
-          `}
-        >
-          <span>최신 뉴스 구독</span>
-          <div
-            css={css`
-              position: relative;
-              width: 3.6rem;
-              height: 2rem;
-              background-color: ${categories.latestNews ? DESIGN_SYSTEM_COLOR.BRAND_BLUE : DESIGN_SYSTEM_COLOR.GRAY_400};
-              border-radius: 1rem;
-              transition: background-color 0.2s;
-              cursor: pointer;
-            `}
-            onClick={() => setCategories((prev) => ({ ...prev, latestNews: !prev.latestNews }))}
-          >
-            <div
-              css={css`
-                position: absolute;
-                width: 1.6rem;
-                height: 1.6rem;
-                background-color: white;
-                border-radius: 50%;
-                top: 50%;
-                left: ${categories.latestNews ? "calc(100% - 1.8rem)" : "2px"};
-                transform: translateY(-50%);
-                transition: left 0.2s;
-              `}
-            />
-          </div>
-        </label>
+      {/* 제목 영역 */}
+      <div css={titleWrapper.container}>
+        <h1 css={titleWrapper.title}>알림 서비스 구독</h1>
+        <span css={titleWrapper.description}>
+          투자에 도움이 될만한 정보들을 로그인 없이 메일로 받아보세요.
+        </span>
       </div>
-
-      {/* 이메일 입력 및 인증 */}
-      <h3
-        css={css`
-          font-size: 1.6rem;
-          font-weight: bold;
-          color: ${DESIGN_SYSTEM_COLOR.GRAY_900};
-          margin-bottom: 1rem;
-        `}
-      >
-        이메일 인증
-      </h3>
-      <div
-        css={css`
-          display: flex;
-          align-items: center;
-          gap: 0.8rem;
-        `}
-      >
-        <input
-          type="email"
-          placeholder="이메일 입력"
-          value={email}
-          onChange={handleEmailChange}
-          css={css`
-            flex: 1;
-            padding: 1rem;
-            border: 1px solid ${DESIGN_SYSTEM_COLOR.GRAY_300};
-            border-radius: 0.8rem;
-            font-size: 1.4rem;
-          `}
-          disabled={verifySendCheck}
-        />
-       <CertificateBox check={emailValid && !verifySendCheck} onClick={handleSendVerificationEmail}>
-        {verifySendCheck ? "발송됨" : "인증 요청"}
-      </CertificateBox>
+      {/* 키워드 영역 */}
+      <div css={keywordWrapper.container}>
+        <div css={keywordWrapper.descriptionContainer}>
+          <span>관심키워드</span>
+          <span>* 관심키워드 설정은 최대 6개입니다.</span>
+        </div>
+        <div css={keywordWrapper.keywordSelectContainer}>
+          <Chip closable>비트코인</Chip>
+        </div>
       </div>
-
-      {verifySendCheck && (
-        <div
-          css={css`
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-top: 1rem;
-          `}
-        >
-          <input
-            type="text"
-            placeholder="인증번호 입력"
-            value={verifyEmailNum}
-            onChange={(e) => setVerifyEmailNum(e.target.value)}
-            maxLength={6}
-            css={css`
-              flex: 1;
-              padding: 1rem;
-              border: 1px solid ${DESIGN_SYSTEM_COLOR.GRAY_300};
-              border-radius: 0.8rem;
-              font-size: 1.4rem;
-            `}
-            disabled={verifyEmailNumCheck}
+      {/* 이메일 인증 영역 */}
+      <div css={emailWrapper.container}>
+        <div css={emailWrapper.titleContainer}>
+          <span> 이메일 주소 </span>
+          <div id="circle" />
+        </div>
+        <div css={emailWrapper.emailFormContainer}>
+          <Input
+            placeholder={`이메일을 입력해주세요`}
+            value={email}
+            onChange={handleEmailChange}
           />
-          <CertificateBox check={verifySendCheck && !verifyEmailNumCheck} onClick={handleVerifyEmailCode}>
-            {verifyEmailNumCheck ? "인증 완료" : "인증하기"}
+          <CertificateBox
+            disabled={!isValidEmail}
+            onClick={handleSendVerificationEmail}
+          >
+            {verifySendCheck ? "인증번호 재전송" : "인증번호 받기"}
           </CertificateBox>
         </div>
-      )}
-       <div
-        css={css`
-          margin-top: 1rem;
-          display: flex;
-          justify-content: flex-end;
-          gap: 1.6rem;
-
-          ${BREAK_POINTS.TABLET} {
-          }
-          ${BREAK_POINTS.MOBILE} {
-            margin-top: 4rem;
-          }
-        `}
-      >
-
-              <Button
-                css={css`
-                  width: 8.4rem !important;
-                  height: 4.5rem;
-                  ${DESIGN_SYSTEM_COLOR.GRAY_50}
-                  font-size: 1.6rem;
-                  font-weight: normal;
-                  left: 2rem;
-                  bottom: 2rem;
-
-                `}
-                onClick={close}
-              >
-                취소
-              </Button>
-              <Button
-                css={css`
-                  width: 8.4rem !important;
-                  height: 4.5rem;
-
-                  ${DESIGN_SYSTEM_COLOR.GRAY_50}
-                  font-size: 1.6rem;
-                  font-weight: normal;
-                `}
-                state={Boolean(verifyEmailNumCheck)} onClick={handleCompleteSubscription}
-              >
-                구독
-              </Button>
+        <Input
+          placeholder={"인증번호를 입력해주세요"}
+          value={verifyEmailNum}
+          onChange={(e) => setVerifyEmailNum(e.target.value)}
+          disabled={true}
+        />
       </div>
-    
-  
+      <div css={footerWrapper.container}>
+        <Button disabled={true}>동의하고 구독하기</Button>
+      </div>
     </div>
   );
+};
+
+const titleWrapper = {
+  container: css`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 4px;
+  `,
+  title: css`
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-title);
+    line-height: 0;
+  `,
+  description: css`
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-body2);
+  `,
+};
+
+const keywordWrapper = {
+  container: css`
+    flex-direction: column;
+    row-gap: 12px;
+    display: flex;
+    background-color: var(--gray-5);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 24px;
+  `,
+  descriptionContainer: css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 8px;
+
+    & > span:nth-of-type(1) {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-body1);
+    }
+
+    & > span:nth-of-type(2) {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-caption);
+    }
+  `,
+  keywordSelectContainer: css`
+    display: inline-flex;
+    column-gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+  `,
+};
+
+const emailWrapper = {
+  container: css`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 32px;
+    row-gap: 12px;
+  `,
+  titleContainer: css`
+    display: flex;
+    flex-direction: row;
+
+    & > span {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-body1);
+    }
+
+    > #circle {
+      margin-top: 5px;
+      background-color: var(--red-50);
+      width: 3px;
+      height: 3px;
+      border-radius: 100%;
+    }
+  `,
+  emailFormContainer: css`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 12px;
+  `,
+};
+
+const footerWrapper = {
+  container: css`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+    row-gap: 12px;
+  `,
 };

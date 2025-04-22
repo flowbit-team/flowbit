@@ -1,17 +1,17 @@
 import { css } from "@emotion/react";
 import { PropsWithChildren } from "react";
-import { DESIGN_SYSTEM_COLOR, DESIGN_SYSTEM_TEXT } from "@/style/variable.ts";
+import { DESIGN_SYSTEM_TEXT } from "@/style/variable.ts";
 
 interface certificateProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "type"> {
   icon?: string;
-  check?: boolean;
+  disabled?: boolean;
 }
 
 export default function CertificateBox({
   icon,
   children,
-  check = false,
+  disabled = false,
   ...props
 }: PropsWithChildren<certificateProps>) {
   return (
@@ -19,20 +19,26 @@ export default function CertificateBox({
       id="certificateb-box"
       css={css`
         ${DESIGN_SYSTEM_TEXT.B2}
-        border-radius: 0.2rem;
-        padding: 0.5rem 1.1rem;
-        background: ${icon ? `transparent` : DESIGN_SYSTEM_COLOR.BRAND_BLUE};
-        color: ${DESIGN_SYSTEM_COLOR.GRAY_50};
         white-space: nowrap;
         width: auto;
+        border-radius: 6px;
+        padding: 11px 16px;
+        background: ${icon ? `transparent` : `var(--blue-5)`};
+        color: var(--blue-50);
         transition: 0.4s all;
+        font-weight: 400;
+        font-size: 15px;
         cursor: pointer;
 
+        display: flex;
+        align-items: center;
+
         ${icon && `padding-right: 0`}
-        ${!check &&
+        ${disabled &&
         css`
           pointer-events: none;
-          filter: grayscale(100%);
+          background-color: var(--gray-10);
+          color: var(--text-disabled);
         `}
       `}
       {...props}
