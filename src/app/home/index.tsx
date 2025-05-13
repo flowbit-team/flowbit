@@ -27,9 +27,10 @@ import { useGetChartDataQuery } from "@/api/chartApi";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "@/hooks/useModal.ts";
-import { SubscriptionModalContent } from "@/components/common/modal/SubscriptionModalContent";
 import { useAtom } from "jotai";
 import { loginState } from "@/store/user";
+import { SubscriptionModalContent } from "@/components/common/modal/SubscriptionModalContent";
+import FloatingWidget from "@/components/app/home/floating/floatingWidget";
 import { useApiTotalView } from "@/hooks/api/visitor/useApiTotalView";
 import { VisitorCount } from "@/components/app/home/VisitorCount";
 
@@ -309,7 +310,8 @@ export default function HomePage() {
               <Button
                 css={css`
                   width: 11.4rem !important;
-                  height: 4.5rem;
+                  height: 4.5rem;import FloatingWidget from '../../components/app/home/floating/FloatingWidget';
+
 
                   ${DESIGN_SYSTEM_COLOR.GRAY_50}
                   font-size: 1.6rem;
@@ -588,6 +590,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <FloatingWidget />
       </section>
 
       {/* 하단 이미지 */}
