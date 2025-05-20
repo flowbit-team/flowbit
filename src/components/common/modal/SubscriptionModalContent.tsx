@@ -10,14 +10,44 @@ import CertificateBox from "@/components/app/signup/certificate-box";
 import useCheckEmail from "@/hooks/useCheckEmail";
 import Button from "../Button";
 import Chip from "../chip";
+import { set } from "lodash";
 
 export const SubscriptionModalContent = () => {
   const [verifySendCheck, setVerifySendCheck] = useState(false);
   const [verifyEmailNum, setVerifyEmailNum] = useState("");
   const [verifyEmailNumCheck, setVerifyEmailNumCheck] = useState(false);
-  const [keywordList, setKeywordList] = useState<string[]>([]);
+  const [keywordList, setKeywordList] = useState<{ value: string }[]>([
+    {
+      value: "",
+    },
+  ]);
   const { close } = useModal();
   const { email, isValidEmail, handleEmailChange } = useCheckEmail();
+
+  const handleAddkeyword = (value: string) => {
+    if (!value.trim()) {
+      alert("올바른 키워드를 입력해주세요");
+      return;
+    }
+    if (keywordList.length >= 3) {
+      alert("최대 3개까지 입력 가능합니다.");
+      return;
+    }
+    setKeywordList([...keywordList, { value: "" }]);
+  };
+
+  const handleChangekeyword = ({
+    index,
+    keyword,
+  }: {
+    index: number;
+    keyword: string;
+  }) => {
+    console.log(index, keyword);
+    const newKeywordList = [...keywordList];
+    newKeywordList[index].value = keyword;
+    setKeywordList(newKeywordList);
+  };
 
   const handleSendVerificationEmail = () => {
     if (!isValidEmail) return;
@@ -84,10 +114,29 @@ export const SubscriptionModalContent = () => {
       <div css={keywordWrapper.container}>
         <div css={keywordWrapper.descriptionContainer}>
           <span>관심키워드</span>
-          <span>* 관심키워드 설정은 최대 6개입니다.</span>
+          <span>* 관심키워드 설정은 최대 3개입니다.</span>
         </div>
         <div css={keywordWrapper.keywordSelectContainer}>
-          <Chip closable>비트코인</Chip>
+          {keywordList.map((keyword, index) => (
+            <Chip
+              value={keyword.value}
+              onClick={() => handleAddkeyword(keyword.value)}
+              onChange={(e) =>
+                handleChangekeyword({ index, keyword: e.target.value })
+              }
+              key={index}
+              closable={true}
+              inputable={true}
+            />
+          ))}
+          {/* {keywordList.length < 3 && (
+            <span
+              onClick={() => handleAddkeyword("")}
+              style={{ display: "inline-block" }}
+            >
+              <Chip closable={true} inputable={true} />
+            </span>
+          )} */}
         </div>
       </div>
       {/* 이메일 인증 영역 */}
