@@ -57,7 +57,7 @@ export function Modal() {
             background-color: #ffffff;
             border: 1px solid #cbcbcb;
             border-radius: 1rem;
-            padding: 2.9rem 2.4rem;
+            padding: 3.2rem;
             display: flex;
             flex-direction: column;
             text-align: center;
@@ -68,7 +68,6 @@ export function Modal() {
             css={css`
               display: flex;
               flex-direction: column;
-              row-gap: 3rem;
               color: ${DESIGN_SYSTEM_COLOR.GRAY_700};
             `}
           >
@@ -92,7 +91,7 @@ export function Modal() {
 
           <div
             css={css`
-              display:${modalDataState.isVisibleBtn ? 'flex' : 'none'};
+              display: ${modalDataState.isVisibleBtn ? "flex" : "none"};
               align-items: center;
               column-gap: 1.2rem;
               width: 100%;
