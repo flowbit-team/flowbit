@@ -11,4 +11,6 @@ jobs:
       - uses: hkusu/review-assign-action@v1.4.0
         with:
           assignees: ${{ github.actor }}
-          reviewers: klmhyeonwoo, ehdrbdndns, joeunSong
+          reviewers: klmhyeonwoo, Cllaude99, joeunSong
+    env:
+      GITHUB_TOKEN: ${{ secrets.AUTO_REVIEWER_TOKEN }}

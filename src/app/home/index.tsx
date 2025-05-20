@@ -2,6 +2,7 @@ import Button from "@/components/common/Button";
 import Lottie from "lottie-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { BREAK_POINTS, DESIGN_SYSTEM_COLOR } from "@/style/variable";
 import { css } from "@emotion/react";
 import {
@@ -22,19 +23,16 @@ import Chart3 from "@/assets/chart3.svg";
 import MAINBOTTOMIMG from "@/assets/main-bottom.gif";
 import NewletterAni from "@/assets/newletter.json";
 import CommunityAni from "@/assets/community.json";
-import BlackEtherImg from "@/assets/black_ether.svg";
-import SkyblueLImg from "@/assets/skyblue_L.svg";
-import GreenBitImg from "@/assets/green_bit.svg";
-import YellowBitImg from "@/assets/yellow_bit.svg";
-import OrangeBitImg from "@/assets/orange_bit.svg";
 import { useGetChartDataQuery } from "@/api/chartApi";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "@/hooks/useModal.ts";
-import { SubscriptionModalContent } from "@/components/common/modal/SubscriptionModalContent";
 import { useAtom } from "jotai";
 import { loginState } from "@/store/user";
+import { SubscriptionModalContent } from "@/components/common/modal/SubscriptionModalContent";
+import FloatingWidget from "@/components/app/home/floating/floatingWidget";
 import { useApiTotalView } from "@/hooks/api/visitor/useApiTotalView";
+import { VisitorCount } from "@/components/app/home/VisitorCount";
 
 type CoinInfoType = {
   [coin in "BTC" | "ETH" | "XRP"]: {
@@ -65,80 +63,68 @@ export default function HomePage() {
   const [currentNum, setCurrentNum] = useState<number|string>(0);
   const [animationTotal, setAnimationTotal] = useState(0);
 
-  // const slotAnimation = () => { // 애니메이션 테스트용
-  const slotAnimation = async () => { // API 호출 테스트용
+  const slotAnimation = async () => {
     if (!topNumberRef.current || !bottomNumberRef.current) return;
 
-    await refetch(); // API 호출 테스트용
+    await refetch();
 
     setCurrentNum(0);
     
     let current = 0;
-    const step = Math.ceil(animationTotal / 180); 
+    const step = Math.ceil(animationTotal / 20000);
     
     const animate = () => {
-        current += step;
-        if (current >= animationTotal) {
-            setCurrentNum(animationTotal);
-            setCurrentNum(animationTotal.toLocaleString());
-            return;
-        }
-        
-        setCurrentNum(current.toLocaleString());
-        requestAnimationFrame(animate);
+      current += step;
+      if (current >= animationTotal) {
+        setCurrentNum(animationTotal);
+        setCurrentNum(animationTotal.toLocaleString());
+        return;
+      }
+      
+      setCurrentNum(current.toLocaleString());
+      requestAnimationFrame(animate);
     };
 
     requestAnimationFrame(animate);
   };
   
+  useGSAP(() => {
+    if (!topSectionRef.current || !bottomSectionRef.current) {
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: topSectionRef.current,
+        start: "top 5%",
+        end: "top 5%",
+        toggleActions: "restart complete restart reset",
+        onEnter: () => slotAnimation(),
+        onEnterBack: () => slotAnimation(),
+      });
+
+      ScrollTrigger.create({
+        trigger: bottomSectionRef.current,
+        start: "bottom 80%",
+        toggleActions: "restart complete restart reset",
+        onEnter: () => slotAnimation(),
+        onEnterBack: () => slotAnimation(),
+      });
+
+      slotAnimation();
+    });
+
+    return () => ctx.revert();
+  }, { dependencies: [animationTotal] });
+
   useEffect(() => {
     sendTotalView();
   }, []); 
 
   useEffect(() => {
     if (!totalView) return;
-    setAnimationTotal(totalView.data); // API 호출 테스트용
-    console.log("totalView", totalView.data); // API 호출 테스트용
-    // setAnimationTotal(10404174); // 애니매이션 테스트용
-    
+    setAnimationTotal(totalView.data);
   }, [totalView]);
-
-  useEffect(() => {
-    if (!topSectionRef.current || !bottomSectionRef.current) {
-        return;
-    }
-
-    const topTrigger = ScrollTrigger.create({
-        trigger: topSectionRef.current,
-        start: "top 5%",
-        end: "top 5%",
-        toggleActions: "restart complete restart reset",
-        onEnter: () => {
-            slotAnimation();
-        },
-        onEnterBack: () => {
-            slotAnimation();
-        },
-});        
-
-    const bottomTrigger = ScrollTrigger.create({
-      trigger: bottomSectionRef.current,
-      start: "bottom 80%",
-      toggleActions: "restart complete restart reset",
-      onEnter: () => {
-        slotAnimation();
-      },
-      onEnterBack: () => { 
-        slotAnimation();
-      },
-    });
-    slotAnimation();
-
-    return () => {
-      topTrigger.kill();
-      bottomTrigger.kill();
-    };
-  }, [animationTotal]);
 
   useEffect(() => {
     if (!getBTCData.isSuccess || !getETHData.isSuccess || !getXRPData.isSuccess)
@@ -238,7 +224,6 @@ export default function HomePage() {
       {/* 메인 화면 */}
       <section>
         <div
-          ref={topSectionRef}
           css={css`
             display: flex;
             justify-content: space-between;
@@ -254,53 +239,11 @@ export default function HomePage() {
         >
           {/* LEFT SIDE */}
           <div>
-            <div
-              css={css`
-                position: relative;
-                width: 36.5rem;
-                height: 4rem;
-                padding: 0px;
-                background: #2f3b4b;
-                color: #ffffff;
-                border-radius: 1rem;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                &::after {
-                  content: "";
-                  position: absolute;
-                  width: 22px;
-                  height: 20px;
-                  background: #2f3b4b;
-                  clip-path: path("M0,0 L22,0 L13,16 Q11,20 9,16 L0,0");
-                  display: block;
-                  z-index: 1;
-                  margin-left: -2.6rem;
-                  bottom: -1rem;
-                  left: 13%;
-                }
-
-                ${BREAK_POINTS.TABLET} {
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                }
-              `}
-            >
-              <p>
-                지금까지 플로우빗의 예측가격이{' '}
-                <span
-                ref={topNumberRef}
-                  css={css`
-                    color: #33c2ff;
-                  `}
-                >
-                  {currentNum.toLocaleString()}
-                </span>
-                번 조회됐어요
-              </p>
-            </div>
+            <VisitorCount 
+              currentNum={currentNum}
+              numberRef={topNumberRef}
+              sectionRef={topSectionRef}
+            />
             <h1
               css={css`
                 font-size: 4.8rem;
@@ -367,7 +310,8 @@ export default function HomePage() {
               <Button
                 css={css`
                   width: 11.4rem !important;
-                  height: 4.5rem;
+                  height: 4.5rem;import FloatingWidget from '../../components/app/home/floating/FloatingWidget';
+
 
                   ${DESIGN_SYSTEM_COLOR.GRAY_50}
                   font-size: 1.6rem;
@@ -646,6 +590,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <FloatingWidget />
       </section>
 
       {/* 하단 이미지 */}
@@ -670,150 +615,12 @@ export default function HomePage() {
       </section>
       {/* 하단 배너 */}
       <section>
-        <div
-          css={css`
-            padding: 12rem 0;
-
-            ${BREAK_POINTS.TABLET} {
-              padding: 8rem 0;
-            }
-
-            ${BREAK_POINTS.MOBILE} {
-              padding: 6rem 0;
-            }
-          `}
-        >
-          <div
-          ref={bottomSectionRef}
-            css={css`
-              position: relative;
-              width: 100%;
-              height: 16.4rem;
-              border-radius: 1.6rem;
-              background-color: #0044a1;
-              font-weight: 600;
-              font-size: 2.8rem;
-              line-height: 4.2rem;
-              color: #ffffff;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              text-align: center;
-              overflow: hidden;
-
-              ${BREAK_POINTS.TABLET} {
-                height: 14rem;
-                font-size: 2.4rem;
-                line-height: 3.6rem;
-              }
-
-              ${BREAK_POINTS.MOBILE} {
-                height: 7.2rem;
-                border-radius: 1rem;
-                font-size: 1.2rem;
-                line-height: 1.8rem;
-              }
-            `}
-          >
-            <p>
-              지금까지 플로우빗의 예측가격이{' '}
-              <span
-                ref={bottomNumberRef}
-                css={css`
-                  color: #79deff;
-                `}
-              >
-                {currentNum.toLocaleString()}
-              </span>
-              번 조회됐어요
-              <br />
-              지금 바로 시작하세요!
-            </p>
-            <img
-              src={BlackEtherImg}
-              css={css`
-                position: absolute;
-                bottom: 2px;
-                left: 16%;
-                
-                ${BREAK_POINTS.TABLET} {
-                  width: 7rem;
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                  width: 3rem;
-                }
-              `}
-            />
-            <img
-              src={SkyblueLImg}
-              css={css`
-                position: absolute;
-                top: 20%;
-                left: 6%;
-
-                ${BREAK_POINTS.TABLET} {
-                  left: 3%;
-                  width: 6rem;
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                  left: 2px;
-                  top: 5%;
-                  width: 3rem;
-                }
-              `}
-            />
-            <img
-              src={GreenBitImg}
-              css={css`
-                position: absolute;
-                top: 0px;
-                left: 27%;
-
-                ${BREAK_POINTS.TABLET} {
-                  width: 4rem;
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                  width: 3rem;
-                }
-              `}
-            />
-            <img
-              src={YellowBitImg}
-              css={css`
-                position: absolute;
-                top: 0px;
-                left: 78%;
-
-                ${BREAK_POINTS.TABLET} {
-                  width: 8rem;
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                  width: 5rem;
-                }
-              `}
-            />
-            <img
-              src={OrangeBitImg}
-              css={css`
-                position: absolute;
-                bottom: 0px;
-                left: 82%;
-
-                ${BREAK_POINTS.TABLET} {
-                  width: 8rem;
-                }
-
-                ${BREAK_POINTS.MOBILE} {
-                  width: 5rem;
-                }
-              `}
-            />
-          </div>
-        </div>
+        <VisitorCount 
+          currentNum={currentNum}
+          numberRef={bottomNumberRef}
+          sectionRef={bottomSectionRef}
+          isBottom
+        />
       </section>
     </article>
   );

@@ -1,3 +1,4 @@
+import { ACCESS_TOKEN } from "@/utils/constant";
 import { navigateTo } from "@/utils/globalNavigate";
 import axios, {
   AxiosError,
@@ -30,7 +31,7 @@ const logOnDev = (message: string) => {
 const onError = (status: number, message: string) => {
   const error = { status, message };
   if (status === 401) {
-    localStorage.removeItem("FLOWBIT_ACT");
+    localStorage.removeItem(ACCESS_TOKEN);
     navigateTo("/signin");
   }
   throw error;
@@ -40,7 +41,7 @@ const onError = (status: number, message: string) => {
 const onRequest = (
   config: AxiosRequestConfig,
 ): Promise<InternalAxiosRequestConfig> => {
-  const token = localStorage.getItem("FLOWBIT_ACT");
+  const token = localStorage.getItem(ACCESS_TOKEN);
   const { method, url, headers = {} } = config;
 
   headers.Authorization = token ? `Bearer ${token}` : "";
