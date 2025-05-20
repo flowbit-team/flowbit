@@ -1,5 +1,8 @@
 import Button from "@/components/common/Button";
 import Lottie from "lottie-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { BREAK_POINTS, DESIGN_SYSTEM_COLOR } from "@/style/variable";
 import { css } from "@emotion/react";
 import {
@@ -21,12 +24,15 @@ import MAINBOTTOMIMG from "@/assets/main-bottom.gif";
 import NewletterAni from "@/assets/newletter.json";
 import CommunityAni from "@/assets/community.json";
 import { useGetChartDataQuery } from "@/api/chartApi";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "@/hooks/useModal.ts";
 import { useAtom } from "jotai";
 import { loginState } from "@/store/user";
 import { SubscriptionModalContent } from "@/components/common/modal/SubscriptionModalContent";
+import FloatingWidget from "@/components/app/home/floating/floatingWidget";
+import { useApiTotalView } from "@/hooks/api/visitor/useApiTotalView";
+import { VisitorCount } from "@/components/app/home/VisitorCount";
 
 type CoinInfoType = {
   [coin in "BTC" | "ETH" | "XRP"]: {
@@ -35,6 +41,8 @@ type CoinInfoType = {
     datas: unknown[]; // 그래프 데이터
   };
 };
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HomePage() {
   // 차트 데이터 가지고 오기
@@ -46,6 +54,77 @@ export default function HomePage() {
   const [isLogin, _] = useAtom(loginState);
   const { open, close } = useModal();
   const navigate = useNavigate();
+
+  const { data: totalView, refetch, sendTotalView } = useApiTotalView();
+  const topNumberRef = useRef<HTMLSpanElement>(null);
+  const bottomNumberRef = useRef<HTMLSpanElement>(null);
+  const topSectionRef = useRef<HTMLDivElement>(null);
+  const bottomSectionRef = useRef<HTMLDivElement>(null);
+  const [currentNum, setCurrentNum] = useState<number|string>(0);
+  const [animationTotal, setAnimationTotal] = useState(0);
+
+  const slotAnimation = async () => {
+    if (!topNumberRef.current || !bottomNumberRef.current) return;
+
+    await refetch();
+
+    setCurrentNum(0);
+    
+    let current = 0;
+    const step = Math.ceil(animationTotal / 20000);
+    
+    const animate = () => {
+      current += step;
+      if (current >= animationTotal) {
+        setCurrentNum(animationTotal);
+        setCurrentNum(animationTotal.toLocaleString());
+        return;
+      }
+      
+      setCurrentNum(current.toLocaleString());
+      requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+  };
+  
+  useGSAP(() => {
+    if (!topSectionRef.current || !bottomSectionRef.current) {
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: topSectionRef.current,
+        start: "top 5%",
+        end: "top 5%",
+        toggleActions: "restart complete restart reset",
+        onEnter: () => slotAnimation(),
+        onEnterBack: () => slotAnimation(),
+      });
+
+      ScrollTrigger.create({
+        trigger: bottomSectionRef.current,
+        start: "bottom 80%",
+        toggleActions: "restart complete restart reset",
+        onEnter: () => slotAnimation(),
+        onEnterBack: () => slotAnimation(),
+      });
+
+      slotAnimation();
+    });
+
+    return () => ctx.revert();
+  }, { dependencies: [animationTotal] });
+
+  useEffect(() => {
+    sendTotalView();
+  }, []); 
+
+  useEffect(() => {
+    if (!totalView) return;
+    setAnimationTotal(totalView.data);
+  }, [totalView]);
 
   useEffect(() => {
     if (!getBTCData.isSuccess || !getETHData.isSuccess || !getXRPData.isSuccess)
@@ -159,10 +238,16 @@ export default function HomePage() {
         >
           {/* LEFT SIDE */}
           <div>
+            <VisitorCount 
+              currentNum={currentNum}
+              numberRef={topNumberRef}
+              sectionRef={topSectionRef}
+            />
             <h1
               css={css`
                 font-size: 4.8rem;
                 line-height: 7.2rem;
+                margin-top: 20px;
 
                 ${BREAK_POINTS.TABLET} {
                 }
@@ -224,7 +309,8 @@ export default function HomePage() {
               <Button
                 css={css`
                   width: 11.4rem !important;
-                  height: 4.5rem;
+                  height: 4.5rem;import FloatingWidget from '../../components/app/home/floating/FloatingWidget';
+
 
                   ${DESIGN_SYSTEM_COLOR.GRAY_50}
                   font-size: 1.6rem;
@@ -503,6 +589,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <FloatingWidget />
       </section>
 
       {/* 하단 이미지 */}
@@ -523,6 +610,15 @@ export default function HomePage() {
           `}
           src={MAINBOTTOMIMG}
           alt=""
+        />
+      </section>
+      {/* 하단 배너 */}
+      <section>
+        <VisitorCount 
+          currentNum={currentNum}
+          numberRef={bottomNumberRef}
+          sectionRef={bottomSectionRef}
+          isBottom
         />
       </section>
     </article>
