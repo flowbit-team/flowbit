@@ -118,7 +118,7 @@ export default function Consent() {
           css={css`
             margin-top: 1.6rem;
           `}
-          disabled={privacy && useService}
+          disabled={!(privacy && useService)}
           onClick={() => handleNextClick()}
         >
           다음
