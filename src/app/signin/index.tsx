@@ -85,7 +85,7 @@ export default function SignIn() {
         css={css`
           margin-top: 5.6rem;
         `}
-        disabled={isValidEmail && password.length > 5}
+        disabled={!(isValidEmail && password.length > 5)}
         onClick={handleSignIn}
       >
         로그인
