@@ -79,9 +79,12 @@ export default function SignUp() {
             }}
           />
           <CertificateBox
-            check={emailCheck && !verifySendCheck}
+            disabled={emailCheck && !verifySendCheck}
             onClick={() => {
-              sendVerifyEmail({ email: email, emailPurpose: EMAIL_PURPOSE.SIGNUP});
+              sendVerifyEmail({
+                email: email,
+                emailPurpose: EMAIL_PURPOSE.SIGNUP,
+              });
               setVerifySendCheck(true);
             }}
           >
@@ -99,12 +102,12 @@ export default function SignUp() {
               maxLength={6}
             />
             <CertificateBox
-              check={verifyEmailNum.length >= 6 && !verifyEmailNumCheck}
+              disabled={verifyEmailNum.length >= 6 && !verifyEmailNumCheck}
               onClick={() => {
                 verifyEmail({
                   email: email,
                   randomNumber: verifyEmailNum,
-                  emailPurpose: EMAIL_PURPOSE.SIGNUP
+                  emailPurpose: EMAIL_PURPOSE.SIGNUP,
                 })
                   .then(() => {
                     setVerifyEmailNumCheck(true);
@@ -163,7 +166,7 @@ export default function SignUp() {
         css={css`
           margin-top: 3.9rem;
         `}
-        state={Boolean(
+        disabled={Boolean(
           verifyEmailNumCheck &&
             email &&
             password &&

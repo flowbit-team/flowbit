@@ -78,7 +78,8 @@ const onErrorResponse = (error: AxiosError | Error) => {
   if (axios.isAxiosError(error)) {
     const { message } = error;
     const { method, url } = error?.config as AxiosRequestConfig;
-    const { status, statusText } = error?.response as AxiosResponse;
+    const { status, statusText, data } = error?.response as AxiosResponse;
+    const description = data?.error?.message;
 
     logOnDev(
       `[API ERROR_RESPONSE ${status} | ${statusText} | ${message}] ${method?.toUpperCase()} ${url}`,
@@ -86,26 +87,29 @@ const onErrorResponse = (error: AxiosError | Error) => {
 
     switch (status) {
       case 400:
-        onError(status, "잘못된 요청을 했어요");
+        onError(status, description ?? "잘못된 요청을 했어요");
         break;
       case 401: {
-        onError(status, "인증을 실패했어요");
+        onError(status, description ?? "인증을 실패했어요");
         break;
       }
       case 403: {
-        onError(status, "권한이 없는 상태로 접근했어요");
+        onError(status, description ?? "권한이 없는 상태로 접근했어요");
         break;
       }
       case 404: {
-        onError(status, "찾을 수 없는 페이지를 요청했어요");
+        onError(status, description ?? "찾을 수 없는 페이지를 요청했어요");
         break;
       }
       case 500: {
-        onError(status, "서버 오류가 발생했어요");
+        onError(status, description ?? "서버 오류가 발생했어요");
         break;
       }
       default: {
-        onError(status, `기타 에러가 발생했어요 : ${error?.message}`);
+        onError(
+          status,
+          description ?? `기타 에러가 발생했어요 : ${error?.message}`,
+        );
       }
     }
   } else if (error instanceof Error && error?.name === "TimoutError") {

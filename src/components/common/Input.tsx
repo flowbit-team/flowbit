@@ -4,7 +4,7 @@ import { DESIGN_SYSTEM_TEXT } from "@/style/variable.ts";
 type inputProps = {
   placeholder: string;
   icon?: string;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "types">;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 export default function Input({
   placeholder = "텍스트를 입력해주세요",
   icon,

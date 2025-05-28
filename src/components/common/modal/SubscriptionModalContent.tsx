@@ -10,30 +10,94 @@ import CertificateBox from "@/components/app/signup/certificate-box";
 import useCheckEmail from "@/hooks/useCheckEmail";
 import Button from "../Button";
 import Chip from "../chip";
-import { set } from "lodash";
+import dateUtil from "@/utils/dateUtil";
+import circle_checked_icon from "@/assets/checkbox/circle_checked_fill.svg";
+import circle_chcked_icon_disabled from "@/assets/checkbox/circle_checked_default.svg";
 
 export const SubscriptionModalContent = () => {
+  const [verifyCheckBox, setVetifyCheckBox] = useState([
+    {
+      id: "privacy",
+      checked: false,
+      label: "개인정보 처리방침",
+      url: "",
+    },
+    {
+      id: "age",
+      checked: false,
+      label: "만 14세 이상입니다.",
+      url: "",
+    },
+  ]);
   const [verifySendCheck, setVerifySendCheck] = useState(false);
   const [verifyEmailNum, setVerifyEmailNum] = useState("");
   const [verifyEmailNumCheck, setVerifyEmailNumCheck] = useState(false);
-  const [keywordList, setKeywordList] = useState<{ value: string }[]>([
+  const [verifyDescription, setVerifyDescription] = useState<{
+    type: "info" | "error" | "success";
+    message: string;
+  }>({
+    type: "info",
+    message: "",
+  });
+  const [remaingTime, setRemainingTime] = useState(300);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [timer, setTimer] = useState<ReturnType<typeof setInterval> | null>(
+    null,
+  );
+  const [keywordList, setKeywordList] = useState<
+    { value: string; inputable: boolean }[]
+  >([
     {
       value: "",
+      inputable: true,
     },
   ]);
   const { close } = useModal();
   const { email, isValidEmail, handleEmailChange } = useCheckEmail();
 
-  const handleAddkeyword = (value: string) => {
-    if (!value.trim()) {
-      alert("올바른 키워드를 입력해주세요");
-      return;
+  const handleAddkeyword = ({
+    index,
+    keyword,
+  }: {
+    index: number;
+    keyword: {
+      value: string;
+      inputable: boolean;
+    };
+  }) => {
+    if (keyword.inputable) {
+      if (!keyword.value.trim()) {
+        alert("올바른 키워드를 입력해주세요");
+        return;
+      }
+      if (keywordList.length > 3) {
+        alert("최대 3개까지 입력 가능합니다.");
+        return;
+      }
     }
-    if (keywordList.length >= 3) {
-      alert("최대 3개까지 입력 가능합니다.");
-      return;
+    Object.values(keywordList).forEach((item, i) => {
+      if (index !== i && item.value === keyword.value) {
+        alert("이미 입력된 키워드입니다.");
+        return;
+      }
+    });
+
+    const newKeywordList = [...keywordList];
+    if (newKeywordList[index].inputable) {
+      newKeywordList[index].inputable = false;
+      if (newKeywordList.length < 3) {
+        setKeywordList([...newKeywordList, { value: "", inputable: true }]);
+      } else {
+        setKeywordList(newKeywordList);
+      }
+    } else {
+      const updatedList = newKeywordList.filter((_, i) => i !== index);
+      if (updatedList.length === 0 || updatedList.every((k) => !k.inputable)) {
+        setKeywordList([...updatedList, { value: "", inputable: true }]);
+      } else {
+        setKeywordList(updatedList);
+      }
     }
-    setKeywordList([...keywordList, { value: "" }]);
   };
 
   const handleChangekeyword = ({
@@ -43,61 +107,127 @@ export const SubscriptionModalContent = () => {
     index: number;
     keyword: string;
   }) => {
-    console.log(index, keyword);
     const newKeywordList = [...keywordList];
     newKeywordList[index].value = keyword;
     setKeywordList(newKeywordList);
   };
 
-  const handleSendVerificationEmail = () => {
+  const handleSendVerificationEmail = async () => {
     if (!isValidEmail) return;
     try {
-      const res = sendVerifyEmail({
+      const { status } = await sendVerifyEmail({
         email,
         emailPurpose: EMAIL_PURPOSE.SUBSCRIBE,
       });
-      console.log(res);
-      setVerifySendCheck(true);
+      if (status === 200) {
+        handlePlayTimer();
+        setVerifySendCheck(true);
+      }
     } catch (error) {
-      alert("이메일 전송에 실패했습니다. 다시 시도해주세요.");
+      setVerifyDescription({
+        type: "error",
+        message:
+          (error as Error).message ??
+          "이메일 전송에 실패했습니다. 다시 시도해주세요.",
+      });
     }
   };
 
-  const handleVerifyEmailCode = () => {
+  const handleVerifyEmailCode = async () => {
     if (!verifyEmailNum) return;
+    if (keywordList?.[0]?.value?.trim() === "") return;
     try {
-      const res = verifyEmail({
+      const { status } = await verifyEmail({
         email,
         randomNumber: verifyEmailNum,
         emailPurpose: EMAIL_PURPOSE.SUBSCRIBE,
       });
-      setVerifyEmailNumCheck(true);
+      if (status === 200) {
+        // 타이머 제거 및 중지
+        setIsTimerRunning(false);
+        if (timer) clearInterval(timer);
+        // 인증번호 인증 완료 및 메세지 제공
+        setVerifyEmailNumCheck(true);
+        setVerifyDescription({
+          type: "success",
+          message: "인증되었습니다.",
+        });
+      }
     } catch (error) {
-      alert("인증번호가 올바르지 않습니다. 다시 확인해주세요.");
+      setVerifyDescription({
+        type: "error",
+        message:
+          (error as Error).message ??
+          "인증 코드 인증이 실패했습니다. 다시 시도해주세요.",
+      });
     }
   };
 
+  const handlePlayTimer = () => {
+    if (timer) {
+      clearInterval(timer);
+    }
+
+    setRemainingTime(300);
+    setIsTimerRunning(true);
+    setVerifyEmailNum("");
+    setVerifyEmailNumCheck(false);
+    setVerifyDescription({
+      type: "info",
+      message: "인증번호를 입력해주세요.",
+    });
+
+    // 5분 타이머 시작, 돔에 나타내야함
+    const newTimer = setInterval(() => {
+      setRemainingTime((prev) => {
+        if (prev <= 1) {
+          clearInterval(newTimer);
+          setIsTimerRunning(false);
+          setVerifySendCheck(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    setTimer(newTimer);
+  };
+
+  const handleChecked = (item: {
+    id: string;
+    checked: boolean;
+    label: string;
+    url: string;
+  }) => {
+    const updatedCheckBox = verifyCheckBox.map((check) => {
+      if (check.id === item.id) {
+        return { ...check, checked: !check.checked };
+      }
+      return check;
+    });
+    setVetifyCheckBox(updatedCheckBox);
+  };
+
   const handleCompleteSubscription = async () => {
-    if (!verifyEmailNumCheck) {
-      alert("이메일 인증을 완료해주세요.");
-      return;
-    }
-
-    const selectedCategories = Object.keys(categories).filter(
-      (key) => categories[key as keyof typeof categories],
-    );
-
-    if (selectedCategories.length === 0) {
-      alert("최소 하나 이상의 구독 카테고리를 선택해주세요.");
-      return;
-    }
+    const keywords = keywordList.reduce<string[]>((acc, cur) => {
+      if (cur.value.trim() !== "") {
+        acc.push(cur.value);
+      }
+      return acc;
+    }, []);
 
     try {
-      await sendSubscribeEmail({ email });
+      await sendSubscribeEmail({ email, keywords });
       alert("구독이 완료되었습니다. 매일 자정에 구독 정보를 보내드립니다.");
       close(); // 모달 창 닫기
     } catch (error) {
-      alert("구독 요청에 실패했습니다. 다시 시도해주세요.");
+      console.log(error);
+      setVerifyDescription({
+        type: "error",
+        message:
+          (error as Error).message ??
+          "구독 요청에 실패했습니다. 다시 시도해주세요.",
+      });
     }
   };
 
@@ -120,23 +250,25 @@ export const SubscriptionModalContent = () => {
           {keywordList.map((keyword, index) => (
             <Chip
               value={keyword.value}
-              onClick={() => handleAddkeyword(keyword.value)}
+              onClick={() => handleAddkeyword({ index, keyword })}
               onChange={(e) =>
-                handleChangekeyword({ index, keyword: e.target.value })
+                handleChangekeyword({
+                  index,
+                  keyword: (e.target as HTMLInputElement).value,
+                })
               }
+              onKeyUp={(e) => {
+                if (e.key === "Enter") {
+                  handleAddkeyword({ index, keyword });
+                }
+              }}
+              onBlur={() => handleAddkeyword({ index, keyword })}
               key={index}
               closable={true}
-              inputable={true}
+              inputable={keyword.inputable}
+              maxLength={10}
             />
           ))}
-          {/* {keywordList.length < 3 && (
-            <span
-              onClick={() => handleAddkeyword("")}
-              style={{ display: "inline-block" }}
-            >
-              <Chip closable={true} inputable={true} />
-            </span>
-          )} */}
         </div>
       </div>
       {/* 이메일 인증 영역 */}
@@ -158,15 +290,64 @@ export const SubscriptionModalContent = () => {
             {verifySendCheck ? "인증번호 재전송" : "인증번호 받기"}
           </CertificateBox>
         </div>
-        <Input
-          placeholder={"인증번호를 입력해주세요"}
-          value={verifyEmailNum}
-          onChange={(e) => setVerifyEmailNum(e.target.value)}
-          disabled={true}
-        />
+        <div css={emailWrapper.certificationContainer}>
+          <div css={emailWrapper.certificationWrapper}>
+            <Input
+              placeholder={"인증번호를 입력해주세요"}
+              value={verifyEmailNum}
+              onChange={(e) => setVerifyEmailNum(e.target.value)}
+              disabled={!verifySendCheck}
+            />
+            <button
+              disabled={!verifySendCheck || !verifyEmailNum.length}
+              onClick={handleVerifyEmailCode}
+            >
+              인증하기
+            </button>
+          </div>
+          <div
+            css={() =>
+              emailWrapper.messageWrapper({
+                verifyDescription: verifyDescription.type,
+              })
+            }
+          >
+            <span> {verifyDescription.message} </span>
+            {isTimerRunning ? (
+              <span> 유효시간 {dateUtil.formatTime(remaingTime)} </span>
+            ) : null}
+          </div>
+        </div>
       </div>
+      {/* 이메일 동의 및 구독 영역 */}
       <div css={footerWrapper.container}>
-        <Button disabled={true}>동의하고 구독하기</Button>
+        <div css={footerWrapper.checkbox__container}>
+          {verifyCheckBox.map((item) => {
+            return (
+              <div
+                css={footerWrapper.checkbox__wrapper}
+                key={item.id}
+                onClick={() => handleChecked(item)}
+              >
+                {item.checked ? (
+                  <img src={circle_checked_icon} alt="unchecked icon" />
+                ) : (
+                  <img src={circle_chcked_icon_disabled} alt="checked icon" />
+                )}
+                <span> {item.label} </span>
+              </div>
+            );
+          })}
+        </div>
+        <Button
+          disabled={
+            !verifyEmailNumCheck ||
+            !verifyCheckBox.every((item) => item.checked)
+          }
+          onClick={handleCompleteSubscription}
+        >
+          동의하고 구독하기
+        </Button>
       </div>
     </div>
   );
@@ -223,8 +404,10 @@ const keywordWrapper = {
   keywordSelectContainer: css`
     display: inline-flex;
     column-gap: 8px;
+    row-gap: 8px;
     align-items: center;
     justify-content: flex-start;
+    flex-wrap: wrap;
   `,
 };
 
@@ -260,6 +443,47 @@ const emailWrapper = {
     flex-direction: row;
     column-gap: 12px;
   `,
+  certificationContainer: css`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 8px;
+
+    span {
+      font-size: 12px;
+    }
+  `,
+  certificationWrapper: css`
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    > button {
+      position: absolute;
+      right: 0;
+      font-size: 15px;
+      color: var(--blue-50);
+      background-color: transparent;
+      border: none;
+      margin-right: 16px;
+
+      &:disabled {
+        color: var(--text-disabled);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  `,
+  messageWrapper: ({ verifyDescription }: { verifyDescription: string }) => css`
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    ${verifyDescription === "error" && "color: var(--red-50);"}
+    ${verifyDescription === "success" && "color: var(--blue-50);"}
+  `,
 };
 
 const footerWrapper = {
@@ -270,5 +494,15 @@ const footerWrapper = {
     align-items: center;
     margin-top: 32px;
     row-gap: 12px;
+  `,
+  checkbox__container: css`
+    display: flex;
+    column-gap: 24px;
+    cursor: pointer;
+  `,
+  checkbox__wrapper: css`
+    display: flex;
+    align-items: center;
+    color: var(--text-body1);
   `,
 };

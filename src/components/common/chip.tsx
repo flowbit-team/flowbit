@@ -9,7 +9,9 @@ type ChipType = {
   inputable?: boolean;
   onClick?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 export default function Chip({
   value,
@@ -17,6 +19,8 @@ export default function Chip({
   inputable = false,
   onClick,
   onChange,
+  onKeyUp,
+  onBlur,
 }: ChipType) {
   return (
     <Fragment>
@@ -28,6 +32,8 @@ export default function Chip({
             value={value}
             placeholder="직접입력"
             onChange={onChange}
+            onKeyUp={onKeyUp}
+            onBlur={onBlur}
           />
         </div>
       ) : (
