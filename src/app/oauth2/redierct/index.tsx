@@ -1,25 +1,30 @@
-import { loginState } from "@/store/user";
-import { ACCESS_TOKEN } from "@/utils/constant";
-import { useSetAtom } from "jotai";
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSetAtom } from "jotai";
+import { loginState, tokenState } from "@/store/user";
+import { ACCESS_TOKEN } from "@/utils/constant";
 
 export default function Oauth2Redirect() {
-  const location = useLocation();
   const navigate = useNavigate();
-  const params = new URLSearchParams(location.search);
-  const accessToken = params.get("accessToken");
   const setLogin = useSetAtom(loginState);
+  const setToken = useSetAtom(tokenState);
 
   useEffect(() => {
-    if (accessToken) {
-      localStorage.setItem(ACCESS_TOKEN, accessToken);
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+
+    if (token) {
+      localStorage.setItem(ACCESS_TOKEN, token);
+      setToken(token);
       setLogin(true);
       navigate("/");
     } else {
-      alert("오류가 발생했어요, 관리자에게 문의해주세요");
+      // 토큰이 없는 경우 에러 처리
+      setLogin(false);
+      setToken("");
+      navigate("/signin");
     }
-  }, []);
+  }, [navigate, setLogin, setToken]);
 
-  return <>처리중입니다.</>;
+  return null;
 }

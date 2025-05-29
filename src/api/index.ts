@@ -6,18 +6,25 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
+  RawAxiosRequestHeaders,
 } from "axios";
 
 /** API 사용 전, ENV 파일을 통해 서버 연동 설정을 해주세요 */
 const API_URL = import.meta.env.VITE_API_URL as string;
 
-const baseApi = axios.create({
-  baseURL: API_URL,
-  timeout: 5000,
+const headers: RawAxiosRequestHeaders = {
+  "Content-Type": "application/json",
+};
 
-  headers: {
-    "Content-Type": "application/json",
-  },
+const token = localStorage.getItem(ACCESS_TOKEN);
+if (token) {
+  headers.Authorization = `Bearer ${token}`;
+}
+
+const axiosInstance = axios.create({
+  baseURL: API_URL,
+  headers,
+  withCredentials: true, // CORS 쿠키 전송을 위해 필요
 });
 
 /** 개발 환경에서만 실행되논 로깅 함수 */
@@ -124,11 +131,11 @@ const onErrorResponse = (error: AxiosError | Error) => {
 };
 
 /** 인터셉터를 설정 하고, Axios Instance를 반환하는 함수 */
-const setInterceptors = (axiosInstance: AxiosInstance): AxiosInstance => {
-  axiosInstance.interceptors.request.use(onRequest, onErrorRequest);
-  axiosInstance.interceptors.response.use(onResponse, onErrorResponse);
+const setInterceptors = (instance: AxiosInstance): AxiosInstance => {
+  instance.interceptors.request.use(onRequest, onErrorRequest);
+  instance.interceptors.response.use(onResponse, onErrorResponse);
 
-  return axiosInstance;
+  return instance;
 };
 
-export const api = setInterceptors(baseApi);
+export const api = setInterceptors(axiosInstance);
