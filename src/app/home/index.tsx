@@ -195,7 +195,6 @@ export default function HomePage() {
    */
   const openSubscriptionModal = () => {
     open({
-      title: "구독 설정",
       content: <SubscriptionModalContent />,
       isVisibleBtn: false,
     });
