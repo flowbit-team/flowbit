@@ -22,7 +22,7 @@ const panelStyle = css`
   width: 390px;
   height: calc(100dvh - 450px);
   background-color: white;
-  padding: 1.5rem;
+  padding: 24px;
   border-radius: 24px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid #e5e7eb;
